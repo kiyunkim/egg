@@ -21,27 +21,33 @@
   <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body>
+<body class="bg-light">
   <noscript>
     <p>Please enable JavaScript in your browser to use this site.</p>
   </noscript>
-
-  <div class="container">
-    <section class="init">
-      <p class="init-text"></p>
-    </section>
-    <header class="header">
-    </header>
-    <aside class="aside">
-      <p class="money unit-name">Money: <span class="unit-value">0</span></p>
-      <p class="energy unit-name">Energy: <span class="unit-value-bar">0</span></p>
-      <p class="mood unit-name">Mood: <span class="unit-value-bar">0</span></p>
-    </aside>
-    <main class="main">
-      
-
-    </main>
-  </div>
+  <header class="container-fluid bg-white border-bottom">
+    <div class="row">
+      <div class="col-md">Hi</div>
+    </div>
+  </header>
+  <main class="container bg-white mx-auto my-3 p-4 rounded shadow-lg">
+    <ul class="nav nav-pills" id="myTab" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-content-1" role="tab" aria-controls="home" aria-selected="true">Home</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" id="tab-3" data-toggle="tab" href="#tab-content-3" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
+      </li>
+    </ul>
+    <div class="tab-content px-2 py-4" id="myTabContent">
+      <div class="tab-pane fade show active" id="tab-content-1" role="tabpanel" aria-labelledby="home-tab">1...</div>
+      <div class="tab-pane fade" id="tab-content-2" role="tabpanel" aria-labelledby="profile-tab">2...</div>
+      <div class="tab-pane fade" id="tab-content-3" role="tabpanel" aria-labelledby="contact-tab">3...</div>
+    </div>
+  </main>
 
   <!-- js -->
   <script src="js/lib/jquery-3.3.1.slim.min.js"></script>
