@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Life</title>
+  <title>Lemonidle</title>
   <meta charset="utf-8">
   <meta http-equiv="x-ua-compatible" content="ie=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,37 +16,36 @@
   <link rel="shortcut icon" type="image/png" href="images/favicon.png" />
 
   <!-- css -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   <link rel="stylesheet" href="css/lib/normalize-8.min.css">
   <link rel="stylesheet" href="css/lib/bootstrap-4.min.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body class="bg-light">
+<body>
   <noscript>
     <p>Please enable JavaScript in your browser to use this site.</p>
   </noscript>
-  <header class="container-fluid bg-white border-bottom">
-    <div class="row">
-      <div class="col-md">Hi</div>
-    </div>
-  </header>
-  <main class="container bg-white mx-auto my-3 p-4 rounded shadow-lg">
-    <ul class="nav nav-pills" id="myTab" role="tablist">
-      <li class="nav-item">
-        <a class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-content-1" role="tab" aria-controls="home" aria-selected="true">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2" role="tab" aria-controls="profile" aria-selected="false">Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" id="tab-3" data-toggle="tab" href="#tab-content-3" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-      </li>
+  <main class="container-fluid bg-white p-0">
+    <ul class="nav navbar navbar-light bg-light mb-2">
+      <li class="navbar-brand font-weight-bold">$20.00 <small class="text-black-50">(0/s)</small></li>
+      <a class="text-body font-weight-bold ml-auto" href="#">Lemonidle</a>
+
+    </ul>
+    <ul class="nav nav-tabs" id="myTab" role="tablist">
+      <li class="nav-item ml-3 mr-1"><a class="nav-link active" id="tab-1" data-toggle="tab" href="#tab-content-1" role="tab" aria-controls="stand" aria-selected="true">Stand</a></li>
+      <li class="nav-item mx-1"><a class="nav-link" id="tab-2" data-toggle="tab" href="#tab-content-2" role="tab" aria-controls="profile" aria-selected="false">Profile</a></li>
+      <li class="nav-item"><a class="nav-link" id="tab-3" data-toggle="tab" href="#tab-content-3" role="tab" aria-controls="contact" aria-selected="false">Contact</a></li>
     </ul>
     <div class="tab-content px-2 py-4" id="myTabContent">
-      <div class="tab-pane fade show active" id="tab-content-1" role="tabpanel" aria-labelledby="home-tab">1...</div>
+      <div class="tab-pane fade show active" id="tab-content-1" role="tabpanel" aria-labelledby="stand-tab">
+        <!-- stand -->
+        <button type="button" class="btn btn-outline-primary">Sell</button>
+      </div>
       <div class="tab-pane fade" id="tab-content-2" role="tabpanel" aria-labelledby="profile-tab">2...</div>
       <div class="tab-pane fade" id="tab-content-3" role="tabpanel" aria-labelledby="contact-tab">3...</div>
     </div>
+
   </main>
 
   <!-- js -->
@@ -54,8 +53,5 @@
   <script src="js/lib/popper-1.14.min.js"></script>
   <script src="js/lib/bootstrap-4.1.min.js"></script>
   <script src="js/main.js"></script>
-  
-  <!-- fontawesome icons -->
-  <script src="https://use.fontawesome.com/9361343b87.js"></script>
 </body>
 </html>
