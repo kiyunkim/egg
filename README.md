@@ -1,3 +1,3 @@
-# Game of Life
+# Incremental Idle
 
 - [ ] Make JSON file for init
