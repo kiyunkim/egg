@@ -1,3 +1,26 @@
+/* colors */
+/* fonts */
+body {
+  font-family: "Gothic A1", helvetica, arial, sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.egg {
+  padding: 1rem;
+}
+
+.btn {
+  padding: .5rem;
+  color: #333;
+  text-decoration: none;
+  border: 1px solid #333;
+}
+
+.btn:active {
+  background: rgba(0, 0, 0, 0.2);
+}
+
 .hidden {
   display: none;
 }

@@ -1,5 +1,25 @@
 @import 'variables';
 
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight-medium;
+}
+
+.egg {
+  padding: 1rem;
+}
+
+.btn {
+  padding: .5rem;
+  color: $color-text;
+  text-decoration: none;
+  border: 1px solid $color-text;
+  &:active {
+    background: black-opacity(.2);
+  }
+}
+
 .hidden {
   display: none;
 }
