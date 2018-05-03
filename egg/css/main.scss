@@ -1,4 +1,5 @@
 @import 'variables';
+@import 'maps';
 
 body {
   font-family: $font-family;
@@ -11,9 +12,10 @@ body {
 }
 .egg-section {
   display: inline-block;
+  padding: 1rem;
 }
 
-.egg-img {
+.egg-sprite {
   vertical-align: text-bottom;
   display: inline-block;
   height: 21px;
@@ -22,6 +24,11 @@ body {
   background-size: 80px;
   &.egg-default {
   }
+}
+
+.egg-amount {
+  font-size: 1.2rem;
+  margin-left: .2rem;
 }
 
 .btn {
@@ -43,5 +50,16 @@ body {
 .access-off {
   .btn {
     outline: none;
+  }
+}
+
+
+
+
+
+
+@each $name, $value in map-deep-get($colors, grey) {
+  .bg-#{$name} {
+   background: $value; 
   }
 }

@@ -1,4 +1,5 @@
 /* colors */
+
 $color-text: #333;
 $color-highlight: #bc0000;
 $color-bg: #eee;
@@ -11,18 +12,18 @@ $color-bg: #eee;
 }
 
 /* fonts 
+*/
 $font-size: 16px;
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-family: 'Gothic A1', helvetica, arial, sans-serif;
-
+$bg-btn: #eee;
 @function google-font($font, $weights) {
   
 }
-*/
 
-/* button */
+/* button 
 $btn: (
   bg: grey(240),
   color: $color-text,
@@ -31,6 +32,7 @@ $btn: (
 /* 
 ref from https://webdesign.tutsplus.com/tutorials/an-introduction-to-sass-maps-usage-and-examples--cms-22184
 
+*/
 $layer: (
   offcanvas: 1,
   lightbox: 500,
@@ -48,7 +50,3 @@ $layer: (
   @return null;
 };
  
-.m-lightbox {
-  z-index: layer(lightbox);
-}
-*/

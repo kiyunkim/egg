@@ -1,6 +1,16 @@
 /* colors */
-/* fonts */
-/* bg */
+/* fonts 
+*/
+/* button 
+$btn: (
+  bg: grey(240),
+  color: $color-text,
+  border-color: darken(grey, 20%)
+);
+/* 
+ref from https://webdesign.tutsplus.com/tutorials/an-introduction-to-sass-maps-usage-and-examples--cms-22184
+
+*/
 body {
   font-family: "Gothic A1", helvetica, arial, sans-serif;
   font-size: 16px;
@@ -13,9 +23,10 @@ body {
 
 .egg-section {
   display: inline-block;
+  padding: 1rem;
 }
 
-.egg-img {
+.egg-sprite {
   vertical-align: text-bottom;
   display: inline-block;
   height: 21px;
@@ -24,17 +35,22 @@ body {
   background-size: 80px;
 }
 
+.egg-amount {
+  font-size: 1.2rem;
+  margin-left: .2rem;
+}
+
 .btn {
   cursor: pointer;
   padding: .5rem;
   color: #333;
   text-decoration: none;
-  border: 1px solid #bdbdbd;
-  background: #f0f0f0;
+  border: 1px solid #bbbbbb;
+  background: #eee;
 }
 
 .btn:active {
-  background: #d7d7d7;
+  background: #d5d5d5;
 }
 
 .hidden {
@@ -43,5 +59,49 @@ body {
 
 .access-off .btn {
   outline: none;
+}
+
+.bg-100 {
+  background: #f2f2f2;
+}
+
+.bg-200 {
+  background: #eee;
+}
+
+.bg-300 {
+  background: #ddd;
+}
+
+.bg-400 {
+  background: #ccc;
+}
+
+.bg-500 {
+  background: #bbb;
+}
+
+.bg-600 {
+  background: #aaa;
+}
+
+.bg-700 {
+  background: #999;
+}
+
+.bg-800 {
+  background: #888;
+}
+
+.bg-900 {
+  background: #777;
+}
+
+.bg-light {
+  background: #eee;
+}
+
+.bg-dark {
+  background: #333;
 }
 /*# sourceMappingURL=main.css.map */
