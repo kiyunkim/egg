@@ -6,10 +6,49 @@ $color-bg: #eee;
 @function black-opacity($opacity) {
   @return rgba(0,0,0,$opacity);
 }
+@function grey($rgb) {
+  @return rgb($rgb,$rgb,$rgb);
+}
 
-/* fonts */
+/* fonts 
 $font-size: 16px;
 $font-weight-normal: 400;
 $font-weight-medium: 500;
 $font-weight-bold: 700;
 $font-family: 'Gothic A1', helvetica, arial, sans-serif;
+
+@function google-font($font, $weights) {
+  
+}
+*/
+
+/* button */
+$btn: (
+  bg: grey(240),
+  color: $color-text,
+  border-color: darken(grey, 20%)
+);
+/* 
+ref from https://webdesign.tutsplus.com/tutorials/an-introduction-to-sass-maps-usage-and-examples--cms-22184
+
+$layer: (
+  offcanvas: 1,
+  lightbox: 500,
+  dropdown: 10,
+  tooltip: 15
+);
+ 
+// _m-lightboxes.scss
+@function layer($name) {
+  @if map-has-key($layer, $name) {
+    @return map-get($layer, $name);  
+  }
+   
+  @warn "The key #{$name} is not in the map ’$layer’";
+  @return null;
+};
+ 
+.m-lightbox {
+  z-index: layer(lightbox);
+}
+*/

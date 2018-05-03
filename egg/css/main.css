@@ -1,5 +1,6 @@
 /* colors */
 /* fonts */
+/* bg */
 body {
   font-family: "Gothic A1", helvetica, arial, sans-serif;
   font-size: 16px;
@@ -10,18 +11,37 @@ body {
   padding: 1rem;
 }
 
+.egg-section {
+  display: inline-block;
+}
+
+.egg-img {
+  vertical-align: text-bottom;
+  display: inline-block;
+  height: 21px;
+  width: 16px;
+  background: url("../img/egg-resized.png") no-repeat;
+  background-size: 80px;
+}
+
 .btn {
+  cursor: pointer;
   padding: .5rem;
   color: #333;
   text-decoration: none;
-  border: 1px solid #333;
+  border: 1px solid #bdbdbd;
+  background: #f0f0f0;
 }
 
 .btn:active {
-  background: rgba(0, 0, 0, 0.2);
+  background: #d7d7d7;
 }
 
 .hidden {
   display: none;
+}
+
+.access-off .btn {
+  outline: none;
 }
 /*# sourceMappingURL=main.css.map */

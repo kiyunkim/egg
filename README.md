@@ -1,6 +1,10 @@
 # Incremental Idle
 
+## egg
 
+- [ ] Settings
+  - [ ] Accessibility mode toggle
+  - [ ] Save
 
 ## Lemonidle
 

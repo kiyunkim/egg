@@ -9,17 +9,39 @@ body {
 .egg {
   padding: 1rem;
 }
+.egg-section {
+  display: inline-block;
+}
+
+.egg-img {
+  vertical-align: text-bottom;
+  display: inline-block;
+  height: 21px;
+  width: 16px;
+  background: url('../img/egg-resized.png') no-repeat;
+  background-size: 80px;
+  &.egg-default {
+  }
+}
 
 .btn {
+  cursor: pointer;
   padding: .5rem;
   color: $color-text;
   text-decoration: none;
-  border: 1px solid $color-text;
+  border: 1px solid darken($bg-btn, 20%);
+  background: $bg-btn;
   &:active {
-    background: black-opacity(.2);
+    background: darken($bg-btn, 10%);
   }
 }
 
 .hidden {
   display: none;
+}
+
+.access-off {
+  .btn {
+    outline: none;
+  }
 }
