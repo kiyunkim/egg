@@ -1,52 +1,43 @@
-var egg = (function (option) {
-  var self = this,
-      proto = egg.prototype,
+var game = {
+  fps: 100, // tick ms
+  decimals: 0,
+  amount: 0,
+
+  // element selectors
+  button: {},
+  counter: {},
+
+  // setInterval
+  // stop with window.clearInterval(game.interval)
+  interval: {},
   
-      variable = option.variable,
-      variable2 = option.variable2,
-      attackButton = option.attackButton,
+  producers: [],
 
-      resources = {},
-      player = {
-        hp: 100,
-        level: 0
-      },
-      zombies = {
-        hp: 150,      
-        count: 0,
-        level: 0 
-      };
+  init: function() {
+    var self = this; // var game
 
-  function updateHTML(selector, content) {
-    $(selector).html(content);
-  }
+    this.button = $('.btn');
+    this.counter = $('.counter');
 
-  function init() {
-    updateHTML('#zombie-hp', zombies.hp);
-  }
-
-  function attackZombie() {
-    $(attackButton).click(function() {
-      if (zombies.hp >= 10) {
-        zombies.hp = zombies.hp - 10;
-      }
-      else if (zombies.hp === 0) {
-        alert('zombie is dead!');
-      }
-      updateHTML('#zombie-hp', zombies.hp);
+    // click to increment
+    this.button.click(function() {
+      self.increment();
     });
-  } // attackZombie();
-  
 
-  proto.myFunc = function () {
-    init();
-    attackZombie();
-  };
+    // interval
+    this.interval = window.setInterval(function() {
+      self.update();
+    }, this.interval);
 
-  proto.setup = function () {
-    proto.myFunc();
-  };
+  },
 
-  return { setup: self.setup };
-});
+  increment: function() {
+    this.amount++;
+  },
 
+  update: function() {
+    this.counter.text(this.amount);
+  }
+};
+
+game.init();
