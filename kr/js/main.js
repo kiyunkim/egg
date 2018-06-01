@@ -1,43 +1,30 @@
-var game = {
-  fps: 100, // tick ms
-  decimals: 0,
-  amount: 0,
+var game = {};
 
-  // element selectors
-  button: {},
-  counter: {},
+// variables
+game.v = {};
+game.v.letters = 'ㄱㄴㄷㄹㅁㅂㅅㅇㅈㅊㅋㅌㅍㅎ';
+game.v.letters_array = game.v.letters.split('');
+game.v.letters_count = game.v.letters_array.length;
 
-  // setInterval
-  // stop with window.clearInterval(game.interval)
-  interval: {},
+// elements
+game.e = {};
+game.e.main = document.getElementById('game');
+game.e.letters_container = document.getElementById('letters');
+
+// html templates
+game.t = {};
+game.t.letter = document.createElement('article');
+  game.t.letter.setAttribute('id', 'letter-'+1);
+  game.t.letter.innerHTML = game.v.letters_array[0];
+
+game.e.letters_container.appendChild(game.t.letter);
+
+
+// functions
+game.init = function() {
+  var self = this;
+
   
-  producers: [],
-
-  init: function() {
-    var self = this; // var game
-
-    this.button = $('.btn');
-    this.counter = $('.counter');
-
-    // click to increment
-    this.button.click(function() {
-      self.increment();
-    });
-
-    // interval
-    this.interval = window.setInterval(function() {
-      self.update();
-    }, this.interval);
-
-  },
-
-  increment: function() {
-    this.amount++;
-  },
-
-  update: function() {
-    this.counter.text(this.amount);
-  }
-};
+}
 
 game.init();
