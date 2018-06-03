@@ -1,8 +1,3 @@
-// to do: choose one of these
-
-
-
-
 var Game = (function (option) {
   var 
   self = this,
@@ -57,39 +52,3 @@ var Game = (function (option) {
 
   return { setup: self.setup };
 });
-
-
-/////////////
-
-
-(function() {
-
-  var myFunc = function(options) {
-    var alphabet = [],
-
-        // element selectors
-        lettersList = options.lettersList,
-        lettersListItems = options.lettersListItems,
-        lettersListLinks = options.lettersListLinks,
-        wordsListsContainer = options.wordsListsContainer,
-        $wordsSection,
-        wordsSectionClass = options.wordsSectionClass,
-        $wordsHeading,
-        wordsHeadingClass = options.wordsHeadingClass,
-        $wordsList,
-        wordsListClass = options.wordsListClass,
-        wordLinkClass = options.wordLinkClass,
-        wordsColumnClass = options.wordsColumnClass;
-        
-
-    function addColumns() {
-      $('.'+wordsListClass).each(function() {
-        if ($(this).children().length > 3) {
-          $(this).addClass(wordsColumnClass);
-        }
-      });
-    }
-  
-  };
-
-}());
