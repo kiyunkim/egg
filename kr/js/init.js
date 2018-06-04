@@ -1,9 +1,11 @@
 $(document).ready(function () {
-  var game = new Game({
+  var game = new _game({
     variable: '',
     variable2: '',
     attackButton: '#attack'
   });
+  var test = new _test();
 
-  game.setup();
+  game.init();
+  test.init();
 });
