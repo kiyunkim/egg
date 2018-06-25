@@ -1,0 +1,30 @@
+/* ------------------------------------
+  Font
+------------------------------------ */
+$main-font: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif; 
+$mono-font: consolas, 'andale mono', 'Lucida Console', monospace;
+
+$font-size: 16px;
+
+
+
+/* ------------------------------------
+  Colors
+------------------------------------ */
+$white: #fff;
+$black: #222;
+$grey: #999;
+
+
+/* ------------------------------------
+  Extends
+------------------------------------ */
+%button {
+  color: $black;
+  padding: .5em 1em;
+  text-decoration: none;
+  border: 1px solid $black;
+  &:active {
+    background: $grey;
+  }
+}

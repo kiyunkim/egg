@@ -1,0 +1,72 @@
+@import url("../css/reset.css");
+body {
+  font-family: helvetica, arial, sans-serif;
+  font-size: 14px;
+  color: #333;
+}
+
+.header {
+  width: 100%;
+  background-color: #f2f2f2;
+}
+
+.header .top {
+  width: 100%;
+  display: table;
+  padding: 1em 10px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.header .top .title, .header .top .version {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.header .top .version {
+  font-size: 11.2px;
+  font-family: monaco, monospace;
+  text-align: right;
+}
+
+.header .top .title {
+  font-size: 35px;
+  letter-spacing: -1px;
+}
+
+.container {
+  width: 100%;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 10px;
+  display: table;
+}
+
+.container .counter {
+  width: 20%;
+  display: table-cell;
+}
+
+.container .counter .table {
+  width: 100%;
+}
+
+.container .counter .table td:not(.label) {
+  font-family: monaco, monospace;
+  font-size: 11.2px;
+}
+
+.container .controls {
+  width: 70%;
+  display: table-cell;
+  /* override default button styling */
+}
+
+.container .controls button {
+  background-color: #e6e6e6;
+  cursor: pointer;
+  font-size: 14px;
+  padding: .5em;
+  border: none;
+}
+/*# sourceMappingURL=style.css.map */

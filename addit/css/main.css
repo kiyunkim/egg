@@ -1,0 +1,56 @@
+/* ------------------------------------
+  Font
+------------------------------------ */
+/* ------------------------------------
+  Colors
+------------------------------------ */
+/* ------------------------------------
+  Extends
+------------------------------------ */
+#attack {
+  color: #222;
+  padding: .5em 1em;
+  text-decoration: none;
+  border: 1px solid #222;
+}
+
+#attack:active {
+  background: #999;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* Disabled JavaScript Message */
+#enablejs-message {
+  margin: 0;
+  width: 100%;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+  font-weight: bold;
+  background-color: #bc0000;
+}
+
+#enablejs-message a {
+  color: #fff;
+}
+
+.container {
+  padding: 1em;
+}
+
+.zombie {
+  margin: 0;
+  width: 27px;
+  height: 34px;
+  overflow: hidden;
+}
+
+#attack {
+  display: inline-block;
+}
+/*# sourceMappingURL=main.css.map */

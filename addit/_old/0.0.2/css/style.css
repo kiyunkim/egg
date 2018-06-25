@@ -1,0 +1,33 @@
+body {
+  font-size: 14px;
+}
+
+#enablejs-message {
+  margin: 0;
+  width: 100%;
+  color: #fff;
+  padding: 1em 0;
+  text-align: center;
+  background-color: #bc0000;
+}
+
+#wrapper {
+  display: table;
+  width: 100%;
+}
+
+#ui {
+  display: table-cell;
+  vertical-align: top;
+  width: 50%;
+}
+
+#code {
+  background: #eee;
+  display: table-cell;
+}
+
+#code pre {
+  font-family: consolas, "andale mono", "Lucida Console", monospace;
+}
+/*# sourceMappingURL=style.css.map */
