@@ -1,0 +1,75 @@
+<h1>Widgets:
+  <span id="widget-count">0</span>
+</h1>
+
+<button id="produce-widget">Produce Widget</button>
+
+<h2>Store:</h2>
+
+<button id="novice-widgeteer">Hire Novice Widgeteer</button>
+<button id="master-widgeteer">Hire Master Widgeteer</button>
+
+<h2>Coding exercises:</h2>
+
+<ul>
+  <li>Change the starting costs and see how it affects the game</li>
+  <li>Add two more levels of widgeteers</li>
+  <li>Add stats near the top showing widgets per second and the number of widgeteers of each type</li>
+  <li>Add an upgrades section</li>
+  <li>Add save/load buttons that use localStorage.setItem() and localStorage.getItem()</li>
+  <li>Check the Bootstrap 3 checkbox in the upper left and change the &lt;button&gt; elements to use &lt;div class="btn btn-primary"&gt; instead</li>
+</ul>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+<script>
+  // Basic variable declaration - keep track of how many of each
+  // item we currently own, and how much the new ones should cost.
+  var numWidgets = 0;
+  var numNoviceWidgeteers = 0;
+  var numMasterWidgeteers = 0;
+  var noviceWidgeteerCost = 10;
+  var masterWidgeteerCost = 25;
+
+  // Increase numWidgets every time produce-widget is clicked
+  $('#produce-widget').on('click', function () {
+    numWidgets++;
+  });
+
+  // Same for novice-widgeteer
+  $('#novice-widgeteer').on('click', function () {
+    numNoviceWidgeteers++;
+
+    // Deduct cost
+    numWidgets -= noviceWidgeteerCost;
+
+    // Increase cost for the next one, using Math.ceil() to round up
+    noviceWidgeteerCost = Math.ceil(noviceWidgeteerCost * 1.1);
+  });
+
+  // Ditto for master-widgeteer... you get the idea
+  $('#master-widgeteer').on('click', function () {
+    numMasterWidgeteers++;
+    numWidgets -= masterWidgeteerCost;
+    masterWidgeteerCost = Math.ceil(masterWidgeteerCost * 1.1);
+  });
+
+  // Run UI update code every 10ms
+  window.setInterval(function () {
+    // Novices add 1 per second (1/100 every 10ms)
+    numWidgets += (numNoviceWidgeteers * 1 / 100);
+
+    // Masters add 5 per second (5/100 every 10ms)
+    numWidgets += (numMasterWidgeteers * 5 / 100);
+
+    // Update the text showing how many widgets we have, using Math.floor() to round down
+    $('#widget-count').text(Math.floor(numWidgets));
+
+    // Update the widgeteers with their current prices
+    $('#novice-widgeteer').text('Hire Novice Widgeteer - ' + noviceWidgeteerCost);
+    $('#master-widgeteer').text('Hire Master Widgeteer - ' + masterWidgeteerCost);
+
+    // Enable/disable the widgeteer buttons based on our numWidgets
+    $('#novice-widgeteer').prop('disabled', noviceWidgeteerCost > numWidgets);
+    $('#master-widgeteer').prop('disabled', masterWidgeteerCost > numWidgets);
+  }, 10);
+</script>
