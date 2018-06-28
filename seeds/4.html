@@ -1,26 +1,23 @@
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css">
+
 <div class="progress" style="margin-top: 15px;  margin-right: 50px; margin-left: 50px; height: 30px">
   <div id="pbar" class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">0%</div>
 </div>
 <div class="center" style="text-align: center;">
-<span id="season">Novice Trainers on Site, Double Novice Gains!</span>
-
+  <span id="season">Novice Trainers on Site, Double Novice Gains!</span>
 </div>
+
 <hr>
 
 <h1>Widgets: <span id="widget-count">0</span></h1>
-
-
-<h2>Widget p/s: <span id="widget-ps">0</span></h2>
+<h2>Widget p/s:<span id="widget-ps">0</span></h2>
 
 <div class="btn btn-success btn-lg" id="produce-widget">Produce Widget</div>
 
 <h2>Upgrades:</h2>
-
 <span id="test"></span>
 
-
 <h2>Store:</h2>
-
 <div class="btn btn-primary btn-sm" id="novice-widgeteer">Hire Novice Widgeteer</div>
 <div class="btn btn-primary btn-sm" id="journeyman-widgeteer">Hire Jouyrneyman Widgeteer</div>
 <br>
@@ -30,17 +27,15 @@
 
 <h2>Widgeteers:</h2>
 Novice: <span id="novice-count">0</span>
-
-<br>Journeyman: <span id="journeyman-count">0</span>
-
-<br>Expert: <span id="expert-count">0</span>
-
-<br>Master: <span id="master-count">0</span>
-
+<br>
+Journeyman: <span id="journeyman-count">0</span>
+<br>
+Expert: <span id="expert-count">0</span>
+<br>
+Master: <span id="master-count">0</span>
 <br>
 
 <h2>Coding exercises:</h2>
-
 <ul>
   <li>Change the starting costs and see how it affects the game</li>
   <li>Add two more levels of widgeteers</li>
@@ -50,41 +45,39 @@ Novice: <span id="novice-count">0</span>
   <li>Check the Bootstrap 3 checkbox in the upper left and change the &lt;button&gt; elements to use &lt;div class="btn btn-primary"&gt; instead</li>
 </ul>
 
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 <script>
   // Basic variable declaration - keep track of how many of each
-// item we currently own, and how much the new ones should cost.
-var numWidgets = 0;
-var widgetPS = 0;
-var numNoviceWidgeteers = 0;
-var numJourneymanWidgeteers = 0;
-var numExpertWidgeteers = 0;
-var numMasterWidgeteers = 0;
-var noviceWidgeteerCost = 10;
-var journeymanWidgeteerCost = 50;
-var expertWidgeteerCost = 250;
-var masterWidgeteerCost = 1250;
-var novUpgradeAvailable = false;
-var novDisabled = false;
-var jrnUpgradeAvailable = false;
-var jrnDisabled = false;
-var expUpgradeAvailable = false;
-var expDisabled = false;
-var progress = 0;
-var season = 0;
+  // item we currently own, and how much the new ones should cost.
+  var numWidgets = 0;
+  var widgetPS = 0;
+  var numNoviceWidgeteers = 0;
+  var numJourneymanWidgeteers = 0;
+  var numExpertWidgeteers = 0;
+  var numMasterWidgeteers = 0;
+  var noviceWidgeteerCost = 10;
+  var journeymanWidgeteerCost = 50;
+  var expertWidgeteerCost = 250;
+  var masterWidgeteerCost = 1250;
+  var novUpgradeAvailable = false;
+  var novDisabled = false;
+  var jrnUpgradeAvailable = false;
+  var jrnDisabled = false;
+  var expUpgradeAvailable = false;
+  var expDisabled = false;
+  var progress = 0;
+  var season = 0;
 
-updateScreen();
+  updateScreen();
 
-// Increase numWidgets every time produce-widget is clicked
-$('#produce-widget').on('click', function () {
+  // Increase numWidgets every time produce-widget is clicked
+  $('#produce-widget').on('click', function () {
     numWidgets += 100;
     updateScreen();
-});
+  });
 
-// Same for novice-widgeteer
-$('#novice-widgeteer').on('click', function () {
+  // Same for novice-widgeteer
+  $('#novice-widgeteer').on('click', function () {
     numNoviceWidgeteers++;
 
     // Deduct cost
@@ -94,131 +87,131 @@ $('#novice-widgeteer').on('click', function () {
     noviceWidgeteerCost = Math.ceil(noviceWidgeteerCost * 1.1);
 
     calcWidget();
-});
+  });
 
-$('#journeyman-widgeteer').on('click', function () {
+  $('#journeyman-widgeteer').on('click', function () {
     numJourneymanWidgeteers++;
     numWidgets -= journeymanWidgeteerCost;
     journeymanWidgeteerCost = Math.ceil(journeymanWidgeteerCost * 1.1);
     calcWidget();
-});
+  });
 
-$('#expert-widgeteer').on('click', function () {
+  $('#expert-widgeteer').on('click', function () {
     numExpertWidgeteers++;
     numWidgets -= expertWidgeteerCost;
     expertWidgeteerCost = Math.ceil(expertWidgeteerCost * 1.1);
     calcWidget();
-});
+  });
 
-// Ditto for master-widgeteer... you get the idea
-$('#master-widgeteer').on('click', function () {
+  // Ditto for master-widgeteer... you get the idea
+  $('#master-widgeteer').on('click', function () {
     numMasterWidgeteers++;
     numWidgets -= masterWidgeteerCost;
     masterWidgeteerCost = Math.ceil(masterWidgeteerCost * 1.1);
     calcWidget();
-});
+  });
 
-/*$('#novice-training').on('click', function () {
-    numNoviceWidgeteers-=5;
-    numJourneymanWidgeteers++;
-    calcWidget();
-});*/
+  /*$('#novice-training').on('click', function () {
+      numNoviceWidgeteers-=5;
+      numJourneymanWidgeteers++;
+      calcWidget();
+  });*/
 
-function noviceTraining() {
+  function noviceTraining() {
     numNoviceWidgeteers -= 5;
     numJourneymanWidgeteers++;
     calcWidget();
-}
+  }
 
-function journeymanTraining() {
+  function journeymanTraining() {
     numJourneymanWidgeteers -= 5;
     numExpertWidgeteers++;
     calcWidget();
-}
+  }
 
-function expertTraining() {
+  function expertTraining() {
     numExpertWidgeteers -= 5;
     numMasterWidgeteers++;
     calcWidget();
-}
+  }
 
-function calcWidget() {
+  function calcWidget() {
     var noviceInc = numNoviceWidgeteers * 1;
     var journeymanInc = numJourneymanWidgeteers * 2.5;
     var expertInc = numExpertWidgeteers * 6;
     var masterInc = numMasterWidgeteers * 15;
 
     switch (season) {
-        case 0:
-            noviceInc *= 2;
-            break;
-        case 1:
-            journeymanInc *= 2;
-            break;
-        case 2:
-            expertInc *= 2;
-            break;
-        case 3:
-            masterInc *= 2;
-            break;
-        default:
+      case 0:
+        noviceInc *= 2;
+        break;
+      case 1:
+        journeymanInc *= 2;
+        break;
+      case 2:
+        expertInc *= 2;
+        break;
+      case 3:
+        masterInc *= 2;
+        break;
+      default:
     }
 
     widgetPS = noviceInc + journeymanInc + expertInc + masterInc;
     updateScreen();
-}
+  }
 
-function displayUpgrades() {
+  function displayUpgrades() {
     $('#test').html("");
     var upgradeText;
 
     if (numNoviceWidgeteers >= 6 || novUpgradeAvailable) {
-        novUpgradeAvailable = true;
-        upgradeText = $('<div/>', {
-            class: "btn btn-primary btn-sm",
-            id: "novice-training",
-            text: 'Novice Training',
-            click: function () {
-                noviceTraining()
-            },
-            disabled: novDisabled
-        });
-        $('#test').append(upgradeText);
-        $('#test').append('Trade in 5 Novices for 1 Journeyman at no additional cost<br>');
+      novUpgradeAvailable = true;
+      upgradeText = $('<div/>', {
+        class: "btn btn-primary btn-sm",
+        id: "novice-training",
+        text: 'Novice Training',
+        click: function () {
+          noviceTraining()
+        },
+        disabled: novDisabled
+      });
+      $('#test').append(upgradeText);
+      $('#test').append('Trade in 5 Novices for 1 Journeyman at no additional cost<br>');
     }
     if (numJourneymanWidgeteers >= 6 || jrnUpgradeAvailable) {
-        jrnUpgradeAvailable = true;
-        upgradeText = $('<div/>', {
-            class: "btn btn-primary btn-sm",
-            id: "journeyman-training",
-            text: 'Journeyman Training',
-            click: function () {
-                journeymanTraining()
-            },
-            disabled: jrnDisabled
-        });
-        $('#test').append(upgradeText);
-        $('#test').append('Trade in 5 Journeymen for 1 Expert at no additional cost<br>');
+      jrnUpgradeAvailable = true;
+      upgradeText = $('<div/>', {
+        class: "btn btn-primary btn-sm",
+        id: "journeyman-training",
+        text: 'Journeyman Training',
+        click: function () {
+          journeymanTraining()
+        },
+        disabled: jrnDisabled
+      });
+      $('#test').append(upgradeText);
+      $('#test').append('Trade in 5 Journeymen for 1 Expert at no additional cost<br>');
     }
     if (numExpertWidgeteers >= 6 || expUpgradeAvailable) {
-        expUpgradeAvailable = true;
-        upgradeText = $('<div/>', {
-            class: "btn btn-primary btn-sm",
-            id: "expert-training",
-            text: 'Expert Training',
-            click: function () {
-                expertTraining()
-            },
-            disabled: expDisabled
-        });
-        $('#test').append(upgradeText);
-        $('#test').append('Trade in 5 Experts for 1 Master at no additional cost<br>');
+      expUpgradeAvailable = true;
+      upgradeText = $('<div/>', {
+        class: "btn btn-primary btn-sm",
+        id: "expert-training",
+        text: 'Expert Training',
+        click: function () {
+          expertTraining()
+        },
+        disabled: expDisabled
+      });
+      $('#test').append(upgradeText);
+      $('#test').append('Trade in 5 Experts for 1 Master at no additional cost<br>');
     }
 
-}
-//+ $('Trade in 5 Novices for 1 Journeyman at no additional cost')
+  }
+  //+ $('Trade in 5 Novices for 1 Journeyman at no additional cost')
 
-function updateScreen() {
+  function updateScreen() {
     // Update the text showing how many widgets we have, using Math.floor() to round down
     $('#widget-count').text(Math.floor(numWidgets));
     $('#widget-ps').text(widgetPS);
@@ -250,41 +243,37 @@ function updateScreen() {
     $('#expert-count').text(numExpertWidgeteers);
     $('#master-count').text(numMasterWidgeteers);
 
-}
+  }
 
-function updateProgress() {
+  function updateProgress() {
     progress++;
     if (progress > 100) {
-        progress = 0;
-        season++;
-        calcWidget();
-        if (season = 0) {
-            $('#season').text("Widgeting for Dummy Books Arrived, Double Novice Gains!");
-        }
-        else if (season = 1) {
-            $('#season').text("Widgeter union has extra work, Double Journeyman Gains!");
-        }
-        else if (season = 2) {
-            $('#season').text("A spree of Widgeters retired, Double Expert Gains!");
-        }
-        else if (season = 3) {
-            $('#season').text("Grandmaster Widgeter visited the site, Double Master Gains!");
-        }
-        else {
-            season = 0;
-            $('#season').text("Widgeting for Dummy Books Arrived, Double Novice Gains!");
-        }
+      progress = 0;
+      season++;
+      calcWidget();
+      if (season = 0) {
+        $('#season').text("Widgeting for Dummy Books Arrived, Double Novice Gains!");
+      } else if (season = 1) {
+        $('#season').text("Widgeter union has extra work, Double Journeyman Gains!");
+      } else if (season = 2) {
+        $('#season').text("A spree of Widgeters retired, Double Expert Gains!");
+      } else if (season = 3) {
+        $('#season').text("Grandmaster Widgeter visited the site, Double Master Gains!");
+      } else {
+        season = 0;
+        $('#season').text("Widgeting for Dummy Books Arrived, Double Novice Gains!");
+      }
     }
     $('#pbar').css('width', progress + '%').attr('aria-valuenow', progress);
     $('#pbar').text(progress + '%')
-}
+  }
 
-// Run UI update code every 10ms
-window.setInterval(function () {
+  // Run UI update code every 10ms
+  window.setInterval(function () {
 
     numWidgets += widgetPS;
 
     updateProgress();
     updateScreen();
-}, 1000);
+  }, 1000);
 </script>

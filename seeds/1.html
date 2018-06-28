@@ -1,90 +1,85 @@
 <h2>Resources</h2>
 <div class="panel res">
-    Scrap: <span id="res-scrap">0</span><br />
-    <button class="build" id="gather-scrap">Gather</button>
+  Scrap: <span id="res-scrap">0</span> <button class="build" id="gather-scrap">Gather</button>
 </div>
 
 <h2>Robots</h2>
 <div class="panel robot">
-    Type-E: <span id="rob-e">0</span><br />
-    <span class="info">Gathers 1 Scrap / s</span><br />
-    <button class="build" id="build-rob-e">Build (10)</button>
+  <span id="rob-e">0</span> Type-E (Gathers 1 Scrap/s) <button class="build" id="build-rob-e">Build (10)</button>
 </div>
 <div class="panel robot">
-    Type-Z: <span id="rob-z">0</span><br />
-    <span class="info">Gathers 10 Scrap / s</span><br />
-    <button class="build" id="build-rob-z">Build (250)</button>
+  <span id="rob-z">0</span> Type-Z (Gathers 10 Scrap/s) <button class="build" id="build-rob-z">Build (250)</button>
 </div>
 
 <script>
-  window.addEventListener('load', function() {
+  window.addEventListener('load', function () {
     var elements = {
-        txtScrap: document.querySelector("#res-scrap"),
-        txtRobotsTypeE: document.querySelector("#rob-e"),
-        btnRobotsTypeE: document.querySelector("#build-rob-e"),
-        txtRobotsTypeZ: document.querySelector("#rob-z"),
-        btnRobotsTypeZ: document.querySelector("#build-rob-z")
+      txtScrap: document.querySelector("#res-scrap"),
+      txtRobotsTypeE: document.querySelector("#rob-e"),
+      btnRobotsTypeE: document.querySelector("#build-rob-e"),
+      txtRobotsTypeZ: document.querySelector("#rob-z"),
+      btnRobotsTypeZ: document.querySelector("#build-rob-z")
     };
-    
+
     var numScrap = 0;
     var robotsTypeE = {
-        count: 0,
-        cost: 10,
-        scrap: 1
+      count: 0,
+      cost: 10,
+      scrap: 1
     };
     var robotsTypeZ = {
-        count: 0,
-        cost: 250,
-        scrap: 10
+      count: 0,
+      cost: 250,
+      scrap: 10
     };
-    
-    document.querySelector("#gather-scrap").addEventListener('click', function(evt) {
-        numScrap++;
-        updateScrapText();
+
+    document.querySelector("#gather-scrap").addEventListener('click', function (evt) {
+      numScrap++;
+      updateScrapText();
     });
-    
-    document.querySelector("#build-rob-e").addEventListener('click', function(evt) {
-        if (numScrap < robotsTypeE.cost) return;
-        
-        robotsTypeE.count += 1;
-        numScrap -= robotsTypeE.cost;
-        robotsTypeE.cost = Math.ceil(robotsTypeE.cost * 1.25);
-        updateTypeEText();
-        updateScrapText();
+
+    document.querySelector("#build-rob-e").addEventListener('click', function (evt) {
+      if (numScrap < robotsTypeE.cost) return;
+
+      robotsTypeE.count += 1;
+      numScrap -= robotsTypeE.cost;
+      robotsTypeE.cost = Math.ceil(robotsTypeE.cost * 1.25);
+      updateTypeEText();
+      updateScrapText();
     });
-    
-    document.querySelector("#build-rob-z").addEventListener('click', function(evt) {
-        if (numScrap < robotsTypeZ.cost) return;
-        
-        robotsTypeZ.count += 1;
-        numScrap -= robotsTypeZ.cost;
-        robotsTypeZ.cost = Math.ceil(robotsTypeZ.cost * 1.25);
-        updateTypeZText();
-        updateScrapText();
+
+    document.querySelector("#build-rob-z").addEventListener('click', function (evt) {
+      if (numScrap < robotsTypeZ.cost) return;
+
+      robotsTypeZ.count += 1;
+      numScrap -= robotsTypeZ.cost;
+      robotsTypeZ.cost = Math.ceil(robotsTypeZ.cost * 1.25);
+      updateTypeZText();
+      updateScrapText();
     });
-    
+
     function updateScrapText() {
-        elements.txtScrap.innerHTML = numScrap;
+      elements.txtScrap.innerHTML = numScrap;
     }
-    
+
     function updateTypeEText() {
-        elements.txtRobotsTypeE.innerHTML = robotsTypeE.count;
-        elements.btnRobotsTypeE.innerHTML = "Build (" + robotsTypeE.cost + ")";
+      elements.txtRobotsTypeE.innerHTML = robotsTypeE.count;
+      elements.btnRobotsTypeE.innerHTML = "Build (" + robotsTypeE.cost + ")";
     }
-    
+
     function updateTypeZText() {
-        elements.txtRobotsTypeZ.innerHTML = robotsTypeZ.count;
-        elements.btnRobotsTypeZ.innerHTML = "Build (" + robotsTypeZ.cost + ")";
+      elements.txtRobotsTypeZ.innerHTML = robotsTypeZ.count;
+      elements.btnRobotsTypeZ.innerHTML = "Build (" + robotsTypeZ.cost + ")";
     }
-    
+
     function gameLoop() {
-        numScrap += Math.ceil(robotsTypeE.count * robotsTypeE.scrap);
-        numScrap += Math.ceil(robotsTypeZ.count * robotsTypeZ.scrap);
-        updateScrapText();
-        window.setTimeout(gameLoop, 1000);
+      numScrap += Math.ceil(robotsTypeE.count * robotsTypeE.scrap);
+      numScrap += Math.ceil(robotsTypeZ.count * robotsTypeZ.scrap);
+      updateScrapText();
+      window.setTimeout(gameLoop, 1000);
     }
-    
+
     gameLoop();
 
-});
+  });
 </script>
