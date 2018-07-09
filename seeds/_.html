@@ -1,0 +1,64 @@
+<p id="count"></p>
+<button id="clicker">Clicker</button>
+
+<p id="machine-count"></p>
+<button id="machine">Buy Machine (<span id="machine-cost">10</span> Clickers)</button>
+
+
+<script>
+  var count = 0;
+  var machineCount = 0;
+
+  loadSave();
+
+  // set numbers
+  document.getElementById('count').innerHTML = count;
+  document.getElementById('machine-count').innerHTML = machineCount;
+  
+  // clicker++
+  document.getElementById('clicker').addEventListener('click', function() {
+    count++;
+    document.getElementById('count').innerHTML = count;
+  });
+
+  // buy machine
+  document.getElementById('machine').addEventListener('click', function() {
+    if (count >= document.getElementById('machine-cost').innerHTML) {
+      machineCount++;
+      count = count - document.getElementById('machine-cost').innerHTML;
+      document.getElementById('count').innerHTML = count;
+      document.getElementById('machine-count').innerHTML = machineCount;
+      document.getElementById('machine-cost').innerHTML = Math.round((document.getElementById('machine-cost').innerHTML)*1.1);
+    }
+  });
+
+  // loop
+  window.setInterval(function(){
+    count = count + machineCount;
+    document.getElementById('count').innerHTML = count;
+    save();
+  }, 1000);
+
+  // save
+  function save() {
+    var save = {
+      count: count,
+      machineCount: machineCount
+    }
+    localStorage.setItem("save",JSON.stringify(save));
+  }
+
+  function loadSave() {
+    var savedGame = JSON.parse(localStorage.getItem("save"));
+    if (typeof savedGame.count !== undefined) {
+      count = savedGame.count;
+    }
+    if (typeof savedGame.machineCount !== undefined) {
+      machineCount = savedGame.machineCount;
+    }
+  }
+
+  function deleteSave() {
+    localStorage.removeItem("save");
+  }
+</script>
