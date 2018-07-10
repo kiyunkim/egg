@@ -1,55 +1,109 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <title>egg</title>
-  <meta charset="utf-8">
-  <meta http-equiv="x-ua-compatible" content="ie=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- favicon -->
-  <link rel="icon" href="favicon.png" />
+<p id="egg-count"></p>
+<button id="egg-btn">get egg</button>
 
-  <!-- meta info for search 
-  <meta name="robots" content="index,follow">
-  <meta name="author" content="name">
-  <meta name="description" content="description here">
-  <meta name="keywords" content="keywords,here">
+<p id="money-count" class="hidden"></p>
+
+<p id="chicken-count" class="hidden"></p>
+
+<script src="lib/jquery-3.3.1.min.js"></script>
+<script>
+
+  var egg = {
+    name: 'egg',
+    html: document.getElementById('egg-count'),
+    count: 0,
+  };
+  var money = {
+    name: 'money',
+    html: document.getElementById('money-count'),
+    count: 0,
+  };
+  var chicken = {
+    name: 'chicken',
+    html: document.getElementById('chicken-count'),
+    count: 0,
+    cost: {
+      type: money.name,
+      amount: 20
+    },
+    produce: {
+      type: egg.name,
+      amount: 0.5
+    },
+  };
+
+  var className = {
+    hidden: 'hidden'
+  }
+
+  // loadSave();
   
+  function updateCount(html, count) {
+    if (!html.classList.contains(className.hidden)) {
+      html.innerHTML = count;
+    }
+  }
 
-  <!-- css -->
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-  <link rel="stylesheet" href="css/lib/normalize-8.min.css">
-  <link rel="stylesheet" href="css/main.css">
-  <link href="https://fonts.googleapis.com/css?family=Gothic+A1:400,500,700" rel="stylesheet">
-</head>
+  // set count
+  // TODO: make this a loop
+  updateCount(egg.html, egg.count);
+  updateCount(money.html, money.count);
+  updateCount(chicken.html, chicken.count);
 
-<body class="access-off">
-  <noscript>
-    <p>Please enable JavaScript in your browser to use this site.</p>
-  </noscript>
-<!--
-  <p class="bg-200">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-300">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-400">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-500">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-600">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-700">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-800">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-100">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-  <p class="bg-900">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
--->
-  <main class="egg">
-    <section class="egg-section egg-default">
-      <p>
-        <span class="egg-sprite egg-default"></span>
-        <span class="counter egg-amount">0</span>
-      </p>
-      <button class="btn egg-buy">buy egg</button>
-    </section>
-  </main>
+  function unlock(item, cost, currency) {
+    if (item.classList.contains(className.hidden)) {
+      if (currency >= cost) {
+      item.classList.remove(className.hidden);
+      }
+    }
+  }
+  
+  unlock
 
-  <!-- js -->
-  <script src="js/lib/jquery-3.3.1.min.js"></script>
-  <script src="js/main.js"></script>
-  <script src="js/init.js"></script>
-</body>
-</html>
+  /* / clicker++
+  document.getElementById('clicker').addEventListener('click', function () {
+    count++;
+    document.getElementById('count').innerHTML = count;
+  });
+
+  // buy machine
+  document.getElementById('machine').addEventListener('click', function () {
+    if (count >= document.getElementById('machine-cost').innerHTML) {
+      machineCount++;
+      count = count - document.getElementById('machine-cost').innerHTML;
+      document.getElementById('count').innerHTML = count;
+      document.getElementById('machine-count').innerHTML = machineCount;
+      document.getElementById('machine-cost').innerHTML = Math.round((document.getElementById('machine-cost').innerHTML) * 1.1);
+    }
+  });
+
+  // loop
+  window.setInterval(function () {
+    count = count + machineCount;
+    document.getElementById('count').innerHTML = count;
+    save();
+  }, 1000);
+
+  // save
+  function save() {
+    var save = {
+      count: count,
+      machineCount: machineCount
+    }
+    localStorage.setItem("save", JSON.stringify(save));
+  }
+
+  function loadSave() {
+    var savedGame = JSON.parse(localStorage.getItem("save"));
+    if (typeof savedGame.count !== undefined) {
+      count = savedGame.count;
+    }
+    if (typeof savedGame.machineCount !== undefined) {
+      machineCount = savedGame.machineCount;
+    }
+  }
+
+  function deleteSave() {
+    localStorage.removeItem("save");
+  } */
+</script>
