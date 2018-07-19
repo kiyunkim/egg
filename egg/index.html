@@ -26,6 +26,7 @@
       },
     ],
     sell: {
+      count: 12,
       money: 0.5, // per one egg
     }
   };
@@ -81,7 +82,7 @@
   updateCount(money);
   updateCount(chicken);
 
-  
+
   // clicker
   function addClickCount(thing) {
     document.querySelector(thing.html.buyButton).addEventListener('click', function() {
@@ -90,7 +91,7 @@
 
       // this should be moved and made less manual
       unlock(egg, money);
-      enableButton(egg, 12, egg.html.sellButton);
+      enableOrDisableButton(egg, 12, egg.html.sellButton);
     });
   }
   addClickCount(egg); // should not be manual
@@ -130,19 +131,19 @@
   }
 
   // enable buttons
-  function enableButton(thing, amount, button) {
+  function enableOrDisableButton(thing, amount, button) {
     if (thing.count >= amount) {
       document.querySelector(button).disabled = false;
+    } else {
+      document.querySelector(button).disabled = true;
     }
   }
 
   function sellThing(thing) {
     document.querySelector(thing.html.sellButton).addEventListener('click', function() {
-
-        // ((thing.sell.money * thing.count) + money.count) = money.count;
-        updateCount(money);
-        console.log('Test!')
-
+      money.count = money.count + (thing.sell.money * thing.count);
+      thing.count = thing.count - thing.sell.count;
+      // TODO: finish this function
     });
   }
 
