@@ -4,34 +4,52 @@
   }
 </style>
 
-<p id="egg-count"></p>
-<button id="egg-btn">get egg</button> <button id="egg-sell" disabled>sell eggs</button>
-<p id="money-count" class="hidden">money: 0</p>
-<p id="chicken-count" class="hidden"></p>
+<p class="egg">eggs: <span id="egg-count"></span></p>
+<button id="egg-btn">get egg</button> <button id="egg-sell" disabled>sell dozen eggs</button>
+<p class="money hidden">money: $<span id="money-count"></span></p>
+<p class="chicken hidden">chickens: <span id="chicken-count"></span></p>
 
 <script>
   var egg = {
     name: 'egg',
-    html: document.getElementById('egg-count'),
     count: 0,
-    button: document.getElementById('egg-btn'),
+    html: {
+      container: '.egg',
+      counter: '#egg-count',
+      buyButton: '#egg-btn',
+      sellButton: '#egg-sell',
+    },
     unlock: [
       {
         atCount: 2,
         name: 'money'
       },
-    ]
+    ],
+    sell: {
+      money: 0.5, // per one egg
+    }
   };
   var money = {
     name: 'money',
-    html: document.getElementById('money-count'),
     count: 0,
+    html: {
+      container: '.money',
+      counter: '#money-count'
+    },
+    unlock: [
+      {
+        name: 'money',
+        atCount: 10
+      }
+    ]
   };
   var chicken = {
     name: 'chicken',
-    html: document.getElementById('chicken-count'),
     count: 0,
-    cost: {
+    html: {
+      container: '.chicken'
+    },
+    buy: {
       type: money.name,
       amount: 20
     },
@@ -48,47 +66,11 @@
   // loadSave();
   
   function updateCount(thing) {
-    if (!thing.html.classList.contains(className.hidden)) {
-      thing.html.innerHTML = thing.count;
-    }
-  }
-
-  // clicker
-  function addClickCount(thing) {
-    thing.button.addEventListener('click', function() {
-      thing.count++;
-      updateCount(thing);
-    unlock(egg, money); // this should be moved and made less manual
-    });
-  }
-  addClickCount(egg);
-
-  function checkIfArray(thing) {
-    if (Array.isArray(thing)) {
-      return true;
-    } else {
-      return false
-    }
-  }
-
-  // unlock
-  function unlock(unlockingThing, lockedThing) {
-    // make sure locked thing is already hidden
-    if (lockedThing.html.classList.contains(className.hidden)) {
-      // is the locked thing in an array?
-      if (checkIfArray(unlockingThing.unlock)) {
-        // if yes, loop through array
-        for (i = 0; i < unlockingThing.unlock.length; i++) {
-          // check name and cost
-          if ((lockedThing.name === unlockingThing.unlock[i].name) && (unlockingThing.count >= unlockingThing.unlock[i].atCount)) {
-            lockedThing.html.classList.remove(className.hidden);
-          }
-        }
+    if (!document.querySelector(thing.html.container).classList.contains(className.hidden)) {
+      if (thing.name === 'money') {
+        document.querySelector(thing.html.counter).innerHTML = thing.count.toFixed(2);
       } else {
-        // no it's an object, not array
-        if ((lockedThing.name === unlockingThing.unlock.name) && (unlockingThing.count >= unlockingThing.unlock[i].atCount)) {
-          lockedThing.html.classList.remove(className.hidden);
-        }
+        document.querySelector(thing.html.counter).innerHTML = thing.count;
       }
     }
   }
@@ -98,6 +80,73 @@
   updateCount(egg);
   updateCount(money);
   updateCount(chicken);
+
+  
+  // clicker
+  function addClickCount(thing) {
+    document.querySelector(thing.html.buyButton).addEventListener('click', function() {
+      thing.count++;
+      updateCount(thing);
+
+      // this should be moved and made less manual
+      unlock(egg, money);
+      enableButton(egg, 12, egg.html.sellButton);
+    });
+  }
+  addClickCount(egg); // should not be manual
+
+  function checkIfArray(thing) {
+    if (Array.isArray(thing)) {
+      return true;
+    } else {
+      return false
+    }
+  }
+  // unhide
+  function unhide(hiddenThing){
+    document.querySelector(hiddenThing.html.container).classList.remove(className.hidden);
+    updateCount(hiddenThing);
+  }
+  // unlock
+  function unlock(unlockingThing, lockedThing) {
+    // make sure locked thing is already hidden
+    if (document.querySelector(lockedThing.html.container).classList.contains(className.hidden)) {
+      // is the locked thing in an array?
+      if (checkIfArray(unlockingThing.unlock)) {
+        // if yes, loop through array
+        for (i = 0; i < unlockingThing.unlock.length; i++) {
+          // check name and cost
+          if ((lockedThing.name === unlockingThing.unlock[i].name) && (unlockingThing.count >= unlockingThing.unlock[i].atCount)) {
+            unhide(lockedThing);
+          }
+        }
+      } else {
+        // no it's an object, not array
+        if ((lockedThing.name === unlockingThing.unlock.name) && (unlockingThing.count >= unlockingThing.unlock[i].atCount)) {
+          unhide(lockedThing);
+        }
+      }
+    }
+  }
+
+  // enable buttons
+  function enableButton(thing, amount, button) {
+    if (thing.count >= amount) {
+      document.querySelector(button).disabled = false;
+    }
+  }
+
+  function sellThing(thing) {
+    document.querySelector(thing.html.sellButton).addEventListener('click', function() {
+
+        // ((thing.sell.money * thing.count) + money.count) = money.count;
+        updateCount(money);
+        console.log('Test!')
+
+    });
+  }
+
+  sellThing(egg);
 
   
 </script>
