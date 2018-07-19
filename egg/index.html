@@ -1,6 +1,12 @@
+<style>
+  .hidden {
+    visibility: hidden;
+  }
+</style>
+
 <p id="egg-count"></p>
-<button id="egg-btn">get egg</button>
-<p id="money-count" class="hidden"></p>
+<button id="egg-btn">get egg</button> <button id="egg-sell" disabled>sell eggs</button>
+<p id="money-count" class="hidden">money: 0</p>
 <p id="chicken-count" class="hidden"></p>
 
 <script>
@@ -9,6 +15,12 @@
     html: document.getElementById('egg-count'),
     count: 0,
     button: document.getElementById('egg-btn'),
+    unlock: [
+      {
+        atCount: 2,
+        name: 'money'
+      },
+    ]
   };
   var money = {
     name: 'money',
@@ -46,19 +58,40 @@
     thing.button.addEventListener('click', function() {
       thing.count++;
       updateCount(thing);
+    unlock(egg, money); // this should be moved and made less manual
     });
   }
   addClickCount(egg);
 
-  // unlock
-  function unlock(unlockingThing, lockedThing) {
-    if (lockedThing.html.classList.contains(className.hidden)) {
-      if (unlockingThing.name === lockedThing.cost.type && unlockingThing.count >= lockedThing.cost.amount) {
-        lockedThing.html.classList.remove(className.hidden);
-      }
+  function checkIfArray(thing) {
+    if (Array.isArray(thing)) {
+      return true;
+    } else {
+      return false
     }
   }
 
+  // unlock
+  function unlock(unlockingThing, lockedThing) {
+    // make sure locked thing is already hidden
+    if (lockedThing.html.classList.contains(className.hidden)) {
+      // is the locked thing in an array?
+      if (checkIfArray(unlockingThing.unlock)) {
+        // if yes, loop through array
+        for (i = 0; i < unlockingThing.unlock.length; i++) {
+          // check name and cost
+          if ((lockedThing.name === unlockingThing.unlock[i].name) && (unlockingThing.count >= unlockingThing.unlock[i].atCount)) {
+            lockedThing.html.classList.remove(className.hidden);
+          }
+        }
+      } else {
+        // no it's an object, not array
+        if ((lockedThing.name === unlockingThing.unlock.name) && (unlockingThing.count >= unlockingThing.unlock[i].atCount)) {
+          lockedThing.html.classList.remove(className.hidden);
+        }
+      }
+    }
+  }
 
   // set count
   // TODO: make this a loop
