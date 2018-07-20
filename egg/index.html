@@ -7,7 +7,10 @@
 <p class="egg">eggs: <span id="egg-count"></span></p>
 <button id="egg-btn">get egg</button> <button id="egg-sell" disabled>sell dozen eggs</button>
 <p class="money hidden">money: $<span id="money-count"></span></p>
-<p class="chicken hidden">chickens: <span id="chicken-count"></span></p>
+<div class="chicken hidden">
+  <p>chickens: <span id="chicken-count"></span></p>
+  <button id="chicken-buy" disabled>buy chicken</button>
+</div>
 
 <script>
   var egg = {
@@ -21,8 +24,8 @@
     },
     unlock: [
       {
-        atCount: 2,
-        name: 'money'
+        name: 'money',
+        atCount: 5,
       },
     ],
     sell: {
@@ -39,7 +42,7 @@
     },
     unlock: [
       {
-        name: 'money',
+        name: 'chicken',
         atCount: 10
       }
     ]
@@ -48,7 +51,9 @@
     name: 'chicken',
     count: 0,
     html: {
-      container: '.chicken'
+      container: '.chicken',
+      counter: '#chicken-count',
+      buyButton: '#chicken-buy',
     },
     buy: {
       type: money.name,
@@ -82,6 +87,17 @@
   updateCount(money);
   updateCount(chicken);
 
+    // this should be moved/made less manual , put in a loop?
+  document.body.addEventListener('click', function() {
+    updateCount(egg);
+    updateCount(money);
+    updateCount(chicken);
+    unlock(egg, money);
+    unlock(money, chicken);
+    enableOrDisableButton(egg, 12, egg.html.sellButton);
+  });
+
+  addClickCount(egg);
 
   // clicker
   function addClickCount(thing) {
@@ -89,12 +105,8 @@
       thing.count++;
       updateCount(thing);
 
-      // this should be moved and made less manual
-      unlock(egg, money);
-      enableOrDisableButton(egg, 12, egg.html.sellButton);
     });
   }
-  addClickCount(egg); // should not be manual
 
   function checkIfArray(thing) {
     if (Array.isArray(thing)) {
@@ -141,13 +153,16 @@
 
   function sellThing(thing) {
     document.querySelector(thing.html.sellButton).addEventListener('click', function() {
-      money.count = money.count + (thing.sell.money * thing.count);
+      money.count = money.count + (thing.sell.money * thing.sell.count);
       thing.count = thing.count - thing.sell.count;
       // TODO: finish this function
+      updateCount(thing);
+      updateCount(money);
     });
   }
 
   sellThing(egg);
+
 
   
 </script>
