@@ -50,11 +50,13 @@
 
   function loadSave() {
     var savedGame = JSON.parse(localStorage.getItem("save"));
-    if (typeof savedGame.count !== undefined) {
+    if (savedGame !== (undefined || null)) {
+      if (typeof savedGame.count !== undefined) {
       count = savedGame.count;
-    }
-    if (typeof savedGame.machineCount !== undefined) {
-      machineCount = savedGame.machineCount;
+      }
+      if (typeof savedGame.machineCount !== undefined) {
+        machineCount = savedGame.machineCount;
+      }
     }
   }
 
