@@ -6,6 +6,7 @@ var propertyName = 'model';
 myCar[propertyName] = 'Mustang'; 
 // myCar.model = 'Mustang';
 
+propertyName = 'year'; // override var
 myCar[propertyName] = 1969; 
 // myCar.year = 1969;
 
