@@ -9,7 +9,7 @@
 <p class="money hidden">money: $<span id="money-count"></span></p>
 <div class="chicken hidden">
   <p>chickens: <span id="chicken-count"></span></p>
-  <button id="chicken-buy" disabled>buy chicken</button>
+  <button id="chicken-buy" disabled>buy chicken <span id="chicken-cost"></span></button>
 </div>
 
 <script>
@@ -60,7 +60,7 @@
     },
     buy: {
       type: money.name,
-      amount: 20
+      amount: 15
     },
     produce: {
       type: egg.name,
@@ -71,6 +71,11 @@
   var className = {
     hidden: 'hidden'
   }
+
+  // init set count
+  updateCount(egg);
+  updateCount(money);
+  updateCount(chicken);
 
   // loadSave();
   
@@ -84,13 +89,31 @@
     }
   }
 
-  // set count
-  // TODO: make this a loop
-  updateCount(egg);
-  updateCount(money);
-  updateCount(chicken);
 
-    // this should be moved/made less manual , put in a loop?
+  function gameLoopUpdate(fnc) {
+    document.body.addEventListener('click', function() {
+      fnc();
+    });
+    window.setInterval(function() {
+      fnc();
+    }, 1000);
+  };
+
+  function checkLoop() {
+    updateCount(egg);
+    updateCount(money);
+    updateCount(chicken);
+    unlock(egg, money);
+    unlock(money, chicken);
+    enableOrDisableButton(egg, 12, egg.html.sellButton);
+    enableOrDisableButton(money, chicken.buy.amount, chicken.html.buyButton);
+    console.log('test')
+  }
+  // make an array of functions maybe
+
+  gameLoopUpdate(checkLoop);
+
+  /* this should be moved/made less manual , put in a loop?
   document.body.addEventListener('click', function() {
     updateCount(egg);
     updateCount(money);
@@ -99,7 +122,7 @@
     unlock(money, chicken);
     enableOrDisableButton(egg, 12, egg.html.sellButton);
   });
-
+*/
   addClickCount(egg);
 
   // clicker
