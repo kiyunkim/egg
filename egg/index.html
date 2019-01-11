@@ -30,7 +30,7 @@
   // consider general re-organizing of objects ..
   
   // use object constructor ?
-  function Thing(name, count, html, unlock, sell) {
+  function Thing(name, count, html, unlock = undefined, sell) {
     this.name = name;
     this.count = count;
     this.html = html;
@@ -49,6 +49,8 @@
       this.produce = produce;
     }
   }
+  
+  const test = new Generator('chicken');
 
   var egg = {
     name: 'egg',
