@@ -22,7 +22,8 @@
     <button id="chicken-buy" disabled>buy chicken (<span id="chicken-cost"></span>)</button>
   </div>
 
-  <button id="save" onclick="save()">save</button>
+  <button id="save">save</button>
+  <button id="load">load</button>
 </main>
 
 <script>
@@ -187,8 +188,14 @@
     chicken: chicken
   };
 
-  var save = function(){
+  document.getElementById('save').addEventListener('click', function() {
     localStorage.setItem("save",JSON.stringify(save));
-  }
+  });
+  document.getElementById('load').addEventListener('click', function() {
+    var saved = JSON.parse(localStorage.getItem('save'));
+    egg = saved.egg;
+    money = saved.money;
+    chicken = saved.chicken;
+  });
   
 </script>
