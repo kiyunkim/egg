@@ -30,6 +30,29 @@
   // maybe take out the unlock property?
   // consider general re-organizing of objects ..
   
+  // use object constructor ?
+  function Thing(name, count, html, unlock = undefined, sell) {
+    this.name = name;
+    this.count = count;
+    this.html = html;
+    this.unlock = unlock;
+    this.sell = sell;
+  }
+  // or use the new es6 classes??
+
+  // class declaration
+  class Generator {
+    constructor(name, count, html, price, produce) {
+      this.name = name;
+      this.count = count;
+      this.html = html;
+      this.price = price;
+      this.produce = produce;
+    }
+  }
+  
+  const test = new Generator('chicken');
+
   var egg = {
     name: 'egg',
     count: 0,
