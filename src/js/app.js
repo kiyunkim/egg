@@ -1,8 +1,9 @@
 import {v} from './save';
 import * as data from './data';
+// import './data';
 
 console.log(v);
-console.log(data.d.key);
+console.log(data.d);
 
   // maybe take out the unlock property?
   // consider general re-organizing of objects ..
