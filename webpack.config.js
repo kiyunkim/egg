@@ -1,5 +1,4 @@
 const path = require('path');
-const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -68,25 +67,6 @@ module.exports = function (env) {
         stats: 'errors-only',
         port: 8000,
       },
-      module: {
-        rules: [
-          {
-            test: /\.(jpe?g|png|gif|svg)$/i,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  outputPath: 'images',
-                  name: '[name].[hash].[ext]'
-                }
-              },
-              {
-                loader: 'image-webpack-loader',
-              }
-            ]
-          },
-        ]
-      }
     })
   }
 
@@ -116,27 +96,22 @@ module.exports = function (env) {
               }
             }
           },
-          {
-            test: /\.(jpe?g|png|gif|svg)$/i,
-            use: [
-              {
-                loader: 'file-loader',
-                options: {
-                  outputPath: 'images',
-                  name: '[name].[ext]'
-                }
-              },
-              {
-                loader: 'image-webpack-loader',
-              }
-            ]
-          },
         ]
       },
       optimization: {
         minimizer: [
           new OptimizeCSSAssetsPlugin(),
-          new UglifyJsPlugin()
+          new UglifyJsPlugin(),
+          new CopyWebpackPlugin([
+            {
+              from: 'img/',
+              to: 'img/',
+              ignore: ['*.psd'],
+            },
+            {
+              from: 'favicon.png'
+            }
+          ]),
         ]
       },
     })
