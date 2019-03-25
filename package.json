@@ -38,5 +38,8 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/kiyunkim/egg/issues"
+  },
+  "dependencies": {
+    "normalize.css": "^8.0.1"
   }
 }
