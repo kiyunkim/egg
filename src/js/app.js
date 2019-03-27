@@ -5,7 +5,10 @@ let data = {
   increment: 0
 }
 
-document.querySelector('.increment').addEventListener('click', function(){
+const incrementButton = document.querySelector('.increment');
+
+
+incrementButton.addEventListener('click', function(){
   data.increment++;
   update();
 });
@@ -18,7 +21,7 @@ if (ENV_DEV) {
   console.log('Environment: Development');
   document.querySelector('.save-buttons').classList.remove('hidden');
   enableSave();
-} else {
+} else { // if env === prod
   console.log('Environment: Production');
 }
 
