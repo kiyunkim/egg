@@ -25,6 +25,8 @@ if (ENV_DEV) {
 
 // save
 function enableSave(){
+  const saveName = 'code-save';
+
   document.getElementById('save').addEventListener('click', function(e){
     let save = {
       increment: data.increment
@@ -34,7 +36,7 @@ function enableSave(){
   
       // try saving..
       try {
-        localStorage.setItem('code-save', JSON.stringify(save));
+        localStorage.setItem(saveName, JSON.stringify(save));
       } catch(e) {
         success = false;
         console.log('Error occurred while trying to save!   "'+e+'"');
@@ -51,7 +53,7 @@ function enableSave(){
   
   // load
   document.getElementById('load').addEventListener('click', function(e){
-    let save = JSON.parse(localStorage.getItem('code-save'));
+    let save = JSON.parse(localStorage.getItem(saveName));
     data.increment = save.increment;
     update();
   });
@@ -59,7 +61,7 @@ function enableSave(){
   // reset
   document.getElementById('reset').addEventListener('click', function(e){
     if (confirm('Are you sure you want to clear your save? This will wipe out everything!')) {
-      localStorage.removeItem('code-save');
+      localStorage.removeItem(saveName);
     }
   });
 }

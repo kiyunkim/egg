@@ -57,10 +57,6 @@ module.exports = function (env) {
         ENV_DEV: JSON.stringify(isDev ? true : false)
       }),
       new CleanWebpackPlugin(),
-      new HtmlWebpackPlugin({
-        template: path.join(__dirname, 'src/index.html'),
-        hash: true,
-      }),
       new MiniCssExtractPlugin({
         filename: 'css/[name].css'
       })
@@ -78,6 +74,12 @@ module.exports = function (env) {
         stats: 'errors-only',
         port: 8000,
       },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: path.join(__dirname, 'src/index.html'),
+          hash: true,
+        }),
+      ]
     })
   }
 
@@ -125,6 +127,13 @@ module.exports = function (env) {
           ]),
         ]
       },
+      plugins: [
+        new HtmlWebpackPlugin({
+          template: path.join(__dirname, 'src/index.html'),
+          filename: '../index.html',
+          hash: true,
+        }),
+      ]
     })
   }
 }
