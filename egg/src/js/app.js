@@ -75,7 +75,7 @@ console.log(data.d);
     },
     buy: {
       type: money.name,
-      amount: 20
+      amount: 15
     },
     produce: {
       type: egg.name,
@@ -86,6 +86,11 @@ console.log(data.d);
   var className = {
     hidden: 'hidden'
   }
+
+  // init set count
+  updateCount(egg);
+  updateCount(money);
+  updateCount(chicken);
 
   // loadSave();
   
@@ -99,13 +104,31 @@ console.log(data.d);
     }
   }
 
-  // set count
-  // TODO: make this a loop
-  updateCount(egg);
-  updateCount(money);
-  updateCount(chicken);
 
-    // this should be moved/made less manual , put in a loop?
+  function gameLoopUpdate(fnc) {
+    document.body.addEventListener('click', function() {
+      fnc();
+    });
+    window.setInterval(function() {
+      fnc();
+    }, 1000);
+  };
+
+  function checkLoop() {
+    updateCount(egg);
+    updateCount(money);
+    updateCount(chicken);
+    unlock(egg, money);
+    unlock(money, chicken);
+    enableOrDisableButton(egg, 12, egg.html.sellButton);
+    enableOrDisableButton(money, chicken.buy.amount, chicken.html.buyButton);
+    console.log('test')
+  }
+  // make an array of functions maybe
+
+  gameLoopUpdate(checkLoop);
+
+  /* this should be moved/made less manual , put in a loop?
   document.body.addEventListener('click', function() {
     updateCount(egg);
     updateCount(money);
@@ -115,7 +138,7 @@ console.log(data.d);
     enableOrDisableButton(egg, 12, egg.html.sellButton);
     enableOrDisableButton(money, chicken.buy.amount, chicken.html.buyButton);
   });
-
+*/
   addClickCount(egg);
 
   // clicker
