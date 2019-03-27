@@ -1,32 +1,10 @@
-<style>
-  body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    background: #1e253a;
-    color: #eee;
-  }
-  .hidden {
-    visibility: hidden;
-  }
-</style>
+import {v} from './save';
+import * as data from './data';
+// import './data';
 
+console.log(v);
+console.log(data.d);
 
-<main class="main">
-  <p class="egg">eggs: <span id="egg-count"></span></p>
-  <button id="egg-btn">get egg</button>
-  <button id="egg-sell" disabled>sell dozen eggs</button>
-
-  <p class="money hidden">money: $<span id="money-count"></span></p>
-
-  <div class="chicken hidden">
-    <p>chickens: <span id="chicken-count"></span></p>
-    <button id="chicken-buy" disabled>buy chicken (<span id="chicken-cost"></span>)</button>
-  </div>
-
-  <button id="save">save</button>
-  <button id="load">load</button>
-</main>
-
-<script>
   // maybe take out the unlock property?
   // consider general re-organizing of objects ..
   
@@ -221,4 +199,3 @@
     chicken = saved.chicken;
   });
   
-</script>
