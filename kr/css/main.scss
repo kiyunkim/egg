@@ -1,0 +1,65 @@
+@import 'variables';
+@import 'maps';
+
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-weight: $font-weight-medium;
+}
+
+.egg {
+  padding: 1rem;
+}
+.egg-section {
+  display: inline-block;
+  padding: 1rem;
+}
+
+.egg-sprite {
+  vertical-align: text-bottom;
+  display: inline-block;
+  height: 21px;
+  width: 16px;
+  background: url('../img/egg-resized.png') no-repeat;
+  background-size: 80px;
+  &.egg-default {
+  }
+}
+
+.egg-amount {
+  font-size: 1.2rem;
+  margin-left: .2rem;
+}
+
+.btn {
+  cursor: pointer;
+  padding: .5rem;
+  color: $color-text;
+  text-decoration: none;
+  border: 1px solid darken($bg-btn, 20%);
+  background: $bg-btn;
+  &:active {
+    background: darken($bg-btn, 10%);
+  }
+}
+
+.hidden {
+  display: none;
+}
+
+.access-off {
+  .btn {
+    outline: none;
+  }
+}
+
+
+
+
+
+
+@each $name, $value in map-deep-get($colors, grey) {
+  .bg-#{$name} {
+   background: $value; 
+  }
+}
