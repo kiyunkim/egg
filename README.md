@@ -16,3 +16,7 @@
   - Buy food, litter, toys
   - Variables: cat happiness, rodent rate
   - Might be too similar as Neko atsume :/
+
+- Smoking
+  - Vape
+  - Quitting
