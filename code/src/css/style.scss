@@ -1,3 +1,5 @@
+@import 'variables';
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
@@ -9,3 +11,5 @@ p {
 .hidden {
   display: none;
 }
+
+@debug $colors;
