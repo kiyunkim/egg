@@ -1,5 +1,5 @@
 {
-  "name": "egg",
+  "name": "code",
   "version": "1.0.0",
   "devDependencies": {
     "@babel/core": "^7.3.4",
@@ -31,12 +31,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kiyunkim/egg.git"
+    "url": "git+https://github.com/kiyunkim/game.git"
   },
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kiyunkim/egg/issues"
+    "url": "https://github.com/kiyunkim/game/issues"
   },
   "dependencies": {
     "normalize.css": "^8.0.1"

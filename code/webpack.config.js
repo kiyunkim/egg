@@ -15,7 +15,7 @@ module.exports = function (env) {
   const baseConfig = {
     context: path.resolve(__dirname, 'src'),
     entry: {
-      app: './js/app.js',
+      app: './js/main.js',
     },
     output: {
       path: path.resolve(__dirname, 'dist'),
@@ -54,7 +54,8 @@ module.exports = function (env) {
     },
     plugins: [
       new webpack.DefinePlugin({ 
-        ENV_DEV: JSON.stringify(isDev ? true : false)
+        ENV_DEV: JSON.stringify(isDev ? true : false),
+        VERSION: JSON.stringify(require('./package.json').version),
       }),
       new CleanWebpackPlugin(),
       new MiniCssExtractPlugin({

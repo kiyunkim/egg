@@ -6,14 +6,27 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <p class="increment-counter">0</p>
-  <button class="increment">+1</button>
+  <header class="header hidden">
+    <button id="pause">pause</button>
+    <div class="save-buttons">
+      <button id="save">save</button>
+      <button id="load">load</button>
+      <button id="reset">reset</button>
+    </div>
+  </header>
 
-  <div class="save-buttons hidden">
-    <button id="save">save</button>
-    <button id="load">load</button>
-    <button id="reset">reset</button>
-  </div>
+  <main>
+    <p class="increment-counter">0</p>
+    <button class="increment">+1</button>    
+  </main>
 
+  <footer>
+    <ul>
+      <li id="version"></li>
+      <li><a href="">changelog</a></li>
+      <li><a href="">credits</a></li>
+      <li><a href="">settings</a></li>
+    </ul>
+  </footer>
 </body>
 </html>
