@@ -1,0 +1,38 @@
+you are a child in korea.
+
+[default family:]
+your birth certificate says M.
+born outside of seoul.
+working class family.
+plain looks.
+
+[in prestige, you are reborn and have options to choose which family you are born into]
+[levels 1-5, multiple families per level]
+
+elementary/middle school
+[balance skills against stress + money]
+-take dancing lesson
+-take singing lesson
+-take foreign language lesson
+  -take english
+  -take japanese
+  -take chinese
+-take acting lesson [+acting skill]
+-watch tv [+variety skill]
+-watch movies
+-hang out with friends [+variety skill]
+-do homework + study [good for parents support]
+
+middle school.
+[balance skills against stress + money]
+-company private audition
+  -[dance, singing, acting skills]
+-tv audition
+  -[singing skill only]
+  -[eliminated round 1 if skills are too low]
+  -[round 2 gain variety skill]
+
+trainee.
+you must build up your skills before you can debut.
+[set skill levels for debut..]
+
