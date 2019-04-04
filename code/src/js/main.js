@@ -7,6 +7,7 @@ import './dev';
 let data = {
   increment: 0
 }
+const body = document.querySelector('body');
 
 const versionNumber = VERSION;
 const version = document.querySelector('#version');
@@ -18,12 +19,38 @@ version.innerHTML = 'v'+versionNumber;
 
 const incrementButton = document.querySelector('.increment');
 
-incrementButton.addEventListener('click', function(){
-  data.increment++;
+body.addEventListener('click', function(){
+  console.log('body clicked');
   update();
 });
 
+let links = document.querySelectorAll('a');
+console.log(links)
+for (let i = 0; i < links.length; i++) {
+  links[i].addEventListener('keypress', function(e){
+    console.log('a enter')
+    if (e.keyCode === 13){
+      e.preventDefault();
+      console.log('a enter')
+    }
+  });
+}
+
+incrementButton.onclick = function(){
+  console.log('incrementButton c');
+  data.increment++;
+};
+incrementButton.addEventListener('keypress', function(e){
+  if (e.keyCode === 13) {
+    e.preventDefault();
+    console.log('incrementButton enter');
+    data.increment++;
+  }
+});
+
+
 function update() {
+  // console.log('update');
   document.querySelector('.increment-counter').innerHTML = data.increment;
   
   if (data.increment >= 5) {
