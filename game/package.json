@@ -15,6 +15,7 @@
     "mini-css-extract-plugin": "^0.5.0",
     "node-sass": "^4.11.0",
     "nodemon": "^1.18.10",
+    "normalize.css": "^8.0.1",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
     "postcss-loader": "^3.0.0",
     "sass-loader": "^7.1.0",
@@ -26,9 +27,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --env.dev",
-    "watch": "nodemon -w webpack.config.js -x webpack-dev-server --env.dev",
-    "build": "webpack --env.prod",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon -w webpack.config.js -x webpack-dev-server --env.dev",
+    "build": "webpack --env.prod"
   },
   "repository": {
     "type": "git",
@@ -41,7 +41,5 @@
     "url": "https://github.com/kiyunkim/doc/issues"
   },
   "homepage": "https://github.com/kiyunkim/doc#readme",
-  "dependencies": {
-    "normalize.css": "^8.0.1"
-  }
+  "dependencies": {}
 }

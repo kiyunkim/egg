@@ -1,11 +1,118 @@
+// variables
+
+// colors
+$colors: ();
+
+$white: #fff;
+$black: #000;
+$grey: (
+  100: #f6f6f6,
+  200: #eee,
+  300: #ddd,
+  400: #ccc,
+  500: #aaa,
+  600: #888,
+  700: #666,
+  800: #444,
+  900: #333,
+);
+$blue: (
+  "light": (
+    300: #39d9f9,
+    400: #2cb4e7,
+  ),
+  "dark": (
+    200: #455774,
+    300: null,
+    500: #1e2c40,
+    600: #0a1c39,
+    700: #26374d,
+    800: #1f2c40,
+    900: #142135
+  ),
+);
+$red: (
+  100: #900
+);
+
+$colors: (
+  'white': $white,
+  'black': $black,
+  'grey': $grey
+);
+
+@function map-deep-get($type, $map, $keys...) {
+  $value: $map;
+  
+  // check each key
+  @each $key in $keys {
+    @if map-has-key($value, $key) {
+      // it is a valid key
+      $value: map-get($value, $key);
+      @debug $value;
+    }
+    @else {
+      // oops not a valid key
+      @error "`#{$key}` is not a valid key.";
+    }
+  }
+  @return $value;
+};
+
+@function map-deep-test($type, $map, $keys...){
+  $length: length($keys);
+  $value: $map;
+
+  @for $index from 1 through $length {
+    $key: nth($keys, $index);
+    
+    @debug "LENGTH: #{$length}";
+    @debug "INDEX: #{$index}";
+    @debug "KEY: #{$key}";
+
+    @if map-has-key($value, $key) {
+      $value: map-get($value, $key);
+      @debug "VALUE: #{$value}";
+      @debug "VALUE TYPE: #{type-of($value)}";
+
+      @if $index == $length {
+        @if type-of($value) == 'map' {
+          @error 'still a map!';
+        }
+      }
+    }
+    @else {
+      @error 'oh no';
+    }
+  }
+  @return $value;
+  
+};
+
+
+// doesn't really do much but just for practice:
+@mixin color($type, $function) {
+  @if type-of($function) == color {
+    @if $type == '' {
+      color: $function;
+    }
+    @else {
+      #{$type}-color: $function;
+    }
+  }
+  @else {
+    @error "`#{$function}` is not a color."
+  }
+};
+
+
 body {
-  background: #2e2e3d;
   padding: 1rem;
-  color: #eee;
+  color: map-deep-get('color', $colors, 'grey', 300);
   font-size: 16px;
   font-family: -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
 }
-p { 
+p {
   margin: 0;
 }
 
