@@ -1,11 +1,5 @@
-@import 'variables';
 // colors
-/*--------------------------------
-  FUNCTIONS
----------------------------------*/
-@function getcolor($color, $shade) {
-  @return map-get($color, $shade);
-};
+
 /*--------------------------------
   VARIABLES
 ---------------------------------*/
@@ -48,29 +42,3 @@ p {
 .hidden {
   display: none;
 }
-.sr-only * {
-  left:-999px;
-  top:auto;
-  z-index:-999;
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  border: 0;
-}
-.sr-only *:focus {
-  color: $black;
-  background-color: $white;
-  left: auto;
-  top: auto;
-  height: auto;
-  width: auto;
-  overflow:auto;
-  padding:5px;
-  border:4px solid yellow;
-  font-size:1rem;
-  z-index:999;
-}
-// @debug ;
