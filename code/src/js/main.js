@@ -6,12 +6,14 @@ import './dev';
 
 
 // variables
-let data = {
+const initData = {
   increment: 0,
   upgrades: {
     save: false
   }
 }
+let data = initData;
+
 const tick = 1000;
 const body = document.querySelector('body');
 const incrementButton = document.getElementById('increment');
@@ -46,6 +48,7 @@ function checkUpgrades(){
       }
     }
     else {
+      upgradeButton[i].classList.add('hidden');
       upgradeButton[i].disabled = true;
     }
   }
@@ -59,7 +62,7 @@ for (let i = 0; i < upgradeButton.length; i++) {
     let type = this.dataset.type;
     switch (type) {
       case 'unlock':
-        console.log(this);
+        data.upgrades[this.dataset.unlock] = true;
         break;
       default:
         console.log('not sure what type this is');
@@ -75,13 +78,18 @@ body.addEventListener('click', function(){
 function update() {
   document.querySelector('.increment-counter').innerHTML = data.increment;
   checkUpgrades();
+  if (data.upgrades.save) {
+    document.querySelector('header').classList.remove('hidden');
+    enableSave();
+  }
+  console.log(data);
 }
 
-// init
+// on page load
 window.onload = function() {
   let save = JSON.parse(localStorage.getItem(saveName));
   if (save) {
-    data.increment = save.increment;
+    data = save;
   }
   update();
 }
@@ -91,12 +99,9 @@ window.onload = function() {
 export function enableSave(){
 
   document.getElementById('save').addEventListener('click', function(e){
-    let save = {
-      increment: data.increment
-    };
+    let save = data;
     try {
       var success = true;
-  
       // try saving..
       try {
         localStorage.setItem(saveName, JSON.stringify(save));
@@ -117,7 +122,7 @@ export function enableSave(){
   // load
   document.getElementById('load').addEventListener('click', function(e){
     let save = JSON.parse(localStorage.getItem(saveName));
-    data.increment = save.increment;
+    data = save;
     update();
   });
   
@@ -125,7 +130,7 @@ export function enableSave(){
   document.getElementById('reset').addEventListener('click', function(e){
     if (confirm('Are you sure you want to clear your save? This will wipe out everything!')) {
       localStorage.removeItem(saveName);
-      data.increment = 0; 
+      data = initData;
       update();
     }
   });

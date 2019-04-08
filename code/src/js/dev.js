@@ -5,7 +5,7 @@ if (ENV_DEV) {
   console.log('Environment: Development');
   console.log('Version: '+VERSION);
   
-  enableSave();
+  // enableSave();
 
   function unhide() {
     let hidden = document.querySelectorAll('.hidden');
