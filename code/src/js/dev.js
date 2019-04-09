@@ -13,6 +13,7 @@ if (ENV_DEV) {
       hidden[i].classList.remove('hidden');
     }
   }
+  // unhide();
 
   document.getElementById('pause').addEventListener('click', function(){
     clearInterval(interval);

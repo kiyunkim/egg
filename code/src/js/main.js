@@ -6,21 +6,26 @@ import './dev';
 
 
 // variables
-const initData = {
-  increment: 0,
-  upgrades: {
-    save: false
-  }
-}
+const initData = {};
+
+initData.increment = 0;
+initData.upgrades = {
+  save
+};
+initData.upgrades.save = {
+  unlocked: false
+};
+
 let data = initData;
 
 const tick = 1000;
+const saveName = 'code-save';
+
+// selectors
 const body = document.querySelector('body');
 const incrementButton = document.getElementById('increment');
 const upgradeButton = document.querySelectorAll('.upgrade');
 
-const saveName = 'code-save';
-// dev info
 const versionNumber = VERSION;
 const version = document.querySelector('#version');
 
@@ -39,35 +44,52 @@ incrementButton.onclick = function(){
 };
 
 // check for upgrades
+// shows/hides upgrade buttons
+// disable/enables upgrade buttons
 function checkUpgrades(){
+  // loop each upgrade button
   for (let i = 0; i < upgradeButton.length; i++) {
+    // if increment >= min
     if (data.increment >= upgradeButton[i].dataset.min) {
+      // unhide the button
       upgradeButton[i].classList.remove('hidden');
+      // if increment >= cost
       if (data.increment >= upgradeButton[i].dataset.cost) {
+        // enable the button
         upgradeButton[i].disabled = false;
+      } else {
+        upgradeButton[i].disabled = true;
       }
     }
     else {
       upgradeButton[i].classList.add('hidden');
-      upgradeButton[i].disabled = true;
     }
   }
 }
+
+
 
 
 // get upgrade
 for (let i = 0; i < upgradeButton.length; i++) {
   upgradeButton[i].onclick = function(){
     // get type of upgrade
-    let type = this.dataset.type;
-    switch (type) {
+    let upgradeType = this.dataset.type;
+    let upgradeName = this.dataset.name;
+
+    switch (upgradeType) {
       case 'unlock':
-        data.upgrades[this.dataset.unlock] = true;
+        data.upgrades[upgradeName].unlocked = true;
+        break;
+      case 'upgrade':
         break;
       default:
         console.log('not sure what type this is');
     }
   }
+}
+function getUpgrade(upgrade) {
+
 }
 
 // update data
@@ -78,7 +100,9 @@ body.addEventListener('click', function(){
 function update() {
   document.querySelector('.increment-counter').innerHTML = data.increment;
   checkUpgrades();
-  if (data.upgrades.save) {
+
+  // below should be automated
+  if (data.upgrades.save.unlocked) {
     document.querySelector('header').classList.remove('hidden');
     enableSave();
   }
@@ -87,6 +111,11 @@ function update() {
 
 // on page load
 window.onload = function() {
+  init();
+}
+
+// init
+function init() {
   let save = JSON.parse(localStorage.getItem(saveName));
   if (save) {
     data = save;
