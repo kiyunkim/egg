@@ -1,8 +1,18 @@
-import * as game from './main';
+class Planets {
+  constructor() {
+    // something..
+  }
+}
 
 
-game.data = {
-  'test': 1
-};
+export class Resource {
+  constructor(data){
+    // something
+    this.name = data.name;
+    this.id = data.id;
+  }
 
-export default game;
+  introduce() {
+    console.log(`Hello, my name is ${this.name}.`);
+  }
+}
