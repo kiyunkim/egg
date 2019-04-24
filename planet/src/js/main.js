@@ -1,16 +1,11 @@
 import 'normalize.css';
 import '../css/main.scss';
 
-import {Resource} from './resources';
+import {shark} from './resources';
+import './test';
 
 export const GAME = {};
 
-GAME.VERSION = '0.1.0';
-GAME.INTERVAL = 1000;
+shark.name = 'bob';
 
-let fish = new Resource({
-  name: 'fish',
-  id: 'fish'
-});
-
-fish.introduce();
+console.log(shark);

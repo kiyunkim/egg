@@ -5,14 +5,8 @@ class Planets {
 }
 
 
-export class Resource {
-  constructor(data){
-    // something
-    this.name = data.name;
-    this.id = data.id;
-  }
+let shark = {
+  job: 'eat fish'
+};
 
-  introduce() {
-    console.log(`Hello, my name is ${this.name}.`);
-  }
-}
+export {shark};
