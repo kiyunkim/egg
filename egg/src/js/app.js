@@ -1,108 +1,4 @@
 import {v} from './save';
-import * as data from './data';
-// import './data';
-
-console.log(v);
-console.log(data.d);
-
-  // maybe take out the unlock property?
-  // consider general re-organizing of objects ..
-  
-  // use object constructor ?
-  function Thing(name, count, html, unlock = undefined, sell) {
-    this.name = name;
-    this.count = count;
-    this.html = html;
-    this.unlock = unlock;
-    this.sell = sell;
-  }
-  // or use the new es6 classes??
-
-  // class declaration
-  class Generator {
-    constructor(name, count, html, price, produce) {
-      this.name = name;
-      this.count = count;
-      this.html = html;
-      this.price = price;
-      this.produce = produce;
-    }
-  }
-  
-  const test = new Generator('chicken');
-
-  var egg = {
-    name: 'egg',
-    count: 0,
-    html: {
-      container: '.egg',
-      counter: '#egg-count',
-      buyButton: '#egg-btn',
-      sellButton: '#egg-sell',
-    },
-    unlock: [
-      {
-        name: 'money',
-        atCount: 5,
-      },
-    ],
-    sell: {
-      count: 12,
-      money: 0.5, // per one egg
-    }
-  };
-  var money = {
-    name: 'money',
-    count: 0,
-    html: {
-      container: '.money',
-      counter: '#money-count'
-    },
-    unlock: [
-      {
-        name: 'chicken',
-        atCount: 10
-      }
-    ]
-  };
-  var chicken = {
-    name: 'chicken',
-    count: 0,
-    html: {
-      container: '.chicken',
-      counter: '#chicken-count',
-      buyButton: '#chicken-buy',
-    },
-    buy: {
-      type: money.name,
-      amount: 15
-    },
-    produce: {
-      type: egg.name,
-      amount: 0.5
-    },
-  };
-
-  var className = {
-    hidden: 'hidden'
-  }
-
-  // init set count
-  updateCount(egg);
-  updateCount(money);
-  updateCount(chicken);
-
-  // loadSave();
-  
-  function updateCount(thing) {
-    if (!document.querySelector(thing.html.container).classList.contains(className.hidden)) {
-      if (thing.name === 'money') {
-        document.querySelector(thing.html.counter).innerHTML = thing.count.toFixed(2);
-      } else {
-        document.querySelector(thing.html.counter).innerHTML = thing.count;
-      }
-    }
-  }
 
 
   function gameLoopUpdate(fnc) {
@@ -122,7 +18,6 @@ console.log(data.d);
     unlock(money, chicken);
     enableOrDisableButton(egg, 12, egg.html.sellButton);
     enableOrDisableButton(money, chicken.buy.amount, chicken.html.buyButton);
-    console.log('test')
   }
   // make an array of functions maybe
 
@@ -169,7 +64,7 @@ console.log(data.d);
       // is the locked thing in an array?
       if (checkIfArray(unlockingThing.unlock)) {
         // if yes, loop through array
-        for (i = 0; i < unlockingThing.unlock.length; i++) {
+        for (var i = 0; i < unlockingThing.unlock.length; i++) {
           // check name and cost
           if ((lockedThing.name === unlockingThing.unlock[i].name) && (unlockingThing.count >= unlockingThing.unlock[i].atCount)) {
             unhide(lockedThing);
@@ -205,20 +100,3 @@ console.log(data.d);
 
   sellThing(egg);
 
-
-  var save = {
-    egg: egg,
-    money: money,
-    chicken: chicken
-  };
-
-  document.getElementById('save').addEventListener('click', function() {
-    localStorage.setItem("save",JSON.stringify(save));
-  });
-  document.getElementById('load').addEventListener('click', function() {
-    var saved = JSON.parse(localStorage.getItem('save'));
-    egg = saved.egg;
-    money = saved.money;
-    chicken = saved.chicken;
-  });
-  
