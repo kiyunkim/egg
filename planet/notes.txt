@@ -40,3 +40,32 @@ Colonise a new system
 Explore the galaxy
 Fight the aliens
 Figure out how to leave the galaxy.
+
+
+
+
+
+
+
+
+------------------------------------------------------------------------------------
+
+planet (earth)
+- population
+- food
+- happiness?
+
+workers:
+- farmers
+- researchers
+- scientists
+- engineers
+
+expansion
+
+solar system:
+- certain bonuses/penalty
+  - weather for farming
+  - atmosphere for population
+  - light for happiness
+- trading

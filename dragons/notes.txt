@@ -1,0 +1,7 @@
+base increment: gold
+
+base automator: dragon
+
+dragon jobs:
+- jeweler: gold into jewelry
+- trader: trade gold for ??
