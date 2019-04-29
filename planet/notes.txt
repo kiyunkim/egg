@@ -1,0 +1,42 @@
+u/bane2571:
+
+4X - the idle game. 
+Start on a planet, expand to the solar system, then to the galaxy. 
+Ascension is Finding a way to a new galaxy.
+
+
+Planet phase:
+
+Harvest resources, grow population and research sciences.
+Balance happiness against productivity
+Build the "diaspora" project to progress
+
+Solar system phase
+
+Multiple, proceduraly generated planets with bonuses/penalties
+trade between planets to enhance growth/production
+Choice to play the planet phase for each colonised planet to produce resources more efficiently or add predefined "governors" to a planet to automate those numbers. Governors only affect growth of production, when one is assigned the existing production numbers are locked in, making playing the planet phase meaningful.
+Planets are abstracted at this tier and "solar" time continues to run while managing an individual planet.
+build the "star gate" project to progress
+
+Galaxy phase
+
+Looks a bit like structure Idle in a node graph with each system connected to one or more other systems
+each system is abstracted but can be managed directly similar to the previous phase wit a choice between playing it or having the system governor handle ongoing growth.
+a percentage of each galaxy's production is provided to neighboring systems as "trade" backwards towards the capital system
+Other civilizations will be growing and fighting and need to be pushed back to conquer systems
+"Galaxy gate" project will allow progression to a new planet phase, with some bonus being provided via the gate.
+
+​
+
+The main interesting point of the whole thing is that all 3 phases can be managed at any point in the game. Sure with 1000s of planets in your empire, you may not want to manage each one individually to optimise your output, but if you do, maybe you gain a couple of orders of magnitude worth of production for doing so.
+
+On top of that I love the games that slowly build mechanics and this idea (I think) has enough tiers to stay interesting for a long while:
+
+Build a planet
+Colonise your solar system
+Figure out how to leave the solar system
+Colonise a new system
+Explore the galaxy
+Fight the aliens
+Figure out how to leave the galaxy.
