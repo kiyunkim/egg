@@ -1,0 +1,39 @@
+birth info:
+-M/F
+-city of origin:
+  -seoul
+  -gwangju
+  -cheonan
+  -busan
+  -daegu
+  -ulsan
+  -foreign country?
+-family background:
+  -poverty?
+  -working class
+  -middle class
+  -upper-middle class
+  -upper class
+appearance:
+  -less than average (plain)
+  -average
+  -above average
+  -best
+other:
+  - connection to broadcasting stations
+
+measurements:
+-stress
+-money
+-parents' approval
+-grades
+
+skill sets:
+-singing
+-dancing
+-acting
+-english
+-japanese
+-chinese
+-variety
+-manners

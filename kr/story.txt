@@ -7,7 +7,6 @@ working class family.
 plain looks.
 
 [in prestige, you are reborn and have options to choose which family you are born into]
-[levels 1-5, multiple families per level]
 
 elementary/middle school
 [balance skills against stress + money]
@@ -27,10 +26,14 @@ middle school.
 [balance skills against stress + money]
 -company private audition
   -[dance, singing, acting skills]
--tv audition
-  -[singing skill only]
+-tv show audition
+  -[mainly singing skill]
+    -[small influence from dancing, variety skill]
   -[eliminated round 1 if skills are too low]
   -[round 2 gain variety skill]
+
+high school [may also be a trainee at the same time]
+
 
 trainee.
 you must build up your skills before you can debut.

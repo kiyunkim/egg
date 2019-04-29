@@ -1,0 +1,2 @@
+future implementations:
+-korean won/us dollar exchange toggle
