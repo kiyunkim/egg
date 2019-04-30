@@ -1,5 +1,4 @@
-const money = {};
-money = {
+const money = {
   name: 'money',
   count: 0,
   unlocks: {
@@ -9,36 +8,31 @@ money = {
   }
 };
 
-const animals = {};
-animals = {
-  chicken,
-  duck,
-  goose
-};
-
-const eggs = {};
-eggs = {
-  default: {
-    // name: 'egg',
-    count: 0,
-    unlocks: [],
-    sell: {
-      count: 12,
-      costPerCount: 0.5,
-    }
-  },
+const animals = {
   chicken: {},
   duck: {},
   goose: {},
 };
 
-const producers = {};
-producers = {
+const eggs = {
   chicken: {
     count: 0,
+    unlocks: {},
+    sell: {
+      count: 12,
+      costPerCount: 0.5,
+    }
+  },
+  duck: {},
+  goose: {},
+};
+
+const producers = {
+  chicken: {
+    count: 1,
     cost: 15,
     produce: {
-      egg: 0.5
+      egg: 0.05
     }
   },
   duck: {},
