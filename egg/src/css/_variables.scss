@@ -33,20 +33,33 @@ $btn: (
 ref from https://webdesign.tutsplus.com/tutorials/an-introduction-to-sass-maps-usage-and-examples--cms-22184
 
 */
-$layer: (
-  offcanvas: 1,
-  lightbox: 500,
-  dropdown: 10,
-  tooltip: 15
+$colors: (
+  grey: (
+    100: #f2f2f2,
+    200: #eee,
+    300: #ddd,
+    400: #ccc,
+    500: #bbb,
+    600: #aaa,
+    700: #999,
+    800: #888,
+    900: #777,
+    light: #eee,
+    dark: #333
+  ),
+  theme: (
+    primary: #fff,
+    secondary: #fff,
+    danger: #fff,
+    warning: #fff,
+    info: #fff,
+    success: #fff
+  )
 );
- 
-// _m-lightboxes.scss
-@function layer($name) {
-  @if map-has-key($layer, $name) {
-    @return map-get($layer, $name);  
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+      $map: map-get($map, $key);
   }
-   
-  @warn "The key #{$name} is not in the map ’$layer’";
-  @return null;
-};
- 
+  @return $map;
+}
