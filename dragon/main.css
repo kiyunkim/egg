@@ -14,11 +14,32 @@ body {
   border: 0;
 }
 
+#container {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
 #header {
   display: flex;
   justify-content: space-between;
+  flex: 2 0 100%;
 }
 .title {
   display: flex;
   align-items: baseline;
+}
+h1, h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+
+#sidebar {
+  flex-basis: 300px;
+  background: #eee;
+  margin-right: 1rem;
+}
+
+#data {
+  width: 100%;
 }

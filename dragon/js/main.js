@@ -25,7 +25,7 @@ DRGN.main = {
 };
 
 window.onload = function() {
-  DRGN.main.init();
+  // DRGN.main.init();
   document.body.addEventListener('click', function() {
     DRGN.main.update();
   });
