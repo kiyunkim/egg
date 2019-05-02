@@ -1,3 +1,7 @@
+import 'normalize.css';
+import '../main.css';
+
+
 var DRGN = {};
 
 DRGN.VERSION = '0.1.0';
