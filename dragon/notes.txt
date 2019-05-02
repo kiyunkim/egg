@@ -5,3 +5,6 @@ base automator: dragon
 dragon jobs:
 - jeweler: gold into jewelry
 - trader: trade gold for ??
+
+to do:
+- automate with webpack
