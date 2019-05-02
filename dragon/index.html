@@ -11,12 +11,27 @@
 <body>
   <div id="container">
     <header id="header">
-      <h1 id="title">title</h1>
-      <h2 id="version">version</h2>
+      <div class="title">
+        <h1 id="title">title</h1>
+        <h2 id="version">version</h2>
+      </div>
       <ul id="options"></ul>
     </header>
 
-    <aside id="sidebar"></aside>
+    <aside id="sidebar">
+      <table id="data">
+        <caption class="sr-only">resource data</caption>
+        <tr class="sr-only">
+          <th scope="col">name</th>
+          <th scope="col">amount</th>
+          <th scope="col">income rate</th>
+        </tr>
+        <tr data-id="gold">
+          <th scope="row">gold</th>
+          <td id="amount">0</td>
+        </tr>
+      </table>
+    </aside>
     <main id="game"></main>
   </div>
 
