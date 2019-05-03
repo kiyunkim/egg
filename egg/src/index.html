@@ -7,19 +7,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <p class="egg">eggs: <span id="egg-count"></span></p>
-  <button id="egg-btn">get egg</button>
-  <button id="egg-sell" disabled>sell dozen eggs</button>
+  <div id="container">
+    <aside id="sidebar">
+      <div id="money">
+        <p class="counter">money: <span id="money-count">0</span></p>
+      </div>
+    </aside>
+    <main id="game">
 
-  <p class="money hidden">money: $<span id="money-count"></span></p>
-
-  <div class="chicken hidden">
-    <p>chickens: <span id="chicken-count"></span></p>
-    <button id="chicken-buy" disabled>buy chicken (<span id="chicken-cost"></span>)</button>
-  </div>
-
-  <button id="save">save</button>
-  <button id="load">load</button>
-
+    </main>
+  </div>  
 </body>
 </html>
