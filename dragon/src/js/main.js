@@ -1,69 +1,87 @@
 import 'normalize.css';
 import '../main.css';
 
+import {data} from './data';
 
-var DRGN = {};
+const V = VERSION;
 
-DRGN.VERSION = '0.1.0';
-DRGN.INTERVAL = 100;
-DRGN.SAVE = 'dragonsave';
+/* to organize: ------------------------------------- */
 
-DRGN.el = {
+const ELEMENT = {
   header,
   version: document.getElementById('version'),
 
   sidebar,
-  data: document.getElementById('data'),
+  dataTable: document.getElementById('data'),
+  
   game: document.getElementById('game'),
 };
 
-DRGN.main = {
-  init: function() {
-    showData(DRGN.data.gold);
-    createButton(DRGN.el.game, 'collect', DRGN.data.gold.name, getGold());
 
-  },
-  update: function() {
-    
-  },
-};
+ELEMENT.version.innerHTML = 'v' + V;
 
-window.onload = function() {
-  // DRGN.main.init();
-  document.body.addEventListener('click', function() {
-    DRGN.main.update();
-  });
-};
+// create gold button
+var collectGold = document.createElement('button');
+collectGold.setAttribute('data-get', data.gold.name);
+collectGold.innerHTML = 'collect gold';
+
+game.appendChild(collectGold);
 
 
+// data table format
+function setupData(item) {
+  var row = document.createElement('tr');
+  var itemName = item.name;
 
-/* to organize: ------------------------------------- */
+  row.setAttribute('data-id', itemName);
 
-// create button
-function createButton(container, action, name, handler){
-  var button = document.createElement('button');
-  button.setAttribute('id', action + '-' + name);
-  button.innerHTML = action + ' ' + name;
-  container.appendChild(button);
+  // create columns
+  var nameCol = '<th scope="row">' + itemName + '</th>';
+  var amountCol = document.createElement('td');
+  amountCol.setAttribute('id', itemName + '-amount');
+  amountCol.innerHTML = item.amount;
 
-  button.addEventListener('click', handler);
+  var rpsCol = document.createElement('td');
+  rpsCol.setAttribute('id', itemName + '-income');
+
+  row.innerHTML += nameCol;
+  row.appendChild(amountCol);
+  row.appendChild(rpsCol);
+
+  ELEMENT.dataTable.querySelector('tbody').appendChild(row);
 }
 
-function showData(name) {
-  var amount = name.amount;
-  var name = name.name;
+setupData(data.gold);
 
-  var dataDiv = document.createElement('div');
-  dataDiv.setAttribute('id', name);
-  dataDiv.innerHTML = name + ': <span id="' + name + '-amount">' + amount + '</span>';
+
+// on button click, +1 of 'data-get'
+var buttons = document.querySelectorAll('button');
+for (let i = 0; i < buttons.length; i++) {
+  buttons[i].addEventListener('click', function(e){
+    var itemName = e.target.getAttribute('data-get');
+    data[itemName].amount++;
+
+    // show gold in table
+    // TODO: put in interval. check amount for each obj
+    if (data[itemName].amount > 0) {
+      if (document.querySelectorAll('[data-id="'+ itemName +'"]').length === 0) {
+        var dataRow = document.createElement('tr');
+        dataRow.setAttribute('data-id', itemName);
   
-  DRGN.el.data.appendChild(dataDiv);
+        dataRow.innerHTML += '<th scope="row">' + itemName + '</th>';
+        dataRow.innerHTML += '<td id="' + itemName + '-amount">' + data.gold.amount + '</td>';
+  
+        ELEMENT.dataTable.appendChild(dataRow);
+        return;
+      }
+      var amount = document.getElementById('gold-amount');
+      amount.innerHTML = data.gold.amount;
+    };
+  });
 }
 
 
-
-// handler for getting gold
-function getGold() {
-  var goldAmount = DRGN.data.gold.amount;
-  goldAmount++;
-}
+Object.keys(data).forEach(function(k) {
+  console.log(k);
+  console.log(data[k])
+});
