@@ -10,7 +10,7 @@
   </header>
 
   <aside class="sidebar">
-    <section class="pieces">
+    <section id="pieces">
     </section>
     <section class="skills">
     </section>
@@ -19,7 +19,13 @@
   </aside>
 
   <main class="main">
-    <button id="draw">draw</button>
+    <section id="sketch">
+      <div data-name="progress-bar" data-value="0" data-max="100">
+        <div data-name="progress-meter"></div>
+        <p data-name="progress-amount">0%</p>
+      </div>
+      <button data-button="sketch">sketch</button>
+    </section>
   </main>
 
   <footer>
