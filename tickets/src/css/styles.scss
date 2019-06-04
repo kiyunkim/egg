@@ -41,11 +41,11 @@ body {
   color: map-get($grey, 200);
   font-family: 'inconsolata', consolas, monospace;
 }
-p {
+h1, h2, h3, p {
   margin: 0;
 }
-.hidden {
-  visibility: hidden;
-}
-.btn {
+
+.ticket {
+  background: map-get($grey, 500);
+  display: inline-block;
 }
