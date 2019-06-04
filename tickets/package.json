@@ -1,5 +1,5 @@
 {
-  "name": "doc",
+  "name": "tickets",
   "version": "1.0.0",
   "devDependencies": {
     "@babel/core": "^7.4.4",
@@ -32,14 +32,13 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kiyunkim/doc.git"
+    "url": "git+https://github.com/kiyunkim/game.git"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/kiyunkim/doc/issues"
+    "url": "https://github.com/kiyunkim/game/issues"
   },
-  "homepage": "https://github.com/kiyunkim/doc#readme",
   "dependencies": {}
 }
