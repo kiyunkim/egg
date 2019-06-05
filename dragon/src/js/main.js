@@ -21,6 +21,7 @@ let data = {
     amount: 0
   },
   dragon: {
+    name: 'dragon',
     amount: 0,
     cost: {
       gold: 10
@@ -38,6 +39,11 @@ let player = {};
 
 
 // -------------------- game
+
+// 'data-id' - for identifying the item (e.g. data-id="gold")
+// 'data-amount' - selector for displaying the amount of its value (e.g. data-amount="gold")
+// 'data-income' - same as amount but for income
+
 
 // item: from data object
 // verb: for button text
@@ -71,20 +77,22 @@ function addItemRow(item) {
 
   // amount column
   var amountCol = document.createElement('td');
-  amountCol.setAttribute('id', itemName + '-amount');
+  amountCol.setAttribute('data-amount', itemName);
   amountCol.innerHTML = item.amount;
 
-  // resource per second column
-  var rpsCol = document.createElement('td');
-  rpsCol.setAttribute('id', itemName + '-income');
+  // income column
+  var incomeCol = document.createElement('td');
+  incomeCol.setAttribute('data-income', itemName);
 
   // bring it altogether now
   row.innerHTML += nameCol;
   row.appendChild(amountCol);
-  row.appendChild(rpsCol);
+  row.appendChild(incomeCol);
 
   EL.dataTable.querySelector('tbody').appendChild(row);
 }
+
+// put gold data in table
 addItemRow(data.gold);
 
 
@@ -100,20 +108,17 @@ for (let i = 0; i < buttons.length; i++) {
 
     // TODO: put in interval. check amount for each obj
     // TODO: data table should be wiped out on reset
-    // also it seems like this could be combined with addItemRow somehow ...........
     if (data[itemName].amount > 0) {
-      if (document.querySelectorAll('[data-id="'+ itemName +'"]').length === 0) {
-        var dataRow = document.createElement('tr');
-        dataRow.setAttribute('data-id', itemName);
-  
-        dataRow.innerHTML += '<th scope="row">' + itemName + '</th>';
-        dataRow.innerHTML += '<td id="' + itemName + '-amount">' + data.gold.amount + '</td>';
-  
-        EL.dataTable.appendChild(dataRow);
+      // TODO: make the query selector... better.
+      // if item isn't already in the data table, add it
+      if (document.querySelectorAll('tr[data-id="'+ itemName +'"]').length === 0) {
+        addItemRow(data[itemName]);
         return;
       }
-      var amount = document.getElementById('gold-amount');
-      amount.innerHTML = data.gold.amount;
+
+      // if it already exists, update the amount
+      let itemRow = document.querySelector('[data-amount="' + itemName +'"');
+      itemRow.innerHTML = data[itemName].amount;
     };
   });
 }
