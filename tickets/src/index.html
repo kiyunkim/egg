@@ -6,25 +6,42 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 </head>
 <body>
-  <header class="header">
-    <h1>tickets</h1>
-  </header>
+  <div class="game">
+    <header class="header">
+      <h1>tickets</h1>
+    </header>
+  
+    <aside class="sidebar">
+      <section class="tickets">
+        <article class="ticket to-do">
+          <header>
+            <h2>Upload images</h2>
+            <p class="status" data-status="to-do">To do</p>
+          </header>
+          <p class="desc">Upload images to the server</p>
+          <footer class="assignment">
+            <button>Assign to Me</button>
+          </footer>
+        </article>
 
-  <aside class="">
-    <section class="tickets">
-      <article class="ticket">
-        <h2>upload images</h2>
-        <h3 class="ticket-number">kk-01</h3>
-        <p>upload images to the server</p>
-        <button>assign to self</button>
-      </article>
-    </section>
-  </aside>
+        <article class="ticket qa">
+          <header>
+            <h2>Create landing page</h2>
+            <p class="status">qa testing</p>
+          </header>
+          <p class="desc">Build landing page asset for swimsuits lookbook</p>
+          <footer class="assignment">
+            <p class="assigned">Assigned to: QA</p>
+          </footer>
+        </article>
+      </section>
+    </aside>
+  
+  
+    <main id="main" class="main">
+      <button class="btn">work on a ticket</button>
+    </main>
+  </div>
 
-
-  <main id="main">
-    <button id="working-ticket" class="btn">work on a ticket</button>
-    <button id="close-ticket" class="btn hidden">close ticket</button>
-  </main>
 </body>
 </html>
