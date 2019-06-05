@@ -1,10 +1,16 @@
 base increment: gold
+- gold
+- jewelry
+
 
 base automator: dragon
 
 dragon jobs:
 - jeweler: gold into jewelry
 - trader: trade gold for ??
+
+trade market:
+- 
 
 to do:
 - automate with webpack

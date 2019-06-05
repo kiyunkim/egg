@@ -14,4 +14,6 @@ let data = {
   },
 };
 
-export {data};
+let player = {};
+
+// export {data};
