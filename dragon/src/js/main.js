@@ -5,15 +5,14 @@ import  '../css/main.css';
 
 
 // -------------------- constants:
-const INTERVAL = 1000;
+const INTERVAL = 100; 
 const V = VERSION;
 const EL = {
   version: document.getElementById('version'),
   dataTable: document.getElementById('data'),
-  game: document.getElementById('game'),
+  game: document.getElementById('game'), // main ui
+  log: document.getElementById('log'),
 };
-// -------------------- data attributes:
-
 
 // -------------------- data:
 let data = {
@@ -29,9 +28,6 @@ let data = {
 
 // -------------------- player data:
 let player = {};
-
-
-
 
 // -------------------- data table:
 
@@ -53,6 +49,7 @@ function dataAttr(name) {
 function createButton(item, verb, container) {
   // create button
   let button = document.createElement('button');
+  button.setAttribute('type', 'button');
   // item name from data object
   let name = item.name;
   let dtr = dataTable.row; // dtr = data table row
@@ -65,8 +62,6 @@ function createButton(item, verb, container) {
   container.appendChild(button);
 }
 
-// create gold button and append to game body
-createButton(data.gold, 'collect', EL.game);
 
 // add item row to data table
 function addItemRow(item) {
@@ -97,34 +92,25 @@ function addItemRow(item) {
   EL.dataTable.querySelector('tbody').appendChild(row);
 }
 
-// on click for all buttons, +1 of 'data-get' item
-var buttons = document.querySelectorAll('button');
-for (let i = 0; i < buttons.length; i++) {
-  buttons[i].addEventListener('click', function(e){
-    // get item name from 'data-name' attribute
-    var itemName = e.target.getAttribute('data-name');
-    // update data object
-    data[itemName].amount++;
-
-    // TODO: put in interval. check amount for each obj
-    // TODO: data table should be wiped out on reset
-    if (data[itemName].amount > 0) {
-      // TODO: make the query selector... better.
-      // if item isn't already in the data table, add it
-      if (document.querySelectorAll('tr[data-name="'+ itemName +'"]').length === 0) {
-        addItemRow(data[itemName]);
-      }
-
-      // update the amount
-      let itemRow = document.querySelector('[data-amount="' + itemName +'"');
-      itemRow.innerHTML = data[itemName].amount;
-    };
-  });
-}
 
 var game = {
-  interval: function(){
 
+  init: function() {
+    // create gold button and append to game body
+    createButton(data.gold, 'collect', EL.game);
+    
+    // on click for all buttons, +1 of 'data-get' item
+    document.addEventListener('click', function(e){
+      if (e.target.type === 'button') {
+        // get item name from 'data-name' attribute
+        var itemName = e.target.getAttribute('data-name');
+        // update data object
+        data[itemName].amount++;
+      }
+    });
+  },
+
+  interval: function(){
     // refresh data
     Object.keys(data).forEach(function(itemName) {
       // TODO: data table should be wiped out on reset
@@ -146,9 +132,8 @@ var game = {
 }
 
 window.onload = function() {
+  game.init();
   let interval = setInterval(function(){
     game.interval();
   }, INTERVAL);
-
-
 }
