@@ -1,10 +1,11 @@
 import 'normalize.css';
-import '../main.css';
+import  '../css/main.css';
 
 // import {data} from './data';
 
 
 // -------------------- constants:
+const INTERVAL = 1000;
 const V = VERSION;
 const EL = {
   version: document.getElementById('version'),
@@ -18,17 +19,11 @@ const EL = {
 let data = {
   gold: {
     name: 'gold',
-    amount: 0
+    amount: 0,
   },
   dragon: {
     name: 'dragon',
     amount: 0,
-    cost: {
-      gold: 10
-    },
-    income: {
-      gold: 0.1
-    }
   },
 };
 
@@ -38,71 +33,76 @@ let player = {};
 
 
 
-// -------------------- game
+// -------------------- data table:
 
-// 'data-id' - for identifying the item (e.g. data-id="gold")
-// 'data-amount' - selector for displaying the amount of its value (e.g. data-amount="gold")
-// 'data-income' - same as amount but for income
+let dataTable = {
+  row: {
+    name: 'name',
+    job: 'job',
+    amount: 'amount',
+    income: 'income'
+  }
+};
+
+function dataAttr(name) {
+  // easier than typing 'data-' all the time
+  return 'data-' + name;
+}
 
 
-// item: from data object
-// verb: for button text
-// container: to append to
 function createButton(item, verb, container) {
   // create button
   let button = document.createElement('button');
+  // item name from data object
   let name = item.name;
+  let dtr = dataTable.row; // dtr = data table row
 
-  // set item name as 'data-id'
-  button.setAttribute('data-id', name);
-  // button text
+  // set item name as 'data-name'
+  button.setAttribute(dataAttr(dtr.name), name);
+  // set button text
   button.innerHTML = verb + ' ' + name;
   // append to container
   container.appendChild(button);
 }
 
 // create gold button and append to game body
-createButton(data.gold, 'collect', game);
+createButton(data.gold, 'collect', EL.game);
 
 // add item row to data table
 function addItemRow(item) {
-  var row = document.createElement('tr');
-  var itemName = item.name;
+  let row = document.createElement('tr');
+  let itemName = item.name;
+  let dtr = dataTable.row; // dtr = data table row
 
-  // set item name as the data-id
-  row.setAttribute('data-id', itemName);
+  // set item name as the data-name for the table row
+  row.setAttribute(dataAttr(dtr.name), itemName);
 
   // name column
-  var nameCol = '<th scope="row">' + itemName + '</th>';
+  let nameCol = '<th scope="row">' + itemName + '</th>';
 
-  // amount column
-  var amountCol = document.createElement('td');
-  amountCol.setAttribute('data-amount', itemName);
-  amountCol.innerHTML = item.amount;
-
-  // income column
-  var incomeCol = document.createElement('td');
-  incomeCol.setAttribute('data-income', itemName);
-
-  // bring it altogether now
-  row.innerHTML += nameCol;
-  row.appendChild(amountCol);
-  row.appendChild(incomeCol);
+  // for each column
+  Object.keys(dtr).forEach(function(r) {
+    // the name col is special:
+    if (r === dtr.name) {
+      let col = '<th scope="row">' + itemName + '</th>';
+      row.innerHTML += col;
+      return;
+    }
+    // set up rest of the columns
+    var col = document.createElement('td');
+    col.setAttribute(dataAttr(r), itemName);
+    row.appendChild(col);
+  });
 
   EL.dataTable.querySelector('tbody').appendChild(row);
 }
-
-// put gold data in table
-addItemRow(data.gold);
-
-
 
 // on click for all buttons, +1 of 'data-get' item
 var buttons = document.querySelectorAll('button');
 for (let i = 0; i < buttons.length; i++) {
   buttons[i].addEventListener('click', function(e){
-    // get item name from 'data-id' attribute
-    var itemName = e.target.getAttribute('data-id');
+    // get item name from 'data-name' attribute
+    var itemName = e.target.getAttribute('data-name');
     // update data object
     data[itemName].amount++;
 
@@ -111,20 +111,44 @@ for (let i = 0; i < buttons.length; i++) {
     if (data[itemName].amount > 0) {
       // TODO: make the query selector... better.
       // if item isn't already in the data table, add it
-      if (document.querySelectorAll('tr[data-id="'+ itemName +'"]').length === 0) {
+      if (document.querySelectorAll('tr[data-name="'+ itemName +'"]').length === 0) {
         addItemRow(data[itemName]);
-        return;
       }
 
-      // if it already exists, update the amount
+      // update the amount
       let itemRow = document.querySelector('[data-amount="' + itemName +'"');
       itemRow.innerHTML = data[itemName].amount;
     };
   });
 }
 
+var game = {
+  interval: function(){
 
-Object.keys(data).forEach(function(k) {
-  console.log(k);
-  console.log(data[k])
-});
+    // refresh data
+    Object.keys(data).forEach(function(itemName) {
+      // TODO: data table should be wiped out on reset
+      if (data[itemName].amount > 0) {
+        // TODO: make the query selector... better.
+        // if item isn't already in the data table, add it
+        if (document.querySelectorAll('tr[data-name="'+ itemName +'"]').length === 0) {
+          addItemRow(data[itemName]);
+        }
+
+        // update the amount
+        let itemRow = document.querySelector('[data-amount="' + itemName +'"');
+        itemRow.innerHTML = data[itemName].amount;
+      };
+      
+    });
+
+  }
+}
+
+window.onload = function() {
+  let interval = setInterval(function(){
+    game.interval();
+  }, INTERVAL);
+
+
+}

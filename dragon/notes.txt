@@ -1,16 +1,25 @@
 base increment: gold
 - gold
 - jewelry
-
+- gems
 
 base automator: dragon
 
 dragon jobs:
 - jeweler: gold into jewelry
 - trader: trade gold for ??
+- magicians
+- hunters
+- monks
 
 trade market:
 - 
 
-to do:
-- automate with webpack
+worlds:
+- dark
+  - bonus for magicians
+- bright
+- foggy: hazy, incognito
+
+- haven: refuge, safe, sanctuary, purity
+- tempestuous: turbulent, tumultuous crude, barbaric, impetuous, boisterous, dangerous
