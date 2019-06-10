@@ -1,19 +1,21 @@
 let data = {
   gold: {
     name: 'gold',
-    amount: 0
+    amount: 0,
   },
-  dragon: {
+  dragons: {
+    name: 'dragons',
     amount: 0,
     cost: {
-      gold: 10
+      name: 'gold',
+      amount: 50
     },
     income: {
-      gold: 0.1
-    }
+      name: 'gold',
+      amount: 0.1
+    },
   },
 };
 
-let player = {};
 
-// export {data};
+export {data};

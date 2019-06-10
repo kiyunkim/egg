@@ -23,3 +23,7 @@ worlds:
 
 - haven: refuge, safe, sanctuary, purity
 - tempestuous: turbulent, tumultuous crude, barbaric, impetuous, boisterous, dangerous
+
+
+
+// use requestAnimationFrame when setInterval gets too laggy

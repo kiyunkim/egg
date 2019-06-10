@@ -1,7 +1,7 @@
 import 'normalize.css';
 import  '../css/main.css';
 
-// import {data} from './data';
+import {data} from './data';
 
 
 // -------------------- constants:
@@ -14,23 +14,10 @@ const EL = {
   log: document.getElementById('log'),
 };
 
-// -------------------- data:
-let data = {
-  gold: {
-    name: 'gold',
-    amount: 0,
-  },
-  dragon: {
-    name: 'dragon',
-    amount: 0,
-  },
-};
-
 // -------------------- player data:
 let player = {};
 
 // -------------------- data table:
-
 let dataTable = {
   row: {
     name: 'name',
@@ -44,7 +31,6 @@ function dataAttr(name) {
   // easier than typing 'data-' all the time
   return 'data-' + name;
 }
-
 
 function createButton(item, verb, container) {
   // create button
@@ -61,7 +47,6 @@ function createButton(item, verb, container) {
   // append to container
   container.appendChild(button);
 }
-
 
 // add item row to data table
 function addItemRow(item) {
@@ -84,7 +69,7 @@ function addItemRow(item) {
       return;
     }
     // set up rest of the columns
-    var col = document.createElement('td');
+    let col = document.createElement('td');
     col.setAttribute(dataAttr(r), itemName);
     row.appendChild(col);
   });
@@ -92,8 +77,27 @@ function addItemRow(item) {
   EL.dataTable.querySelector('tbody').appendChild(row);
 }
 
+let log = {
+  write: function(msg){
+    let para = document.createElement('p');
+    para.setAttribute('class', 'log-message');
+    para.innerHTML = msg;
 
-var game = {
+    EL.log.insertBefore(para, EL.log.firstChild);
+  }
+};
+
+// unlocking first dragon is special
+function unlockFirstDragon() {
+  if (data.gold.amount >= 10 && data.dragons.amount === 0) {
+    log.write('a dragon has been lured by your gold.');
+    data.dragons.amount = 1;
+    createButton(data.dragons, 'lure', EL.game);
+  }
+};
+
+
+let game = {
 
   init: function() {
     // create gold button and append to game body
@@ -103,7 +107,7 @@ var game = {
     document.addEventListener('click', function(e){
       if (e.target.type === 'button') {
         // get item name from 'data-name' attribute
-        var itemName = e.target.getAttribute('data-name');
+        let itemName = e.target.getAttribute('data-name');
         // update data object
         data[itemName].amount++;
       }
@@ -111,7 +115,9 @@ var game = {
   },
 
   interval: function(){
-    // refresh data
+    unlockFirstDragon();
+
+    // refresh data + table
     Object.keys(data).forEach(function(itemName) {
       // TODO: data table should be wiped out on reset
       if (data[itemName].amount > 0) {
