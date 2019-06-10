@@ -1,0 +1,12 @@
+prestige:
+-talent, skill
+
+$
+-commission
+-gallery
+
+-buy tools
+-printing press: faster production but more expensive
+
+better materials = +points
+better skill = +percentage

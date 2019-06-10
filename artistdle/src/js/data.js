@@ -39,8 +39,8 @@ data.skills = {
 
 };
 
-// materials
-data.materials = {
+// tools
+data.tools = {
   medium: {
     brush: {
       oil: {},

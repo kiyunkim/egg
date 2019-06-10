@@ -52,8 +52,8 @@ function progressInt(name) {
 }
 
 /**
- * 
- * @param {*} name 
+ * start progress bar loading on button click
+ * @param {object} name - const name of wrapper/action 
  */
 function work(name) {
   let wrapper = document.getElementById(name);
@@ -64,3 +64,15 @@ function work(name) {
   });
 }
 work(sketch);
+
+
+
+
+
+// to automate;
+// create SKETCH button that adds a SKETCH to the PIECES table in the sidebar
+// the QUALITY depends on the player's TALENT, BOOST, and TOOL QUALITY
+
+
+
+
