@@ -7,7 +7,7 @@ base automator: dragon
 
 dragon jobs:
 - jeweler: gold into jewelry
-- trader: trade gold for ??
+- merchant/trader: trade gold for ??
 - magicians
 - hunters
 - monks

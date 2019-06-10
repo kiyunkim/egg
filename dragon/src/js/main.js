@@ -27,6 +27,7 @@ let dataTable = {
   }
 };
 
+console.log(data);
 function dataAttr(name) {
   // easier than typing 'data-' all the time
   return 'data-' + name;
@@ -36,14 +37,25 @@ function createButton(item, verb, container) {
   // create button
   let button = document.createElement('button');
   button.setAttribute('type', 'button');
-  // item name from data object
+  button.disabled = true;
+  // get name from data.name
   let name = item.name;
   let dtr = dataTable.row; // dtr = data table row
 
-  // set item name as 'data-name'
+  // set name as 'data-name'
   button.setAttribute(dataAttr(dtr.name), name);
   // set button text
-  button.innerHTML = verb + ' ' + name;
+  button.innerHTML = verb + ' ' + item.singular;
+  // does it cost anything?
+  if (item.cost) {
+    // if it does, show on the button
+    let cost = document.createElement('span');
+    cost.setAttribute('class', 'cost');
+    cost.innerHTML = '(cost: ' + item.cost.amount + ' ' + item.cost.name + ')';
+    button.appendChild(cost);
+  } else {
+    button.disabled = false;
+  }
   // append to container
   container.appendChild(button);
 }
@@ -90,7 +102,7 @@ let log = {
 // unlocking first dragon is special
 function unlockFirstDragon() {
   if (data.gold.amount >= 10 && data.dragons.amount === 0) {
-    log.write('a dragon has been lured by your gold.');
+    log.write('a dragon was lured by your gold.');
     data.dragons.amount = 1;
     createButton(data.dragons, 'lure', EL.game);
   }
@@ -108,6 +120,10 @@ let game = {
       if (e.target.type === 'button') {
         // get item name from 'data-name' attribute
         let itemName = e.target.getAttribute('data-name');
+        // does it cost anything?
+        if (data[itemName].cost) {
+
+        }
         // update data object
         data[itemName].amount++;
       }
