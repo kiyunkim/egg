@@ -1,5 +1,9 @@
+widgets
 
-// naming
+var get = [
+  gain
+];
+
 var make = [
   render,
   generate,
@@ -16,17 +20,21 @@ var update = [
 var init = [
   set,
   setup,
-  declare,
   load,
-  run
+  run,
+  declare,
 ];
 
 var format;
+
+
+var data = [
+  resources,
+  items,
+  parts,
+]
+
 var upgrades = [
   buildings,
   unlocks,
 ];
-var buildings;
-var get = [
-  gain
-]

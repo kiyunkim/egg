@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Shark Game</title>
+  <title>sharky</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- 
@@ -21,9 +21,9 @@
 <body>
   <noscript>
     <main class="noscript">
-      <h1>shark game?</h1>
+      <h1>sharky?</h1>
       <p>oops, it looks like you either have javascript disabled or your browser does not support it.</p>
-      <p>shark game requires scripts to work.</p>
+      <p>sharky requires scripts to work.</p>
       <pre>
                   ,
                 .';
@@ -41,30 +41,40 @@
     </main>
   </noscript>
 
-  <div id="wrapper">
+  <div id="container">
     <!-- header -->
-    <header class="header">
+    <header id="header">
       <section class="header-top">
-        <h1 class="title">shark game</h1>
+        <h1 class="title">sharky</h1>
         <h2 id="version" class="version"></h2>
       </section>
       <section class="header-main">
-        <ul class="header-links">
+        <ul id="options" class="header-links">
           <li></li>
         </ul>
       </section>
     </header>
-  
-    <!-- sidebar -->
-    <aside id="sidebar">
-      <section></section>
-      <section id="log" class="log">
 
+    <!-- sidebar -->
+    <aside class="sidebar column">
+      <section id="data">
+        <table id="data-table" class="table">
+          <caption class="sr-only">resource data</caption>
+          <tr class="sr-only"> 
+            <th scope="col">name</th>
+            <th scope="col">job</th>
+            <th scope="col">amount</th>
+            <th scope="col">income</th>
+          </tr>
+        </table>
+      </section>
+
+      <section id="log" class="log">
       </section>
     </aside>
-
+    
     <!-- main -->
-    <main id="game">
+    <main id="game" class="main">
       <nav id="navigation"></nav>
       <ul class="buy-buttons">
         <li></li>

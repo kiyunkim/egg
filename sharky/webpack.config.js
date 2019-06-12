@@ -1,4 +1,5 @@
 const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -52,6 +53,10 @@ module.exports = function (env) {
       ]
     },
     plugins: [
+      new webpack.DefinePlugin({ 
+        ENV_DEV: JSON.stringify(isDev ? true : false),
+        V: JSON.stringify(require('./package.json').version),
+      }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
         template: path.join(__dirname, 'src/index.html'),
