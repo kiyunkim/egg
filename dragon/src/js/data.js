@@ -22,8 +22,7 @@ let data = {
     type: 'worker',
     amount: 0,
     cost: {
-      name: 'gold',
-      amount: 50
+      gold: 20
     },
     jobs: [
       // collector
@@ -31,8 +30,7 @@ let data = {
         name: 'collector',
         amount: 0,
         income: {
-          name: 'gold',
-          amount: 0.1
+          gold: 0.1
         },
         req: ['gold']
       },
@@ -69,6 +67,7 @@ let data = {
       },
     ]
   },
+  
 };
 
 
