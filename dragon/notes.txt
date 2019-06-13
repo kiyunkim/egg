@@ -27,3 +27,73 @@ worlds:
 
 
 // use requestAnimationFrame when setInterval gets too laggy
+
+
+
+
+
+creatures:
+-goblin
+-nymph
+  -forest nymph
+  -river nymph
+-phoenix
+  -ashes
+-pixie
+  -pixie dust
+-fairy
+  -fairy dust
+-centuar
+-satyr/faun
+-sprite
+-harpie
+-giant
+-mermaid
+-siren
+-sea serpent
+-unicorn
+-chimera
+-cyclops
+-elf
+-ogre
+-valkyrie
+-dragon
+
+things:
+-shells
+-gems
+-crystals
+-gold
+-horns
+-horse hooves
+-rabbit fur
+-beaver fur
+
+
+let resources = {
+  // things
+  leaves: {
+    name: 'leaves',
+    singular: 'leaf',
+    prereq: {}, // none
+  },
+  pixieDust: {
+    name: 'pixie dust',
+    singular: 'pixie dust',
+  },
+
+  // workers
+  pixies: {
+    name: 'pixies',
+    singular: 'pixie',
+    cost: {
+      leaves: 5
+    },
+    income: {
+      pixieDust: 0.1
+    },
+    prereq: {
+      leaves: 5
+    }
+  }
+}
