@@ -19,7 +19,6 @@ creatures:
 -mermaid
 -siren
 -sea serpent
--kraken
 
 things:
 -shells
