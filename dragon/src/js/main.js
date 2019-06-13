@@ -13,80 +13,106 @@ const EL = {
   game: document.getElementById('game'), // main ui
   log: document.getElementById('log'),
 };
+const IDNAME = 'name';
 
 // -------------------- player data:
-let player = {};
+const player = {};
 
 // -------------------- data table:
-let dataTable = {
-  row: {
+const table = {
+  rows: {
     name: 'name',
-    job: 'job',
-    amount: 'amount',
-    income: 'income'
+    amount: 'amount'
+  },
+
+  // create header for screen readers
+  setup: function() {
+    // tr
+    const tr = document.createElement('tr');
+    tr.setAttribute('class', 'sr-only');
+    // th
+    Object.keys(this.rows).forEach(function(row){
+      const th = document.createElement('th');
+      th.setAttribute('scope', 'col');
+      th.innerHTML = row;
+      tr.appendChild(th);
+    });
+    // insert to table
+    EL.dataTable.appendChild(tr);
+  },
+
+  addItemRow: function(item) {
+    // set item name as the data-name for the table row
+    const row = document.createElement('tr');
+    const itemName = item.name;
+    util.setDataAttr(row, IDNAME, itemName);
+  
+    // for each column
+    Object.keys(table.rows).forEach(function(rowName) {
+      // the name col gets special treatment:
+      if (rowName === IDNAME) {
+        let col = '<th scope="row">' + itemName + '</th>';
+        row.innerHTML += col;
+        return;
+      }
+      // set up rest of the columns
+      let col = document.createElement('td');
+      util.setDataAttr(col, rowName, itemName);
+      row.appendChild(col);
+    });
+
+    EL.dataTable.appendChild(row);
+  },
+
+  // update the table with the data
+  update: function() {
+    Object.keys(data).forEach(function(item){
+      // display only items that have an amount > 0
+      if (data[item].amount > 0) {
+        
+      }
+    });
   }
+
+
 };
 
-console.log(data);
-function dataAttr(name) {
-  // easier than typing 'data-' all the time
-  return 'data-' + name;
+// -------------------- misc??:
+const util = {
+  setDataAttr: function(el, name, value){
+    el.setAttribute('data-' + name, value);
+  },
+
 }
 
-function createButton(item, verb, container) {
-  // create button
-  let button = document.createElement('button');
+function createButton(item, action, parent) {
+  // create button: disabled on default, insert text
+  const button = document.createElement('button');
   button.setAttribute('type', 'button');
   button.disabled = true;
-  // get name from data.name
-  let name = item.name;
-  let dtr = dataTable.row; // dtr = data table row
+  button.innerHTML = action + ' ' + item.name;
 
-  // set name as 'data-name'
-  button.setAttribute(dataAttr(dtr.name), name);
-  // set button text
-  button.innerHTML = verb + ' ' + item.singular;
+  // set data-IDNAME with itemName as its value
+  const itemName = item.name;
+  util.setDataAttr(button, IDNAME, itemName);
+
   // does it cost anything?
   if (item.cost) {
-    // if it does, show on the button
-    let cost = document.createElement('span');
+    // yes, update button with the cost in a span ..
+    const cost = document.createElement('span');
     cost.setAttribute('class', 'cost');
-    cost.innerHTML = '(cost: ' + item.cost.amount + ' ' + item.cost.name + ')';
+
+    // go through each requirement to buy item
+    Object.keys(item.cost).forEach(function(key) {
+      const costItem = data[key].name;
+      cost.innerHTML = item.cost[costItem] + ' ' + costItem;
+    });
     button.appendChild(cost);
   } else {
     button.disabled = false;
   }
   // append to container
-  container.appendChild(button);
-}
-
-// add item row to data table
-function addItemRow(item) {
-  let row = document.createElement('tr');
-  let itemName = item.name;
-  let dtr = dataTable.row; // dtr = data table row
-
-  // set item name as the data-name for the table row
-  row.setAttribute(dataAttr(dtr.name), itemName);
-
-  // name column
-  let nameCol = '<th scope="row">' + itemName + '</th>';
-
-  // for each column
-  Object.keys(dtr).forEach(function(r) {
-    // the name col is special:
-    if (r === dtr.name) {
-      let col = '<th scope="row">' + itemName + '</th>';
-      row.innerHTML += col;
-      return;
-    }
-    // set up rest of the columns
-    let col = document.createElement('td');
-    col.setAttribute(dataAttr(r), itemName);
-    row.appendChild(col);
-  });
-
-  EL.dataTable.querySelector('tbody').appendChild(row);
+  parent.appendChild(button);
 }
 
 let log = {
@@ -112,14 +138,14 @@ function unlockFirstDragon() {
 let game = {
 
   init: function() {
-    // create gold button and append to game body
-    createButton(data.gold, 'collect', EL.game);
-    
-    // on click for all buttons, +1 of 'data-get' item
+
+    table.setup();
+    // on click for all buttons, +1 of item
     document.addEventListener('click', function(e){
       if (e.target.type === 'button') {
         // get item name from 'data-name' attribute
-        let itemName = e.target.getAttribute('data-name');
+        // TODO: again data-name is hard coded
+        let itemName = e.target.getAttribute('data-' + IDNAME);
         // does it cost anything?
         if (data[itemName].cost) {
 
@@ -130,9 +156,10 @@ let game = {
     });
   },
 
+  // TODO: use requestFrameAnimation
   interval: function(){
-    unlockFirstDragon();
 
+    unlockFirstDragon();
     // refresh data + table
     Object.keys(data).forEach(function(itemName) {
       // TODO: data table should be wiped out on reset
@@ -140,14 +167,13 @@ let game = {
         // TODO: make the query selector... better.
         // if item isn't already in the data table, add it
         if (document.querySelectorAll('tr[data-name="'+ itemName +'"]').length === 0) {
-          addItemRow(data[itemName]);
+          table.addItemRow(data[itemName]);
         }
 
         // update the amount
         let itemRow = document.querySelector('[data-amount="' + itemName +'"');
         itemRow.innerHTML = data[itemName].amount;
       };
-      
     });
 
   }

@@ -4,13 +4,11 @@ let data = {
   // items
   gold: {
     name: 'gold',
-    singular: 'gold',
     type: 'item',
     amount: 0,
   },
   gems: {
     name: 'gems',
-    singular: 'gem',
     type: 'item',
     amount: 0,
   },
@@ -18,7 +16,6 @@ let data = {
   // workers
   dragons: {
     name: 'dragons',
-    singular: 'dragon',
     type: 'worker',
     amount: 0,
     cost: {
@@ -27,7 +24,7 @@ let data = {
     jobs: [
       // collector
       {
-        name: 'collector',
+        name: 'collectors',
         amount: 0,
         income: {
           gold: 0.1
@@ -36,7 +33,7 @@ let data = {
       },
       // jeweler
       {
-        name: 'jeweler',
+        name: 'jewelers',
         income: {
           
         },
@@ -44,26 +41,26 @@ let data = {
       },
       // merchant
       {
-        name: 'merchant',
+        name: 'merchants',
       },
       // miner
       {
-        name: 'miner',
+        name: 'miners',
         income: {
 
         }
       },
       // monk
       {
-        name: 'monk',
+        name: 'monks',
       },
       // magician
       {
-        name: 'magician',
+        name: 'magicians',
       },
       // hunter
       {
-        name: 'hunter',
+        name: 'hunters',
       },
     ]
   },
