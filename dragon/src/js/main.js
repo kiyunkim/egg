@@ -42,12 +42,13 @@ const table = {
   },
 
   addItemRow: function(item) {
+    // set up item row
     // set item name as the data-name for the table row
     const row = document.createElement('tr');
     const itemName = item.name;
     util.setDataAttr(row, IDNAME, itemName);
   
-    // for each column
+    // set each column
     Object.keys(table.rows).forEach(function(rowName) {
       // the name col gets special treatment:
       if (rowName === IDNAME) {
@@ -55,7 +56,6 @@ const table = {
         row.innerHTML += col;
         return;
       }
-      // set up rest of the columns
       let col = document.createElement('td');
       util.setDataAttr(col, rowName, itemName);
       row.appendChild(col);
@@ -82,8 +82,7 @@ const util = {
   setDataAttr: function(el, name, value){
     el.setAttribute('data-' + name, value);
   },
-
-}
+};
 
 function createButton(item, action, parent) {
   // create button: disabled on default, insert text
@@ -115,7 +114,7 @@ function createButton(item, action, parent) {
   parent.appendChild(button);
 }
 
-let log = {
+const log = {
   write: function(msg){
     let para = document.createElement('p');
     para.setAttribute('class', 'log-message');
