@@ -10,3 +10,6 @@ $
 
 better materials = +points
 better skill = +percentage
+
+automators:
+-apprentices
