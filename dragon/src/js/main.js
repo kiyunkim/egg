@@ -3,6 +3,8 @@ import  '../css/main.css';
 
 import {data} from './data/data';
 import * as table from './table';
+import {save} from './save';
+save();
 
 // -------------------- constants:
 const INTERVAL = 100; 
