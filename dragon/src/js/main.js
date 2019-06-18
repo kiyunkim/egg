@@ -1,8 +1,8 @@
 import 'normalize.css';
 import  '../css/main.css';
 
-import {data} from './data';
-
+import {data} from './data/data';
+import * as table from './table';
 
 // -------------------- constants:
 const INTERVAL = 100; 
@@ -13,69 +13,12 @@ const EL = {
   game: document.getElementById('game'), // main ui
   log: document.getElementById('log'),
 };
-const IDNAME = 'name';
+const IDNAME = 'name'; // for data-NAME
 
 // -------------------- player data:
 const player = {};
 
 // -------------------- data table:
-const table = {
-  rows: {
-    name: 'name',
-    amount: 'amount'
-  },
-
-  // create header for screen readers
-  setup: function() {
-    // tr
-    const tr = document.createElement('tr');
-    tr.setAttribute('class', 'sr-only');
-    // th
-    Object.keys(this.rows).forEach(function(row){
-      const th = document.createElement('th');
-      th.setAttribute('scope', 'col');
-      th.innerHTML = row;
-      tr.appendChild(th);
-    });
-    // insert to table
-    EL.dataTable.appendChild(tr);
-  },
-
-  addItemRow: function(item) {
-    // set up item row
-    // set item name as the data-name for the table row
-    const row = document.createElement('tr');
-    const itemName = item.name;
-    util.setDataAttr(row, IDNAME, itemName);
-  
-    // set each column
-    Object.keys(table.rows).forEach(function(rowName) {
-      // the name col gets special treatment:
-      if (rowName === IDNAME) {
-        let col = '<th scope="row">' + itemName + '</th>';
-        row.innerHTML += col;
-        return;
-      }
-      let col = document.createElement('td');
-      util.setDataAttr(col, rowName, itemName);
-      row.appendChild(col);
-    });
-
-    EL.dataTable.appendChild(row);
-  },
-
-  // update the table with the data
-  update: function() {
-    Object.keys(data).forEach(function(item){
-      // display only items that have an amount > 0
-      if (data[item].amount > 0) {
-        
-      }
-    });
-  }
-
-
-};
 
 // -------------------- misc??:
 const util = {
