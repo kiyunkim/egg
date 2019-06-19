@@ -13,6 +13,15 @@ export function isIterable(obj) {
   return typeof obj[Symbol.iterator] === 'function';
 }
 
+// get singular name, bc item names are the plural form
+export function getSingular(name) {
+  const str = name;
+  if (name.endsWith('s')) {
+    return str.substr(0, str.length-1);
+  }
+  // TODO: else..... what
+}
+
 // buttons!
 export function createButton(item, action, parent) {
   // create a button that's disabled on default
@@ -22,7 +31,7 @@ export function createButton(item, action, parent) {
   // insert text as action + item name &
   // set attr data-DATA_NAME value as item name
   const itemName = item.name;
-  button.innerHTML = `${action} ${itemName}`; // TODO: get singular item name
+  button.innerHTML = `${action} ${getSingular(itemName)}`;
   setDataAttr(button, DATA_NAME, itemName);
   
   // check if the item costs anything
