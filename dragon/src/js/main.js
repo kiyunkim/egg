@@ -3,6 +3,7 @@ import  '../css/main.css';
 
 import {data} from './data/data';
 import * as table from './table';
+import * as utils from './utils'
 import {save} from './save';
 save();
 
@@ -16,48 +17,6 @@ const EL = {
   log: document.getElementById('log'),
 };
 const IDNAME = 'name'; // for data-NAME
-
-// -------------------- player data:
-const player = {};
-
-// -------------------- data table:
-
-// -------------------- misc??:
-const util = {
-  setDataAttr: function(el, name, value){
-    el.setAttribute('data-' + name, value);
-  },
-};
-
-function createButton(item, action, parent) {
-  // create button: disabled on default, insert text
-  const button = document.createElement('button');
-  button.setAttribute('type', 'button');
-  button.disabled = true;
-  button.innerHTML = action + ' ' + item.name;
-
-  // set data-IDNAME with itemName as its value
-  const itemName = item.name;
-  util.setDataAttr(button, IDNAME, itemName);
-
-  // does it cost anything?
-  if (item.cost) {
-    // yes, update button with the cost in a span ..
-    const cost = document.createElement('span');
-    cost.setAttribute('class', 'cost');
-
-    // go through each requirement to buy item
-    Object.keys(item.cost).forEach(function(key) {
-      const costItem = data[key].name;
-      cost.innerHTML = item.cost[costItem] + ' ' + costItem;
-    });
-    button.appendChild(cost);
-  } else {
-    button.disabled = false;
-  }
-  // append to container
-  parent.appendChild(button);
-}
 
 const log = {
   write: function(msg){
@@ -74,7 +33,7 @@ function unlockFirstDragon() {
   if (data.gold.amount >= 10 && data.dragons.amount === 0) {
     log.write('a dragon was lured by your gold.');
     data.dragons.amount = 1;
-    createButton(data.dragons, 'lure', EL.game);
+    utils.createButton(data.dragons, 'lure', EL.game);
   }
 };
 

@@ -1,6 +1,7 @@
 // all things to do with the data table
 
-import {table, DATANAME} from './constants';
+// imports: constants, utils, data
+import {table, DATA_NAME} from './constants';
 import {setDataAttr} from './utils';
 import {data} from './data/data';
 
@@ -31,12 +32,12 @@ export function addItemRow(item) {
   // tr with item name as data-name
   const row = document.createElement('tr');
   const itemName = item.name;
-  setDataAttr(row, DATANAME, itemName);
+  setDataAttr(row, DATA_NAME, itemName);
 
   // add columns to row
   for (const rowName of rows) {
     let col;
-    if (rowName === DATANAME) {
+    if (rowName === DATA_NAME) {
       // name th:
       col = document.createElement('th');
       col.setAttribute('scope', 'row');
