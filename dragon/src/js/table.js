@@ -4,11 +4,7 @@ import {table, DATANAME} from './constants';
 import {setDataAttr} from './utils';
 import {data} from './data/data';
 
-export let rows = {
-  name: 'name',
-  amount: 'amount',
-  income: 'income',
-};
+export let rows = ['name', 'amount', 'income'];
 
 // set up the headers for screen readers,
 // based on the rows object
@@ -18,12 +14,12 @@ export function setup(){
   tr.setAttribute('class', 'sr-only');
 
   // set up th with string names from rows obj
-  Object.keys(rows).forEach(function(rowName){
+  for (const rowName of rows) {
     const th = document.createElement('th');
     th.setAttribute('scope', 'col');
     th.innerHTML = rowName;
     tr.appendChild(th);
-  });
+  }
 
   // insert to table
   table.appendChild(tr);
@@ -38,9 +34,8 @@ export function addItemRow(item) {
   setDataAttr(row, DATANAME, itemName);
 
   // add columns to row
-  Object.keys(rows).forEach(function(rowName){
+  for (const rowName of rows) {
     let col;
-
     if (rowName === DATANAME) {
       // name th:
       col = document.createElement('th');
@@ -53,11 +48,12 @@ export function addItemRow(item) {
     }
     row.appendChild(col);
     table.appendChild(row);
-  });
+  }
 }
 
-// TODO: update/refrehs table with data
+// TODO: update/refresh table with data
 function update(){
+  // TODO: replace below with for..of
   Object.keys(data).forEach(function(item){
     // display only items that have amount > 0
     if (data[item].amount > 0) {
