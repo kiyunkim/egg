@@ -5,6 +5,7 @@ import {data} from './data/data';
 import * as table from './table';
 import * as utils from './utils';
 import * as log from './log';
+import './save';
 
 // -------------------- constants:
 const INTERVAL = 100; 

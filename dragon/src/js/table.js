@@ -9,7 +9,7 @@ export let rows = ['name', 'amount', 'income'];
 
 // set up the headers for screen readers,
 // based on the rows array
-export function setup(){
+export function setup() {
   // tr to house headers
   const tr = document.createElement('tr');
   tr.setAttribute('class', 'sr-only');
