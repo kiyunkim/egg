@@ -3,9 +3,8 @@ import  '../css/main.css';
 
 import {data} from './data/data';
 import * as table from './table';
-import * as utils from './utils'
-import {save} from './save';
-save();
+import * as utils from './utils';
+import * as log from './log';
 
 // -------------------- constants:
 const INTERVAL = 100; 
@@ -18,15 +17,7 @@ const EL = {
 };
 const IDNAME = 'name'; // for data-NAME
 
-const log = {
-  write: function(msg){
-    let para = document.createElement('p');
-    para.setAttribute('class', 'log-message');
-    para.innerHTML = msg;
 
-    EL.log.insertBefore(para, EL.log.firstChild);
-  }
-};
 
 // unlocking first dragon is special
 function unlockFirstDragon() {
