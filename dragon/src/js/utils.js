@@ -33,7 +33,7 @@ export function createButton(item, action, parent) {
 
     // check if cost requires more than 1 type of item,
     // then add cost info to the span
-    if (isIterable(item.cost)) { // TODO: decide if i should use this or Object.keys(item.cost).length ?
+    if (isIterable(item.cost)) {
       // TODO
       // ..
     } else { // costs only 1 type of item

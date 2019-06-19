@@ -8,7 +8,7 @@ import {data} from './data/data';
 export let rows = ['name', 'amount', 'income'];
 
 // set up the headers for screen readers,
-// based on the rows object
+// based on the rows array
 export function setup(){
   // tr to house headers
   const tr = document.createElement('tr');
