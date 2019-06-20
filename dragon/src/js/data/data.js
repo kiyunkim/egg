@@ -1,6 +1,9 @@
-let data = {
-  // TODO: automate amounts
+export function reassignData(d) {
+  data = d;
+};
 
+// TODO: automate amounts
+export let data = {
   // items
   gold: {
     name: 'gold',
@@ -66,6 +69,3 @@ let data = {
   },
   
 };
-
-
-export {data};

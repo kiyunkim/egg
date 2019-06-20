@@ -1,11 +1,12 @@
 import 'normalize.css';
 import  '../css/main.css';
 
-import {data} from './data/data';
+import {data, player} from './data/data';
 import * as table from './table';
 import * as utils from './utils';
 import * as log from './log';
-import './save';
+import {enableSave, loadSave} from './save';
+
 
 // -------------------- constants:
 const INTERVAL = 100; 
@@ -33,8 +34,9 @@ function unlockFirstDragon() {
 let game = {
 
   init: function() {
-
+    loadSave();
     table.setup();
+
     // on click for all buttons, +1 of item
     document.addEventListener('click', function(e){
       if (e.target.type === 'button') {
