@@ -5,7 +5,7 @@ import {data, player} from './data/data';
 import * as table from './table';
 import * as utils from './utils';
 import * as log from './log';
-import {enableSave, loadSave} from './save';
+import './save';
 
 
 // -------------------- constants:
@@ -34,7 +34,6 @@ function unlockFirstDragon() {
 let game = {
 
   init: function() {
-    loadSave();
     table.setup();
 
     // on click for all buttons, +1 of item
