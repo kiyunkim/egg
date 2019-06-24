@@ -1,3 +1,20 @@
+======= GENERAL =======
+- have settings
+  - accessibility mode?
+  - save
+
+======= GAME IDEAS =======
+- adopt kitties/cat sanctuary
+  - buy food, litter, toys, etc
+  - variables: cat happiness, roden rate
+
+- smoking
+  - switch to vape
+  - quitting
+
+
+======= NAMING =======
+
 widgets
 
 var get = [
