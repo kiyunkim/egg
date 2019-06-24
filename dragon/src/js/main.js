@@ -2,10 +2,11 @@ import 'normalize.css';
 import  '../css/main.css';
 
 import {data, player} from './data/data';
+import * as el from './constants';
 import * as table from './table';
 import * as utils from './utils';
 import * as log from './log';
-import './save';
+import * as save from './save';
 
 
 // -------------------- constants:
@@ -34,6 +35,8 @@ function unlockFirstDragon() {
 let game = {
 
   init: function() {
+
+    save.loadGame();
     table.setup();
 
     // on click for all buttons, +1 of item
@@ -49,6 +52,11 @@ let game = {
         // update data object
         data[itemName].amount++;
       }
+    });
+
+    // put this somewhere it makes sense
+    el.save.addEventListener('click', function(e){
+      save.saveGame();
     });
   },
 

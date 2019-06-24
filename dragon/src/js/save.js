@@ -1,5 +1,6 @@
 import {data, reassignData} from './data/data';
-import {save as saveLink, reset as resetLink, SAVE_NAME} from './constants';
+import {SAVE_NAME} from './constants';
+import * as log from './log';
 
 // TODO: add try catch statement
 // TODO: encode string to something for import/export
@@ -15,7 +16,8 @@ export function saveGame() {
       console.log(`There was an error while trying to save. Error: ${e}`);
     }
     if (success) {
-      console.log('saved'); // TODO: add small modal to show message? 
+      console.log('Game saved.'); // TODO: add small modal to show message? 
+      log.write('Game saved.');
     }
   } catch(e){
     console.log(`There was an error while trying to save. Error: ${e}`);
@@ -27,6 +29,7 @@ export function loadGame() {
   // make sure there is a saved game
   if (saveData !== null) {
     reassignData(saveData);
+    log.write('Loaded saved game.');
   }
 }
 
