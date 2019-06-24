@@ -54,10 +54,13 @@ let game = {
       }
     });
 
-    // put this somewhere it makes sense
+    // TODO: put this somewhere it makes sense
     el.save.addEventListener('click', function(e){
       save.saveGame();
     });
+
+    // start interval
+    this.requestInterval(this.interval, INTERVAL);
   },
 
   // TODO: use requestFrameAnimation
@@ -80,12 +83,35 @@ let game = {
       };
     });
 
-  }
+  },
+
+  // https://gist.github.com/joelambert/1002116
+  // https://css-tricks.com/snippets/javascript/replacements-setinterval-using-requestanimationframe/
+  requestInterval: function(fn, interval) {
+    const requestAnimFrame = (function() {
+      return window.requestAnimationFrame || function(callback) {
+        window.setTimeout(callback, interval);
+      };
+    })();
+
+    let start = new Date().getTime();
+    let handle = {};
+
+    function loop() {
+      var current = new Date().getTime();
+      var delta = current - start;
+      if (delta >= interval) {
+        fn.call();
+        start = new Date().getTime();
+      }
+      handle.value = requestAnimFrame(loop);
+    }
+    handle.value = requestAnimFrame(loop);
+    return handle;
+  },
+
 }
 
 window.onload = function() {
   game.init();
-  let interval = setInterval(function(){
-    game.interval();
-  }, INTERVAL);
 }

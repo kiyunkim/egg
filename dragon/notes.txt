@@ -1,9 +1,3 @@
-
-2. requestAnimationFrame
-
-
-
-
 base increment: gold
 - gold
 - jewelry
