@@ -2,6 +2,7 @@
 
 // imports: constants
 import {DATA_NAME} from './constants';
+import {data} from './data/data';
 
 // set custom data attribute
 export function setDataAttr(element, name, value) {
@@ -22,12 +23,12 @@ export function getSingular(name) {
   // TODO: else..... what
 }
 
-// set amount for all data
-export function assignAmountKey(data) {
-  for (const key in data) {
-    // if amount key doesn't exist, set to 0
-    if (data[key].amount == 'undefined') {
-      data[key].amount = 0;
+// assign key with value for obj
+export function assignKey(obj, key, value) {
+  for (const k in obj) {
+    // if amount key doesn't exist, set to value
+    if (!obj[k][key]) {
+      obj[k][key] = value;
     }
   }
 }

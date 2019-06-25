@@ -53,12 +53,33 @@ export function addItemRow(item) {
 }
 
 // TODO: update/refresh table with data
-function update(){
+export function update() {
   // TODO: replace below with for..of
-  Object.keys(data).forEach(function(item){
-    // display only items that have amount > 0
-    if (data[item].amount > 0) {
-      // ..
-    }
-  });
+  const items = data.items;
+  const workers = data.workers;
+  
+  for (const i in items) {
+    console.log(items[i]);
+  };
+
+  for (const w in workers) {
+
+  };
+
+    // refresh data + table
+    Object.keys(data).forEach(function(itemName) {
+      // TODO: data table should be wiped out on reset
+      // display only items that have amount > 0
+      if (data[itemName].amount > 0) {
+        // TODO: make the query selector... better.
+        // if item isn't already in the data table, add it
+        if (document.querySelectorAll('tr[data-name="'+ itemName +'"]').length === 0) {
+          table.addItemRow(data[itemName]);
+        }
+
+        // update the amount
+        let itemRow = document.querySelector('[data-amount="' + itemName +'"');
+        itemRow.innerHTML = data[itemName].amount;
+      };
+    });
 }

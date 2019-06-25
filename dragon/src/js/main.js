@@ -8,9 +8,7 @@ import * as utils from './utils';
 import * as log from './log';
 import * as save from './save';
 
-
-// -------------------- constants:
-const INTERVAL = 100; 
+const INTERVAL = 100;
 const V = VERSION;
 const IDNAME = 'name'; // for data-NAME
 
@@ -18,16 +16,21 @@ export let game = {
   // set up data
   setup: function() {
     table.setup();
-    utils.assignAmountKey(data);
+    utils.assignKey(data.items, 'amount', 0);
     
     // check for saved data
     save.loadGame();
   },
 
-  // on page load:
+  // on page load, set up the game + start interval
   init: function() {
+    // show version number
+    el.version.innerHTML = V;
+
+    // setup
     this.setup();
-    // TODO: put this somewhere it makes sense
+
+    ///////// TODO: put this somewhere it makes sense
     el.save.addEventListener('click', function(e){
       save.saveGame();
     });
@@ -35,47 +38,14 @@ export let game = {
       save.resetGame();
     });
     
-    // TODO
-    // on click for all buttons, +1 of item
-    document.addEventListener('click', function(e){
-      if (e.target.type === 'button') {
-        // get item name from 'data-name' attribute
-        // TODO: again data-name is hard coded
-        let itemName = e.target.getAttribute('data-' + IDNAME);
-        // does it cost anything?
-        if (data[itemName].cost) {
-
-        }
-        // update data object
-        data[itemName].amount++;
-      }
-    });
-
-
 
     // start interval
     this.requestInterval(this.interval, INTERVAL);
   },
 
-  // TODO: use requestFrameAnimation
   interval: function(){
-
-    // refresh data + table
-    Object.keys(data).forEach(function(itemName) {
-      // TODO: data table should be wiped out on reset
-      if (data[itemName].amount > 0) {
-        // TODO: make the query selector... better.
-        // if item isn't already in the data table, add it
-        if (document.querySelectorAll('tr[data-name="'+ itemName +'"]').length === 0) {
-          table.addItemRow(data[itemName]);
-        }
-
-        // update the amount
-        let itemRow = document.querySelector('[data-amount="' + itemName +'"');
-        itemRow.innerHTML = data[itemName].amount;
-      };
-    });
-
+    // ..
+    table.update();
   },
 
   // https://gist.github.com/joelambert/1002116
