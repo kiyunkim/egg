@@ -3,24 +3,21 @@ export function reassignData(d) {
 };
 
 // TODO: automate amounts
-export let data = {
-  // items
+export let data = {};
+
+data.items = {
   gold: {
     name: 'gold',
-    type: 'item',
-    amount: 0,
   },
   gems: {
     name: 'gems',
-    type: 'item',
-    amount: 0,
   },
+};
 
+data.workers = {
   // workers
   dragons: {
     name: 'dragons',
-    type: 'worker',
-    amount: 0,
     cost: {
       gold: 20
     },
@@ -28,11 +25,12 @@ export let data = {
       // collector
       {
         name: 'collectors',
-        amount: 0,
         income: {
           gold: 0.1
         },
-        req: ['gold']
+        req: {
+          gold: 10
+        }
       },
       // jeweler
       {

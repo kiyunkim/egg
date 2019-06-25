@@ -1,7 +1,7 @@
 import 'normalize.css';
 import  '../css/main.css';
 
-import {data, player} from './data/data';
+import {data} from './data/data';
 import * as el from './constants';
 import * as table from './table';
 import * as utils from './utils';
@@ -12,33 +12,30 @@ import * as save from './save';
 // -------------------- constants:
 const INTERVAL = 100; 
 const V = VERSION;
-const EL = {
-  version: document.getElementById('version'),
-  dataTable: document.getElementById('data'),
-  game: document.getElementById('game'), // main ui
-  log: document.getElementById('log'),
-};
 const IDNAME = 'name'; // for data-NAME
 
-
-
-// unlocking first dragon is special
-function unlockFirstDragon() {
-  if (data.gold.amount >= 10 && data.dragons.amount === 0) {
-    log.write('a dragon was lured by your gold.');
-    data.dragons.amount = 1;
-    utils.createButton(data.dragons, 'lure', EL.game);
-  }
-};
-
-
-let game = {
-
-  init: function() {
-
-    save.loadGame();
+export let game = {
+  // set up data
+  setup: function() {
     table.setup();
+    utils.assignAmountKey(data);
+    
+    // check for saved data
+    save.loadGame();
+  },
 
+  // on page load:
+  init: function() {
+    this.setup();
+    // TODO: put this somewhere it makes sense
+    el.save.addEventListener('click', function(e){
+      save.saveGame();
+    });
+    el.reset.addEventListener('click', function() {
+      save.resetGame();
+    });
+    
+    // TODO
     // on click for all buttons, +1 of item
     document.addEventListener('click', function(e){
       if (e.target.type === 'button') {
@@ -54,10 +51,7 @@ let game = {
       }
     });
 
-    // TODO: put this somewhere it makes sense
-    el.save.addEventListener('click', function(e){
-      save.saveGame();
-    });
+
 
     // start interval
     this.requestInterval(this.interval, INTERVAL);
@@ -66,7 +60,6 @@ let game = {
   // TODO: use requestFrameAnimation
   interval: function(){
 
-    unlockFirstDragon();
     // refresh data + table
     Object.keys(data).forEach(function(itemName) {
       // TODO: data table should be wiped out on reset

@@ -29,7 +29,7 @@ export function loadGame() {
   // make sure there is a saved game
   if (saveData !== null) {
     reassignData(saveData);
-    log.write('Loaded saved game.');
+    // log.write('Loaded game.');
   }
 }
 

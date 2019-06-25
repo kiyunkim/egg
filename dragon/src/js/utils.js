@@ -22,6 +22,16 @@ export function getSingular(name) {
   // TODO: else..... what
 }
 
+// set amount for all data
+export function assignAmountKey(data) {
+  for (const key in data) {
+    // if amount key doesn't exist, set to 0
+    if (data[key].amount == 'undefined') {
+      data[key].amount = 0;
+    }
+  }
+}
+
 // buttons!
 export function createButton(item, action, parent) {
   // create a button that's disabled on default
