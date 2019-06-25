@@ -38,6 +38,11 @@ export let game = {
       save.resetGame();
     });
     
+    //////// TODO: delete this,, 
+    document.querySelector('[data-name="gold"]').addEventListener('click', function(){
+      data.items.gold.amount += 1;
+    });
+
 
     // start interval
     this.requestInterval(this.interval, INTERVAL);

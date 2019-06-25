@@ -2,7 +2,6 @@
 
 // imports: constants
 import {DATA_NAME} from './constants';
-import {data} from './data/data';
 
 // set custom data attribute
 export function setDataAttr(element, name, value) {

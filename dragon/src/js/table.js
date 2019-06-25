@@ -54,32 +54,33 @@ export function addItemRow(item) {
 
 // TODO: update/refresh table with data
 export function update() {
-  // TODO: replace below with for..of
   const items = data.items;
   const workers = data.workers;
   
   for (const i in items) {
-    console.log(items[i]);
+    const item = items[i];
+    const name = item.name;
+    /////// TODO: make this selector better (use rows array to generate `data-${row}`?)
+    const itemRow = table.querySelector(`tr[data-${DATA_NAME}=${name}]`);
+    if (item.amount > 0) { // if there's any resources,
+      if (!itemRow) { // check to see if it exists in the table
+        // if not, add it
+        addItemRow(item);
+      }
+      // update amount
+      table.querySelector(`td[data-amount=${name}]`).innerHTML = item.amount;
+    } else { // if it's <= 0,
+      if (itemRow) {
+        table.removeChild(itemRow);
+      }
+    }
   };
 
   for (const w in workers) {
-
+    //////// TODO:
+    // same as items BUT instead of
+    // updating just the amount, also
+    // update columns
   };
 
-    // refresh data + table
-    Object.keys(data).forEach(function(itemName) {
-      // TODO: data table should be wiped out on reset
-      // display only items that have amount > 0
-      if (data[itemName].amount > 0) {
-        // TODO: make the query selector... better.
-        // if item isn't already in the data table, add it
-        if (document.querySelectorAll('tr[data-name="'+ itemName +'"]').length === 0) {
-          table.addItemRow(data[itemName]);
-        }
-
-        // update the amount
-        let itemRow = document.querySelector('[data-amount="' + itemName +'"');
-        itemRow.innerHTML = data[itemName].amount;
-      };
-    });
 }
