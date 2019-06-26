@@ -1,15 +1,57 @@
-prestige:
--talent, skill
 
 $
 -commission
 -gallery
 
--buy tools
+tabs:
+-studio
+  -do buttons
+  -sell pieces
+  -buy materials
+-workshop
+  -hire apprentices
+-gallery
+  -increase fame
+
 -printing press: faster production but more expensive
 
-better materials = +points
+better materials = +points (of what??)
 better skill = +percentage
 
 automators:
 -apprentices
+
+
+
+
+
+
+prestige:
+-skill boost
+-unlock new art stuff
+
+art movements
+-prehistoric
+  -cave painting
+  -sculptures
+  -stone reliefs
+-ancient
+-medieval
+-renaissance
+-baroque
+-rococo
+-neoclassical
+-romanticism
+-impressionism
+-post-impressionism
+-fauvism
+-expressionism
+-cubism
+-abstract expressionism
+-futurism
+-abstract
+-dada
+-surrealism
+-popart
+-conceptual
+-contemporary

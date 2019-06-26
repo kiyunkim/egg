@@ -1,3 +1,7 @@
+math:
+https://blog.kongregate.com/the-math-of-idle-games-part-i/
+https://gamedevelopment.tutsplus.com/articles/numbers-getting-bigger-the-design-and-math-of-incremental-games--cms-24023
+
 base increment: gold
 - gold
 - jewelry
@@ -26,44 +30,41 @@ worlds:
 
 
 
-// use requestAnimationFrame when setInterval gets too laggy
-
-
-
-
 
 creatures:
--goblin
 -nymph
   -forest nymph
   -river nymph
--phoenix
-  -ashes
 -pixie
   -pixie dust
 -fairy
   -fairy dust
+-sprite
+
+-cyclops
+-giant
+-ogre
+-goblin
+
+-elf
+
 -centuar
 -satyr/faun
--sprite
--harpie
--giant
--mermaid
--siren
+
+-phoenix
+  -ashes
 -sea serpent
 -unicorn
--chimera
--cyclops
--elf
--ogre
--valkyrie
--dragon
+
+-harpy
+-siren
+-mermaid
+
 
 things:
 -shells
 -gems
 -crystals
--gold
 -horns
 -horse hooves
 -rabbit fur

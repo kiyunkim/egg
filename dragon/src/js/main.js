@@ -10,7 +10,6 @@ import * as save from './save';
 
 const INTERVAL = 100;
 const V = VERSION;
-const IDNAME = 'name'; // for data-NAME
 
 export let game = {
   // set up data
@@ -25,7 +24,7 @@ export let game = {
   // on page load, set up the game + start interval
   init: function() {
     // show version number
-    el.version.innerHTML = V;
+    el.version.innerHTML = `v${V}`;
 
     // setup
     this.setup();
