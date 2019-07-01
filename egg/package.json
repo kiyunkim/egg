@@ -26,9 +26,8 @@
   },
   "scripts": {
     "start": "webpack-dev-server --open --env.dev",
-    "watch": "nodemon -w webpack.config.js -x webpack-dev-server --env.dev",
-    "build": "webpack --env.prod",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nodemon -w webpack.config.js -x webpack-dev-server --env.dev",
+    "build": "webpack --env.prod"
   },
   "repository": {
     "type": "git",
