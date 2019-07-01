@@ -7,14 +7,17 @@ base increment: gold
 - jewelry
 - gems
 
-base automator: dragon
-
-dragon jobs:
+dragons:
 - jeweler: gold into jewelry
 - merchant/trader: trade gold for ??
 - magicians
 - hunters
 - monks
+
+fairies:
+- dusters: produce fairy dust
+- scientists: convert dust + gem into fairy crystals
+
 
 trade market:
 - 
@@ -63,12 +66,10 @@ creatures:
 
 things:
 -shells
--gems
--crystals
 -horns
 -horse hooves
--rabbit fur
--beaver fur
+-fur
+-magic leaves
 
 
 let resources = {
