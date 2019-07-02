@@ -1,3 +1,5 @@
+import '../css/main.scss';
+
 const eggs = {
   chicken: {
     amount: 0,
@@ -17,18 +19,6 @@ const eggs = {
 };
 
 
-const producers = {
-  chicken: {
-    count: 1,
-    cost: 15,
-    produce: {
-      egg: 0.05
-    }
-  },
-  duck: {},
-  goose: {},
-};
-
 let animals = [];
 for (let animal in eggs) {
   for (let i = 0; i < eggs[animal].rarity; i++) {
@@ -42,5 +32,6 @@ document.getElementById('gather-egg').addEventListener('click', function(){
   eggs[name].amount++;
   document.querySelector(`.${name}-eggs .amount`).innerHTML = eggs[name].amount;
   
+  console.log(eggs.chicken.amount);
 });
 
