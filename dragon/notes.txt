@@ -2,6 +2,10 @@ math:
 https://blog.kongregate.com/the-math-of-idle-games-part-i/
 https://gamedevelopment.tutsplus.com/articles/numbers-getting-bigger-the-design-and-math-of-incremental-games--cms-24023
 
+request animation frame:
+https://gist.github.com/joelambert/1002116
+https://css-tricks.com/snippets/javascript/replacements-setinterval-using-requestanimationframe/
+
 base increment: gold
 - gold
 - jewelry
