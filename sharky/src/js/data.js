@@ -28,6 +28,9 @@ let data = {
     income: {
       fish: 1
     },
+    cost: {
+      fish: 5
+    },
     jobs: [
       // breeder
       {

@@ -3,103 +3,93 @@ import  '../css/main.scss';
 
 import {data} from './data';
 
-// -------------------- constants:
-const INTERVAL = 100; 
+const INTERVAL = (1000 / 10);
 const VERSION = V;
 
-// -------------------- element selectors:
-const EL = {
-  dataTable: document.getElementById('data-table')
-}
 
-
-const util = {
-  // set data attribute
-  setDataAttr: function(el, name, value) {
-    el.setAttribute('data-' + name, value);
-  },
-};
-
-
-// data table
-const dataTable = {
-  rows: {
-    name: 'name',
-    amount: 'amount'
-  },
-
-  // data table init setup
-  setup: function() {
-    // create tr and give sr-only class
-    let tr = document.createElement('tr');
-    tr.setAttribute('class', 'sr-only');
-    // create th columns
-    Object.keys(this.rows).forEach(function(row){
-      let th = document.createElement('th');
-      // set col scope + name it
-      th.setAttribute('scope', 'col');
-      th.innerHTML = row;
-      // append to tr
-      tr.appendChild(th);
-    });
-    // insert tr to table
-    EL.dataTable.appendChild(tr);
-  },
-
-  update: function() {
-    Object.keys(data).forEach(function(key) {
-      if (data[key].amount > 0) {
-  
+const resources = {
+  init: function() {
+    // set up all init amount to 0
+    for (const item in data) {
+      if (!data[item].amount) {
+        data[item].amount = 0;
       }
-    });
-  }
+    }
 
-};
+  },
 
-const buttons = {
-  onclick: function() {
-    // TODO: ORGANIZE THIS
-    // get resource on button click
-    // all buttons with a data-get
-    const buttons = document.querySelectorAll('.btn[data-get]');
-    for (let i = 0; i < buttons.length; i++) {
-      // on button click,
-      buttons[i].addEventListener('click', function(e){
-        // get the resource to get
-        let resource = e.target.getAttribute('data-get');
+  tick: function() {
+    for (const item in data) {
+      if (data[item].amount && data[item].amount > 0) {
+        const itemName = data[item].name;
+        const amount = data[item].amount;
+        if (!document.querySelector(`#${data[item].name}`)) {
+          // set up data in sidebar
+          const article = document.createElement('article');
+          article.setAttribute('id', itemName);
+          article.innerHTML = `<p>${itemName}: <span class="amount">${amount}</span></p>`;
 
-        // add +1 to amount
-        data[resource].amount++;
-      });
+          document.querySelector('#data').appendChild(article);
+        } else {
+          // or just update the amount
+          const article = document.querySelector(`#${data[item].name}`);
+          article.querySelector('.amount').innerHTML = amount;
+        }
+      }
     }
   }
 
-}
+};
 
-const main = {
-  // set all data values to zero
-  initDataAmount: function() {
-    Object.keys(data).forEach(function(key) {
-      if (key.amount !== 0) {
-        data[key].amount = 0;
+const utils = {
+  getSingular: function(name) {
+    if (name.slice(-1) === 's'){
+      return name.slice(0, -1);
+    }
+    return name;
+  },
+
+  createButton: function(item, action, parent) {
+    const button = document.createElement('button');
+    const itemName = item.name;
+
+    if (item.cost) {
+      button.disabled = true;
+    }
+    button.innerHTML = `${action} ${utils.getSingular(itemName)}`;
+    button.setAttribute('data-name', itemName);
+    
+    button.addEventListener('click', function() {
+      if (!item.cost) {
+        item.amount++;
+      } else {
+        // check if player has it
       }
     });
-  },
 
+    document.querySelector(parent).appendChild(button);
+  }
+}
+
+const game = {
   init: function() {
-    main.initDataAmount();
-    dataTable.setup();
-    buttons.onclick();
+    resources.init();
+    utils.createButton(data.fish, 'get', '#content');
+    utils.createButton(data.sharks, 'get', '#content');
+
+    // start the tick
+    const tick = setInterval(game.tick, INTERVAL);
   },
 
-  interval: function() {
-    console.log(data.fish);
+  tick: function() {
+    // check resource table
+    resources.tick();
+    
+    // check tab unlocks
+    // update tab
   }
 }
 
 window.onload = function(){
-  main.init();
-  const game = setInterval(function() {
-    main.interval();
-  }, INTERVAL);
+  game.init();
 };

@@ -20,7 +20,7 @@
 </head>
 <body>
   <noscript>
-    <main class="noscript">
+    <section class="noscript">
       <h1>sharky?</h1>
       <p>oops, it looks like you either have javascript disabled or your browser does not support it.</p>
       <p>sharky requires scripts to work.</p>
@@ -38,47 +38,48 @@
                 `'--....(`- ,__..--'
                           '-'`
       </pre>
-    </main>
+    </section>
   </noscript>
 
   <div id="container">
-    <!-- header -->
+    <!-------------- header --------------->
     <header class="header">
       <section class="header-top">
         <h1 class="title">sharky</h1>
-        <h2 id="version" class="version"></h2>
+        <h2 id="version" class="version"><!-- {VERSION} --></h2>
       </section>
       <section class="header-main">
         <ul id="options" class="header-links">
-          <li></li>
+          <!-- {HEADER LINKS}-->
         </ul>
       </section>
     </header>
 
-    <!-- sidebar -->
+    <!-------------- sidebar --------------->
     <aside class="sidebar column">
       <section id="data">
-        <table id="data-table" class="table">
-          <caption class="sr-only">resource data</caption>
-        </table>
+        <!-- {RESOURCE INFO} -->
       </section>
 
       <section id="log" class="log">
+        <!-- {LOG} -->
       </section>
     </aside>
     
-    <!-- main -->
+    <!-------------- main --------------->
     <main id="game" class="main">
-      <nav id="navigation"></nav>
+      <nav id="navigation">
+        <!-- {TABS} -->
+      </nav>
       <ul class="buy-buttons">
-        <li></li>
+        <!-- {BUY BUTTONS} -->
       </ul>
+
       <section id="content">
-        <button data-get="fish" class="btn">catch fish</button>
       </section>
     </main>
 
-    <!-- footer -->
+    <!-------------- footer --------------->
     <footer class="footer">
       <section class="credits">
         <p><a href="http://cirri.al/sharks/">original shark game</a> by <a href="http://cirri.al">cirral</a> 2014-2016 &copy;.</p>
