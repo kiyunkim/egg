@@ -3,10 +3,10 @@ import  '../css/main.scss';
 
 import {data} from './data';
 
-const INTERVAL = 10;
+const INTERVAL = 100;
 const VERSION = V;
 
-
+// ------------------------------ resources ------------------------------
 const resources = {
   init: function() {
     // set up all init amount to 0
@@ -55,6 +55,7 @@ const resources = {
 
 };
 
+// ------------------------------ home ------------------------------
 const home = {
   tick: function() {
     // update buttons
@@ -83,6 +84,7 @@ const home = {
   }
 }
 
+// ------------------------------ utils ------------------------------
 const utils = {
   num: function(number) {
     return Math.round(number);
@@ -98,7 +100,6 @@ const utils = {
   createButton: function(item, action, parent) {
     const button = document.createElement('button');
     const itemName = item.name;
-
 
     button.innerHTML = `<p>${action} ${utils.getSingular(itemName)}</p>`;
     if (item.cost) {
@@ -120,7 +121,13 @@ const utils = {
             data[costItem].amount = data[costItem].amount - item.cost[costItem];
 
             // increase the price of the item
-            item.cost[costItem] = item.cost[costItem] * (Math.pow(1.07, item.amount));
+            // TODO: there should be a base cost that does not change
+            if (!item.baseCost) {
+              item.baseCost = {};
+              item.baseCost[costItem] = item.cost[costItem];
+            }
+            item.cost[costItem] = item.baseCost[costItem] * (Math.pow(1.07, item.amount));
+            console.log(item.cost[costItem]);
             item.amount++;
 
             if (data[costItem].amount < item.cost[costItem]) {
@@ -135,6 +142,7 @@ const utils = {
   }
 }
 
+// ------------------------------ game ------------------------------
 const game = {
   init: function() {
     resources.init();
