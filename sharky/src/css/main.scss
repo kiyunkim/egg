@@ -73,6 +73,13 @@ a {
   justify-content: space-between;
   padding: 1rem;
 }
+h1, h2 {
+  margin: 0;
+  font-size: 1rem;
+}
+button:not(:disabled) {
+  cursor: pointer;
+}
 
 .header,
 .footer {
@@ -83,10 +90,6 @@ a {
 .title {
   display: flex;
   align-items: baseline;
-}
-h1, h2 {
-  margin: 0;
-  font-size: 1rem;
 }
 
 .sidebar {
