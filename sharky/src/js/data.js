@@ -32,6 +32,9 @@ export let data = {
     income: {
       fish: 1
     },
+    prereq: {
+      fish: 5
+    },
     cost: {
       fish: 5
     },

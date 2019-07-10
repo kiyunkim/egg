@@ -6,6 +6,8 @@ import {data, reassignData} from './data';
 const INTERVAL = 100;
 const VERSION = V;
 const SAVE = 'sharky';
+let saveEvents = false;
+let initData = {};
 
 // ------------------------------ log ------------------------------
 const log = {
@@ -49,9 +51,18 @@ const save = {
   },
 
   reset: function() {
-    if (confirm('Do you want to clear your save and start over?')) {
-      localStorage.removeItem(SAVE);
-      
+    if (confirm('Do you want to clear your save and completely start over?')) {
+      // clear saved game
+      if (localStorage.getItem(SAVE)) {
+        localStorage.removeItem(SAVE);
+      }
+      // clear the table
+      document.getElementById('data').innerHTML = '';
+      // clear the contents
+      document.getElementById('content').innerHTML = '';
+
+      reassignData(initData);
+      game.init();
     }
   }
 };
@@ -60,13 +71,12 @@ const save = {
 // ------------------------------ resources ------------------------------
 const resources = {
   init: function() {
-    // set up all init amount to 0
+    // set up all init amount to 0 if amount doesn't exist
     for (const item in data) {
       if (!data[item].amount) {
         data[item].amount = 0;
       }
     }
-
   },
 
   tick: function() {
@@ -109,19 +119,34 @@ const resources = {
 // ------------------------------ home ------------------------------
 const home = {
   tick: function() {
+    // add buttons for items that are unlocked
+    for (let i in data) {
+      const item = data[i];
+      const prereq = item.prereq;
+      if (!!prereq) {
+        for (let costItem in prereq) {
+          const costItemAmountReq = prereq[costItem];
+          if (data[costItem].amount >= costItemAmountReq) {
+            if (!document.querySelector(`[data-name='${item.name}']`)) {
+              utils.createButton(item, 'get');
+            }
+          }
+        }
+      }
+    }
     // update buttons
     const buttons = document.querySelectorAll('button');
     for (let i = 0; i < buttons.length; i++) {
       const button = buttons[i];
-      const itemName = button.dataset.name;
-      const item = data[itemName];
+      const buttonDataName = button.dataset.name;
+      const item = data[buttonDataName];
 
-      // enable button
-      if (button.disabled === true) {
-        for (const costItem in item.cost) {
-          if (data[costItem].amount >= item.cost[costItem]) {
-            button.disabled = false;
-          }
+      // enable/disable button
+      for (const costItem in item.cost) {
+        if (data[costItem].amount >= item.cost[costItem]) {
+          button.disabled = false;
+        } else {
+          button.disabled = true;
         }
       }
 
@@ -148,7 +173,7 @@ const utils = {
     return name;
   },
 
-  createButton: function(item, action, parent) {
+  createButton: function(item, action) {
     const button = document.createElement('button');
     const itemName = item.name;
 
@@ -157,7 +182,7 @@ const utils = {
       button.disabled = true;
       button.innerHTML += `<p>(cost: <span class="cost"></span>)</p>`;
       for (const costItem in item.cost) {
-        button.querySelector('.cost').innerHTML += `${item.cost[costItem]} ${costItem}`;
+        button.querySelector('.cost').innerHTML += `${utils.num(item.cost[costItem])} ${costItem}`;
       }
     }
     button.setAttribute('data-name', itemName);
@@ -172,13 +197,11 @@ const utils = {
             data[costItem].amount = data[costItem].amount - item.cost[costItem];
 
             // increase the price of the item
-            // TODO: there should be a base cost that does not change
             if (!item.baseCost) {
               item.baseCost = {};
               item.baseCost[costItem] = item.cost[costItem];
             }
             item.cost[costItem] = item.baseCost[costItem] * (Math.pow(1.07, item.amount));
-            console.log(item.cost[costItem]);
             item.amount++;
 
             if (data[costItem].amount < item.cost[costItem]) {
@@ -189,27 +212,34 @@ const utils = {
       }
     });
 
-    document.querySelector(parent).appendChild(button);
+    document.querySelector('#content').appendChild(button);
   }
 }
 
 // ------------------------------ game ------------------------------
 const game = {
   init: function() {
+    // put aside initData
+    if (Object.keys(initData).length === 0 && initData.constructor === Object) {
+      initData = data;
+    }
+
     save.load();
     resources.init();
-    utils.createButton(data.fish, 'get', '#content');
-    utils.createButton(data.sharks, 'get', '#content');
+    utils.createButton(data.fish, 'get');
 
+    if (!saveEvents) {
+      document.getElementById('save').addEventListener('click', function() {
+        save.save();
+      });
+      document.getElementById('reset').addEventListener('click', function() {
+        save.reset();
+      });
+      saveEvents = true; // prevent reapplying eventlisteners on reset
+    }
+    
     // start the tick
-    const tick = setInterval(game.tick, INTERVAL);
-
-    document.getElementById('save').addEventListener('click', function() {
-      save.save();
-    });
-    document.getElementById('reset').addEventListener('click', function() {
-      save.reset();
-    });
+    const gameTick = setInterval(game.tick, INTERVAL);
   },
 
   tick: function() {
