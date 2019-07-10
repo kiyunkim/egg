@@ -1,10 +1,61 @@
 import 'normalize.css';
 import  '../css/main.scss';
 
-import {data} from './data';
+import {data, reassignData} from './data';
 
 const INTERVAL = 100;
 const VERSION = V;
+const SAVE = 'sharky';
+
+// ------------------------------ log ------------------------------
+const log = {
+  log: function(msg) {
+    const log = document.getElementById('log');
+    const message = document.createElement('p');
+    message.innerHTML = msg;
+
+    log.appendChild(message);
+  },
+}
+
+// ------------------------------ save ------------------------------
+const save = {
+  save: function() {
+    try {
+      let success = true;
+      // try saving:
+      try {
+        localStorage.setItem(SAVE, JSON.stringify(data));
+      } catch(e) {
+        success = false;
+        console.error(`There was an error while trying to save. Error: ${e}`);
+      }
+      if (success) {
+        console.log('Game saved.');
+        log.log('Game saved.');
+      }
+    } catch(e){
+      console.error(`There was an error while trying to save. Error: ${e}`);
+    }
+
+  },
+
+  load: function() {
+    let saveData = JSON.parse(localStorage.getItem(SAVE));
+    // make sure there is a saved game
+    if (saveData !== null) {
+      reassignData(saveData);
+    }
+  },
+
+  reset: function() {
+    if (confirm('Do you want to clear your save and start over?')) {
+      localStorage.removeItem(SAVE);
+      
+    }
+  }
+};
+
 
 // ------------------------------ resources ------------------------------
 const resources = {
@@ -31,7 +82,7 @@ const resources = {
           // set up data in sidebar
           const article = document.createElement('article');
           article.setAttribute('id', itemName);
-          article.innerHTML = `<p>${itemName}: <span class="amount">${amount}</span> <span class="income"></span></p>`;
+          article.innerHTML = `<p>${itemName}: <span class="amount">${utils.num(amount)}</span> <span class="income"></span></p>`;
 
           document.querySelector('#data').appendChild(article);
         }
@@ -145,12 +196,20 @@ const utils = {
 // ------------------------------ game ------------------------------
 const game = {
   init: function() {
+    save.load();
     resources.init();
     utils.createButton(data.fish, 'get', '#content');
     utils.createButton(data.sharks, 'get', '#content');
 
     // start the tick
     const tick = setInterval(game.tick, INTERVAL);
+
+    document.getElementById('save').addEventListener('click', function() {
+      save.save();
+    });
+    document.getElementById('reset').addEventListener('click', function() {
+      save.reset();
+    });
   },
 
   tick: function() {
@@ -160,6 +219,7 @@ const game = {
     
     // check tab unlocks
     // update tab
+
   }
 }
 

@@ -1,4 +1,8 @@
-let data = {
+export function reassignData(d) {
+  data = d;
+};
+
+export let data = {
   // stuff
   fish: {
     name: 'fish',
@@ -91,5 +95,3 @@ let data = {
     ]
   }
 };
-
-export {data};
