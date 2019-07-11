@@ -1,7 +1,7 @@
 import 'normalize.css';
 import  '../css/main.scss';
 
-import {data, reassignData} from './data';
+import {data, categories, reassignData} from './data';
 
 const INTERVAL = 100;
 const VERSION = V;
@@ -90,15 +90,29 @@ const resources = {
       const amount = item.amount;
       const article = document.querySelector(`#${item.name}`);
 
-      // set up article if null
+      // set up item info (article) if null
       if (!article) {
         if (item.amount && item.amount > 0) {
-          // set up data in sidebar
-          const article = document.createElement('article');
-          article.setAttribute('id', itemName);
-          article.innerHTML = `<p>${itemName}: <span class="amount">${utils.num(amount)}</span> <span class="income"></span></p>`;
-
-          document.querySelector('#data').appendChild(article);
+          // first set up the sections
+          let section = document.createElement('section');
+          for (let catName in categories) {
+            // check the category of the item
+            let itemsInCat = categories[catName];
+            for (let i = 0; i < itemsInCat.length; i++) {
+              if (itemsInCat[i] === itemName) {
+                if (!document.querySelector(`#${catName}`)) {
+                  section.setAttribute('id', catName);
+                  document.querySelector('#data').appendChild(section);
+                }
+                // append item (article) to it ssection
+                section = document.querySelector(`#${catName}`);
+                const article = document.createElement('article');
+                article.setAttribute('id', itemName);
+                article.innerHTML = `<p>${itemName}: <span class="amount">${utils.num(amount)}</span> <span class="income"></span></p>`;
+                section.appendChild(article);
+              }
+            }
+          }
         }
 
       // article already exists:

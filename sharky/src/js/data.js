@@ -1,6 +1,19 @@
 export function reassignData(d) {
   data = d;
 };
+export const categories = {
+  animals: [
+    'fish',
+    'sand',
+    'crystal',
+    'coral'
+  ],
+  frenzy: [
+    'sharks',
+    'rays',
+    'crabs'
+  ]
+};
 
 export let data = {
   // stuff
