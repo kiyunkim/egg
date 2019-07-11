@@ -124,12 +124,17 @@ const home = {
       const item = data[i];
       const prereq = item.prereq;
       if (!!prereq) {
+        const prereqAmount = Object.keys(prereq).length;
+        let prereqMetAmount = 0; // to check for multiple prereqs
         for (let costItem in prereq) {
           const costItemAmountReq = prereq[costItem];
           if (data[costItem].amount >= costItemAmountReq) {
-            if (!document.querySelector(`[data-name='${item.name}']`)) {
-              utils.createButton(item, 'get');
-            }
+            prereqMetAmount++;
+          }
+        }
+        if (prereqAmount === prereqMetAmount) {
+          if (!document.querySelector(`[data-name='${item.name}']`)) {
+            utils.createButton(item, 'get');
           }
         }
       }

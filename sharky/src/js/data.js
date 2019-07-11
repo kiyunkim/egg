@@ -62,6 +62,12 @@ export let data = {
       fish: 0.2,
       sand: 1
     },
+    prereq: {
+      fish: 15
+    },
+    cost: {
+      fish: 15
+    },
     jobs: [
       // maker
       {
@@ -86,6 +92,13 @@ export let data = {
     income: {
       crystal: 0.01,
       coral: 0.02
+    },
+    prereq: {
+      sharks: 4,
+      rays: 4
+    },
+    cost: {
+      fish: 10
     },
     jobs: [
       // breeders
