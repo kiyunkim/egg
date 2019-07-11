@@ -33,8 +33,8 @@ const save = {
         console.error(`There was an error while trying to save. Error: ${e}`);
       }
       if (success) {
-        console.log('Game saved.');
-        log.log('Game saved.');
+        // saved!
+        return true;
       }
     } catch(e){
       console.error(`There was an error while trying to save. Error: ${e}`);
@@ -70,13 +70,17 @@ const save = {
 
 // ------------------------------ resources ------------------------------
 const resources = {
-  init: function() {
+  setAmount: function() {
     // set up all init amount to 0 if amount doesn't exist
     for (const item in data) {
       if (!data[item].amount) {
         data[item].amount = 0;
       }
     }
+  },
+
+  init: function() {
+
   },
 
   tick: function() {
@@ -230,12 +234,14 @@ const game = {
     }
 
     save.load();
-    resources.init();
+    resources.setAmount();
     utils.createButton(data.fish, 'get');
 
     if (!saveEvents) {
       document.getElementById('save').addEventListener('click', function() {
-        save.save();
+        if (save.save()) {
+          log.log('Game saved.');
+        }
       });
       document.getElementById('reset').addEventListener('click', function() {
         save.reset();
@@ -255,6 +261,8 @@ const game = {
     // check tab unlocks
     // update tab
 
+    // autosave
+    save.save();
   }
 }
 
