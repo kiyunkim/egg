@@ -1,0 +1,86 @@
+- adopt kitties/cat sanctuary
+  - buy food, litter, toys, etc
+  - variables: cat happiness, rodent rate, health
+
+poop
+  - litter
+  - litter box (1 per cat + 1)
+
+food
+  - dry food
+  - wet food
+  - food bowl
+  - water bowl
+  - treats
+
+health
+  - vet
+    - microchip
+    - vaccinations
+  - hard plastic crate or soft carrier (has chance of breaking)
+  - flea medication
+  - misc medication
+  - nail clippers (optional if getting done at vet)
+  - brush/grooming supply
+  - pet insurance (optional)
+  - toothbrush and toothpaste
+
+toys (have happiness decrease if its been too long since last playtime)
+  - wand
+  - laser pointer
+  - catnip (happiness depends on the cat)
+
+comfort
+  - beds (some will prefer cardboard box - effects happiness)
+  - cat towers
+  - scratching posts
+
+other
+  - cat grass
+  - harness + leash (happiness can go up depending on the cat)
+
+
+======= NAMING =======
+
+things:
+
+widgets
+
+var data = [
+  resources,
+  items,
+  parts,
+]
+
+var get = [
+  gain
+];
+
+var make = [
+  render,
+  generate,
+  create,
+  add,
+  build,
+  construct
+];
+
+var update = [
+  change
+];
+
+var init = [
+  set,
+  setup,
+  load,
+  run,
+  declare,
+];
+
+var format;
+
+
+var upgrades = [
+  buildings,
+  unlocks,
+];
