@@ -1,6 +1,7 @@
 export function reassignData(d) {
   data = d;
 };
+
 export const categories = {
   animals: [
     'fish',

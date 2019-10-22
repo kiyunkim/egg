@@ -4,7 +4,7 @@ import  '../css/main.scss';
 import {data, categories, reassignData} from './data';
 
 const INTERVAL = 100;
-const VERSION = V;
+const VERSION = V; // from package.json
 const SAVE = 'sharky';
 let saveEvents = false;
 let initData = {};
