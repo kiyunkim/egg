@@ -5,6 +5,9 @@ export function reassignData(d) {
 // TODO: automate amounts
 export let data = {};
 
+// items: resources
+// workers: builders that generate resources
+
 data.items = {
   gold: {
     name: 'gold',
