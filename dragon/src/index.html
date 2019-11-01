@@ -5,37 +5,40 @@
   <meta charset="utf-8">
   <link rel="apple-touch-icon" href="favicon.png">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script type="text/javascript" src="js/main.js"></script>
+  <script type="text/javascript" src="js/resources.js"></script>
+  <script type="text/javascript" src="js/data/data.js"></script>
 </head>
 <body>
-  <div id="container">
-    <header id="header">
-      <div class="title">
-        <h1 id="title">title</h1>
-        <h2 id="version">version</h2>
-      </div>
-      <ul id="options">
-        <li><button id="save">save</button></li>
-        <li><button id="reset">reset</button></li>
-      </ul>
-    </header>
+<div id="container">
+  <header id="header">
+    <div class="title">
+      <h1 id="title">title</h1>
+      <h2 id="version">version</h2>
+    </div>
+    <ul id="options">
+      <li><button id="save">save</button></li>
+      <li><button id="reset">reset</button></li>
+    </ul>
+  </header>
 
-    <aside class="sidebar column">
-      <table id="data" class="table">
-        <caption class="sr-only">resource data</caption>
-        <!-- data -->
-      </table>
-    </aside>
-    
-    <main id="game" class="main">
-      <!-- init freebie -->
-      <button type="button" data-name="gold">collect gold</button>
-    </main>
+  <aside class="sidebar column">
+    <table id="data" class="table">
+      <caption class="sr-only">resource data</caption>
+      <!-- data -->
+    </table>
+  </aside>
+  
+  <main id="game" class="main">
+    <!-- init freebie -->
+    <button type="button" data-name="gold">collect gold</button>
+  </main>
 
-    <aside class="sidebar column">
-      <section id="log">
-      </section>
-    </aside>
-  </div>
+  <aside class="sidebar column">
+    <section id="log"></section>
+  </aside>
+</div>
 
 </body>
 </html>

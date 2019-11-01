@@ -1,28 +1,18 @@
-export function reassignData(d) {
-  data = d;
-};
-
-// TODO: automate amounts
-export let data = {};
-
-data.items = {
+DRGN.data = {
   gold: {
     name: 'gold',
   },
   gems: {
     name: 'gems',
   },
-};
 
-data.workers = {
-  // workers
   dragons: {
     name: 'dragons',
     cost: {
       gold: 20
     },
     jobs: [
-      // collector
+      // collectors
       {
         name: 'collectors',
         income: {
@@ -32,7 +22,7 @@ data.workers = {
           gold: 10
         }
       },
-      // jeweler
+      // jewelers
       {
         name: 'jewelers',
         income: {
@@ -65,5 +55,34 @@ data.workers = {
       },
     ]
   },
-  
 };
+
+DRGN.dataTypes = {
+  raw: {
+    name: 'raw materials',
+    items: [
+      'gold',
+      'gems'
+    ]
+  },
+  creatures: {
+    name: 'creatures',
+    items: [
+      
+    ],
+  },
+  workers: { // creatures with jobs
+    name: 'workers',
+    items: {
+      dragons: [
+        'collectors',
+        'jewelers',
+        'merchants',
+        'miners',
+        'monks',
+        'magicians',
+        'hunters'
+      ]
+    }
+  },
+}
