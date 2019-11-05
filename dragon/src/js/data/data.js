@@ -11,50 +11,51 @@ DRGN.data = {
     cost: {
       gold: 20
     },
-    jobs: [
-      // collectors
-      {
+    jobs: {
+      collectors: {
         name: 'collectors',
         income: {
           gold: 0.1
         },
-        req: {
-          gold: 10
+        prereq: {
+          gold: 0.1
         }
       },
-      // jewelers
-      {
+      jewelers: {
         name: 'jewelers',
-        income: {
-          
-        },
-        req: ['gold', 'gems']
-      },
-      // merchant
-      {
-        name: 'merchants',
-      },
-      // miner
-      {
-        name: 'miners',
-        income: {
-
+        prereq: {
+          gold: 0,
+          gems: 0
         }
       },
-      // monk
-      {
-        name: 'monks',
+      merchants: {
+        name: 'merchants'
       },
-      // magician
-      {
-        name: 'magicians',
+      miners: {
+        name: 'miners'
       },
-      // hunter
-      {
-        name: 'hunters',
+      magicians: {
+        name: 'magicians'
       },
-    ]
+      hunters: {
+        name: 'hunters'
+      }
+    },
   },
+  fairies: {
+    name: 'fairies',
+    cost: {
+
+    },
+    jobs: {
+      dusters: {
+        name: 'dusters'
+      },
+      scientists: {
+        name: 'scientists'
+      }
+    }
+  }
 };
 
 DRGN.dataTypes = {

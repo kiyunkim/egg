@@ -2,10 +2,21 @@ DRGN.resources = {
 
 
   resetAmounts: function() {
-    for (category in DRGN.data) {
-      for (thing in DRGN.data[category]) {
-        console.log(thing);
-        console.log(DRGN.data[category][thing]);
+    for (itemName in DRGN.data) {
+      var item = DRGN.data[itemName];
+      if (item.hasOwnProperty('name')) {
+        // if item has 'name', set amount
+        item.amount = 0;
+        for (prop in item) {
+          if (prop === 'jobs') {
+            var jobName = prop;
+            for (job in item[jobName]) {
+              // if item is a creature & has workers,
+              // reset amounts for those
+              item[jobName][job].amount = 0;
+            }
+          }
+        }
       }
     }
   }
