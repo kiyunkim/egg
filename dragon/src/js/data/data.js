@@ -1,3 +1,5 @@
+DRGN.player = {};
+
 DRGN.data = {
   gold: {
     name: 'gold',

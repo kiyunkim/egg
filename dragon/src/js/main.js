@@ -8,13 +8,13 @@ var INTERVAL = (1000/10);
 DRGN.main = {
   
   init: function() {
-
+    DRGN.resources.init();
   }
 
 };
 
 DRGN.test = function() {
-  this.resources.resetAmounts();
+  
 };
 
 window.onload = function() {
