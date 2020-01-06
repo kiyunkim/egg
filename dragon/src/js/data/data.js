@@ -1,6 +1,9 @@
-DRGN.player = {};
+DRGN.initData = {};
 
 DRGN.data = {
+  test: {
+    test: ''
+  },
   gold: {
     name: 'gold',
   },
