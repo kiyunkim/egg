@@ -1,0 +1,66 @@
+/* variables */
+
+// colors
+$color-text: #333;
+$color-highlight: #bc0000;
+$color-bg: #eee;
+
+$colors: (
+  grey: (
+    100: #f2f2f2,
+    200: #eee,
+    300: #ddd,
+    400: #ccc,
+    500: #bbb,
+    600: #aaa,
+    700: #999,
+    800: #888,
+    900: #777,
+    light: #eee,
+    dark: #333
+  ),
+  theme: (
+    primary: #fff,
+    secondary: #fff,
+    danger: #fff,
+    warning: #fff,
+    info: #fff,
+    success: #fff
+  )
+);
+
+@function black-opacity($opacity) {
+  @return rgba(0,0,0,$opacity);
+}
+@function grey($rgb) {
+  @return rgb($rgb,$rgb,$rgb);
+}
+
+// font stuff
+$font-size: 16px;
+$font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+
+@function map-deep-get($map, $keys...) {
+  @each $key in $keys {
+      $map: map-get($map, $key);
+  }
+  @return $map;
+}
+
+body {
+  font-family: $font-family;
+  font-size: $font-size;
+  color: $color-text;
+}
+
+
+
+
+
+
+@each $name, $value in map-deep-get($colors, grey) {
+  .bg-#{$name} {
+   background: $value; 
+  }
+}
