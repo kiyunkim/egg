@@ -12,15 +12,28 @@
   <meta name="description" content="description here">
   <meta name="keywords" content="keywords,here">
   -->
+  <link rel="stylesheet" href="main.css">
 </head>
 
 <body>
   <noscript>
     <p>Please enable JavaScript in your browser to use this site.</p>
   </noscript>
+  <header id="header">
+    <button id="save" onclick="save()">save game</button>
+  </header>
   
-  <main id="game"></main>
-  
+  <main id="game">
+    <p id="count">0</p>
+    <button id="addit" onclick="addit()">add it</button>
+
+    <div id="builders"></div>
+  </main>
+
+  <aside id="log">
+
+  </aside>
+
 <script src="app.js"></script>
 </body>
 </html>

@@ -1,10 +1,12 @@
 body {
   color: #333;
-  font-size: 16px;
+  font-size: 13px;
   font-family: -apple-system, BlinkMacSystemFont, Roboto, 'Open Sans', 'Helvetica Neue', sans-serif;
 
 }
-
+.hidden {
+  visibility: hidden;
+}
 .highlight {
   color: #bc0000;
 }

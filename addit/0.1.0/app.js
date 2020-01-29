@@ -1,25 +1,55 @@
-var myCar = new Object();
-myCar['make'] = 'Ford'; 
-// myCar.make = 'Ford';
+var count = 0;
+var builders = {
+  unlocked: false,
+  count: 0,
+  mult: 1
+};
 
-var propertyName = 'model';
-myCar[propertyName] = 'Mustang'; 
-// myCar.model = 'Mustang';
+function log(message) {
+  var msg = document.createElement('p');
+  msg.innerHTML = message;
+  document.getElementById('log').appendChild(msg);
+};
 
-propertyName = 'year'; // override var
-myCar[propertyName] = 1969; 
-// myCar.year = 1969;
-
-
-function showProps(obj, objName) {
-  var result = '';
-  for (var i in obj) { 
-    // obj.hasOwnProperty() is used to filter out properties from the object's prototype chain
-    if (obj.hasOwnProperty(i)) {
-      result += objName + '.' + i + ' = ' + obj[i] + ';\n';
-    }
-  }
-  return result;
+function updateCount() {
+  document.getElementById('count').innerHTML = count;
 }
 
-console.log(showProps(myCar, 'myCar'));
+function addit() {
+  count++;
+};
+
+function save() {
+  var saveData = {
+    data: data
+  };
+  
+  log('game saved.');
+};
+
+var util = {
+  createButton: function(container, id, text, fnc) {
+    var button = document.createElement('button');
+    button.setAttribute('id', id);
+    button.innerHTML = text;
+    document.querySelector(container).appendChild(button);
+  }
+}
+
+function checkUnlocks() {
+  if (count >= 5 && !builders.unlocked) {
+    util.createButton('#builders', 'builder' + (builders + 1), 'buy builder');
+    builders.unlocked = true;
+  }
+  
+};
+
+
+function tick() {
+  updateCount();
+  checkUnlocks();
+}
+
+var interval = setInterval(function() {
+  tick();
+}, (1000/10));
