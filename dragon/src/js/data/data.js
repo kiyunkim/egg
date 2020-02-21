@@ -8,39 +8,24 @@ export let data = {};
 // items: resources
 // workers: builders that generate resources
 
-data.items = {
-  gold: {
-    name: 'gold',
-  },
-  gems: {
-    name: 'gems',
-  },
-};
-
-data.workers = {
-  // workers
-  dragons: {
+data.items = [
+  { name: 'gold', type: 'item' },
+  { name: 'gems', type: 'item' },
+  {
     name: 'dragons',
-    cost: {
-      gold: 20
-    },
+    type: 'worker',
+    cost: { gold: 20 },
     jobs: [
       // collector
       {
         name: 'collectors',
-        income: {
-          gold: 0.1
-        },
-        req: {
-          gold: 10
-        }
+        income: { gold: 0.1 },
+        req: { gold: 10 }
       },
       // jeweler
       {
         name: 'jewelers',
-        income: {
-          
-        },
+        income: {},
         req: ['gold', 'gems']
       },
       // merchant
@@ -69,4 +54,4 @@ data.workers = {
     ]
   },
   
-};
+];
